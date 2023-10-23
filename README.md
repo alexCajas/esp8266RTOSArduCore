@@ -7,9 +7,9 @@
 [![compatibility](https://img.shields.io/badge/compatibility-esp32-orange)]()
 
 
-# ESP8266RTOSArdu
+# ESP8266RTOSArduCore
 
-Arduino core for ESP8266_RTOS_SDK, [https://github.com/espressif/ESP8266_RTOS_SDK].
+Arduino core for [ESP8266_RTOS_SDK](https://github.com/espressif/ESP8266_RTOS_SDK), a light version of FreeRTOS, supported by espressif.
 
 RTO_SDK share the same framework with esp-idf [https://github.com/espressif/esp-idf], so this project is based on esp32 arduino core [https://github.com/espressif/arduino-esp32], (version 1.0.6), to provide compatibility between esp32 arduino libraries and this core.
 
@@ -35,7 +35,7 @@ RTO_SDK share the same framework with esp-idf [https://github.com/espressif/esp-
 
 # Features
 
-* Provides concurrency utilities.
+* Provides FreeRtos concurrency utilities.
 * Share framework with esp32 arduino core.
 * Compatibility with esp32 arduino libraries.
 * Easy installation with arduino board manager.
