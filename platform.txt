@@ -1,0 +1,120 @@
+
+# ESP8266 platform
+# ------------------------------
+
+# For more info:
+# https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification
+
+name=ESP8266 Boards RTOS (1.0.0)
+version=1.0.0
+
+compiler.path={runtime.platform.path}/tools/
+compiler.sdk.path={runtime.platform.path}/tools/sdk
+idf.path={runtime.platform.path}
+xtensa.path={runtime.tools.xtensa-lx106-elf.path}
+
+compiler.libc.path={runtime.platform.path}/tools/
+compiler.cpreprocessor.flags=-D__ets__ -DICACHE_FLASH -U__STRICT_ANSI__ -D_GNU_SOURCE -DESP8266 
+
+# support precompiled libraries in IDE v1.8.6+
+compiler.libraries.ldflags=
+
+compiler.c.cmd=compile.sh
+compiler.c.flags=-std=gnu17 -Os -g -free -fipa-pta -Werror=return-type -Wpointer-arith -Wno-implicit-function-declaration -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals -falign-functions=4 -MMD -ffunction-sections -fdata-sections 
+
+compiler.S.cmd=compile.sh
+compiler.S.flags=-c -g -x assembler-with-cpp -MMD -mlongcalls
+
+compiler.c.elf.flags= -Os -nostdlib -Wl,--no-check-sections  -Wl,-static  "-Tlocal.eagle.flash.ld" -Wl,--gc-sections -Wl,-wrap,system_restart_local -Wl,-wrap,spi_flash_read
+
+compiler.c.elf.cmd=compile.sh
+compiler.c.elf.libs=-lhal -lphy -lpp  -lwpa -lcrypto -lmain -lwps -lbearssl -lespnow -lsmartconfig -lairkiss  -lm -lc -lgcc
+
+compiler.cpp.cmd=compile.sh
+compiler.cpp.flags=-Os -g -free -fipa-pta -Werror=return-type -mlongcalls -mtext-section-literals -fno-rtti -falign -MMD -ffunction-sections
+
+compiler.as.cmd=compile.sh
+
+compiler.ar.cmd=compile.sh
+compiler.ar.flags=cru
+
+compiler.elf2hex.cmd=compile.sh
+compiler.elf2hex.flags=
+
+compiler.size.cmd=compile.sh
+
+# This can be overridden in boards.txt
+build.extra_flags=
+
+# These can be overridden in platform.local.txt
+compiler.c.extra_flags=
+compiler.c.elf.extra_flags=
+compiler.S.extra_flags=
+compiler.cpp.extra_flags=
+compiler.ar.extra_flags=
+compiler.objcopy.eep.extra_flags=
+compiler.elf2hex.extra_flags=
+
+## generate file with git version number
+## needs git
+
+# This is quite a working hack. This form of prebuild hook, while intuitive, is not explicitly documented.
+
+
+# Handle processing sketch global options
+
+recipe.hooks.prebuild.1.pattern="{compiler.path}preCompile.sh" -b "{build.path}" 
+recipe.hooks.postbuild.1.pattern="{compiler.path}{compiler.c.cmd}" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}"
+
+## en upload.pattern no se puede resolver correcamente
+#tools.esptool.upload.pattern.linux="{runtime.platform.path}/tools/flash.sh" -f "{build.source.path}/noRuta"
+
+
+### no empty lines for arduino cli
+## Compile c files
+recipe.c.o.pattern="{compiler.path}/dummy.sh" -f "/desderecipe.c.o.pattern" 
+
+## Compile c++ files
+recipe.cpp.o.pattern="{compiler.path}/dummy.sh" -f /desderecipe.cpp.pattern
+
+###
+
+
+## Compile S files
+recipe.S.o.pattern="{compiler.path}/dummy.sh"
+
+## Create archives, no se puede dejar en blanco o quitar
+recipe.ar.pattern="{compiler.path}/dummy.sh"
+
+## Combine gc-sections, archives, and objects, este comando no se puede quitar ni dejar
+# en blanco o en cadena vacia, opto por hacer que llame a un sh dummy
+recipe.c.combine.pattern= "{compiler.path}/dummy.sh"
+###
+
+
+
+# ------------------------------
+
+tools.esptool.path=
+# Because the variable expansion doesn't allow one tool to find another, the following lines
+# will point to "{runtime.platform.path}/tools/python3/python3" in GIT and
+# "{runtime.tools.python3.path}/python3" for JSON board manager releases.
+tools.esptool.cmd="{runtime.platform.path}/tools/flash.sh"
+tools.esptool.network_cmd={runtime.tools.python3.path}/python3
+
+
+
+tools.esptool.upload.protocol=esp
+# esptool.py --trace option is a debug option, not a verbose option
+tools.esptool.upload.params.verbose=
+tools.esptool.upload.params.quiet=
+
+# First, potentially perform an erase or nothing
+# Next, do the binary upload
+# Combined in one rule because Arduino doesn't support upload.1.pattern/upload.3.pattern
+tools.esptool.upload.pattern={cmd} -b "{build.path}" -i "{runtime.platform.path}" -x "{runtime.tools.xtensa-lx106-elf.path}"
+tools.esptool.upload.network_pattern="{network_cmd}" -I "{runtime.platform.path}/tools/espota.py" -i "{serial.port}" -p "{network.port}" "--auth={network.password}" -f "{build.path}/{build.project_name}.bin"
+
+
+
+

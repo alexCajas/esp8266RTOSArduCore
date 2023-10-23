@@ -1,0 +1,4 @@
+[mapping:lwip]
+archive: liblwip.a
+entries:
+        * (iram_bss)

@@ -1,0 +1,294 @@
+{
+  "tools": [
+    {
+      "description": "Toolchain for Xtensa (ESP8266) based on GCC",
+      "export_paths": [
+        [
+          "xtensa-lx106-elf",
+          "bin"
+        ]
+      ],
+      "export_vars": {},
+      "info_url": "https://github.com/espressif/crosstool-NG",
+      "install": "always",
+      "license": "GPL-3.0-with-GCC-exception",
+      "name": "xtensa-lx106-elf",
+      "version_cmd": [
+        "xtensa-lx106-elf-gcc",
+        "--version"
+      ],
+      "version_regex": "\\(crosstool-NG\\s+(?:crosstool-ng-)?([0-9a-z\\.\\-]+)\\)\\s*([0-9\\.]+)",
+      "version_regex_replace": "\\1-\\2",
+      "versions": [
+        {
+          "linux-amd64": {
+            "sha256": "0a1804b5e2231c6db8b72af6bc2a0f9a5b6994cfba29956d412651109f13fe7e",
+            "size": 88885561,
+            "url": "https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz"
+          },
+          "linux-i686": {
+            "sha256": "c8dce7e8eb58c1fdf4e03ba74eb8094e803a0b5b8ad6a9d571216f60eb72cb36",
+            "size": 90887617,
+            "url": "https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-i686.tar.gz"
+          },
+          "macos": {
+            "sha256": "7823c5fdf3cea2b588cf0c5bd962774ab60a30b8d9c19ae0056a0ef3697537db",
+            "size": 95436978,
+            "url": "https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-macos.tar.gz"
+          },
+          "name": "esp-2020r3-49-gd5524c1-8.4.0",
+          "status": "recommended",
+          "win32": {
+            "sha256": "733b4da8723471b430f8692b943a7917ad5920b98e7bc6bdf9fb7617182c2b33",
+            "size": 108711860,
+            "url": "https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-win32.zip"
+          },
+          "win64": {
+            "sha256": "733b4da8723471b430f8692b943a7917ad5920b98e7bc6bdf9fb7617182c2b33",
+            "size": 108711860,
+            "url": "https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-win32.zip"
+          }
+        }
+      ]
+    },
+    {
+      "description": "CMake build system",
+      "export_paths": [
+        [
+          "bin"
+        ]
+      ],
+      "export_vars": {},
+      "info_url": "https://github.com/Kitware/CMake",
+      "install": "on_request",
+      "license": "BSD-3-Clause",
+      "name": "cmake",
+      "platform_overrides": [
+        {
+          "install": "always",
+          "platforms": [
+            "win32",
+            "win64"
+          ]
+        },
+        {
+          "export_paths": [
+            [
+              "CMake.app",
+              "Contents",
+              "bin"
+            ]
+          ],
+          "platforms": [
+            "macos"
+          ]
+        }
+      ],
+      "strip_container_dirs": 1,
+      "version_cmd": [
+        "cmake",
+        "--version"
+      ],
+      "version_regex": "cmake version ([0-9.]+)",
+      "versions": [
+        {
+          "linux-amd64": {
+            "sha256": "563a39e0a7c7368f81bfa1c3aff8b590a0617cdfe51177ddc808f66cc0866c76",
+            "size": 38405896,
+            "url": "https://github.com/Kitware/CMake/releases/download/v3.13.4/cmake-3.13.4-Linux-x86_64.tar.gz"
+          },
+          "macos": {
+            "sha256": "fef537614d73fda848f6168273b6c7ba45f850484533361e7bc50ac1d315f780",
+            "size": 32062124,
+            "url": "https://github.com/Kitware/CMake/releases/download/v3.13.4/cmake-3.13.4-Darwin-x86_64.tar.gz"
+          },
+          "name": "3.13.4",
+          "status": "recommended",
+          "win32": {
+            "sha256": "28daf772f55d817a13ef14e25af2a5569f8326dac66a6aa3cc5208cf1f8e943f",
+            "size": 26385104,
+            "url": "https://github.com/Kitware/CMake/releases/download/v3.13.4/cmake-3.13.4-win32-x86.zip"
+          },
+          "win64": {
+            "sha256": "bcd477d49e4a9400b41213d53450b474beaedb264631693c958ef9affa8e5623",
+            "size": 29696565,
+            "url": "https://github.com/Kitware/CMake/releases/download/v3.13.4/cmake-3.13.4-win64-x64.zip"
+          }
+        }
+      ]
+    },
+    {
+      "description": "menuconfig tool",
+      "export_paths": [
+        [
+          ""
+        ]
+      ],
+      "export_vars": {},
+      "info_url": "https://github.com/espressif/kconfig-frontends",
+      "install": "never",
+      "license": "GPL-2.0-only",
+      "name": "mconf",
+      "platform_overrides": [
+        {
+          "install": "always",
+          "platforms": [
+            "win32",
+            "win64"
+          ]
+        }
+      ],
+      "strip_container_dirs": 1,
+      "version_cmd": [
+        "mconf-idf",
+        "-v"
+      ],
+      "version_regex": "mconf-idf version mconf-([a-z0-9.-]+)-win32",
+      "versions": [
+        {
+          "name": "v4.6.0.0-idf-20190628",
+          "status": "recommended",
+          "win32": {
+            "sha256": "1b8f17f48740ab669c13bd89136e8cc92efe0cd29872f0d6c44148902a2dc40c",
+            "size": 826114,
+            "url": "https://github.com/espressif/kconfig-frontends/releases/download/v4.6.0.0-idf-20190628/mconf-v4.6.0.0-idf-20190628-win32.zip"
+          },
+          "win64": {
+            "sha256": "1b8f17f48740ab669c13bd89136e8cc92efe0cd29872f0d6c44148902a2dc40c",
+            "size": 826114,
+            "url": "https://github.com/espressif/kconfig-frontends/releases/download/v4.6.0.0-idf-20190628/mconf-v4.6.0.0-idf-20190628-win32.zip"
+          }
+        }
+      ]
+    },
+    {
+      "description": "Ninja build system",
+      "export_paths": [
+        [
+          ""
+        ]
+      ],
+      "export_vars": {},
+      "info_url": "https://github.com/ninja-build/ninja",
+      "install": "on_request",
+      "license": "Apache-2.0",
+      "name": "ninja",
+      "platform_overrides": [
+        {
+          "install": "always",
+          "platforms": [
+            "win32",
+            "win64"
+          ]
+        }
+      ],
+      "version_cmd": [
+        "ninja",
+        "--version"
+      ],
+      "version_regex": "([0-9.]+)",
+      "versions": [
+        {
+          "linux-amd64": {
+            "sha256": "978fd9e26c2db8d33392c6daef50e9edac0a3db6680710a9f9ad47e01f3e49b7",
+            "size": 85276,
+            "url": "https://dl.espressif.com/dl/ninja-1.9.0-linux64.tar.gz"
+          },
+          "macos": {
+            "sha256": "9504cd1783ef3c242d06330a50d54dc8f838b605f5fc3e892c47254929f7350c",
+            "size": 91457,
+            "url": "https://dl.espressif.com/dl/ninja-1.9.0-osx.tar.gz"
+          },
+          "name": "1.9.0",
+          "status": "recommended",
+          "win64": {
+            "sha256": "2d70010633ddaacc3af4ffbd21e22fae90d158674a09e132e06424ba3ab036e9",
+            "size": 254497,
+            "url": "https://dl.espressif.com/dl/ninja-1.9.0-win64.zip"
+          }
+        }
+      ]
+    },
+    {
+      "description": "IDF wrapper tool for Windows",
+      "export_paths": [
+        [
+          ""
+        ]
+      ],
+      "export_vars": {},
+      "info_url": "https://github.com/espressif/esp-idf/tree/master/tools/windows/idf_exe",
+      "install": "never",
+      "license": "Apache-2.0",
+      "name": "idf-exe",
+      "platform_overrides": [
+        {
+          "install": "always",
+          "platforms": [
+            "win32",
+            "win64"
+          ]
+        }
+      ],
+      "version_cmd": [
+        "idf.py.exe",
+        "-v"
+      ],
+      "version_regex": "([0-9.]+)",
+      "versions": [
+        {
+          "name": "1.0.1",
+          "status": "recommended",
+          "win32": {
+            "sha256": "53eb6aaaf034cc7ed1a97d5c577afa0f99815b7793905e9408e74012d357d04a",
+            "size": 11297,
+            "url": "https://dl.espressif.com/dl/idf-exe-v1.0.1.zip"
+          },
+          "win64": {
+            "sha256": "53eb6aaaf034cc7ed1a97d5c577afa0f99815b7793905e9408e74012d357d04a",
+            "size": 11297,
+            "url": "https://dl.espressif.com/dl/idf-exe-v1.0.1.zip"
+          }
+        }
+      ]
+    },
+    {
+      "description": "Ccache (compiler cache)",
+      "export_paths": [
+        [
+          ""
+        ]
+      ],
+      "export_vars": {},
+      "info_url": "https://github.com/ccache/ccache",
+      "install": "never",
+      "license": "GPL-3.0-or-later",
+      "name": "ccache",
+      "platform_overrides": [
+        {
+          "install": "always",
+          "platforms": [
+            "win64"
+          ]
+        }
+      ],
+      "version_cmd": [
+        "ccache.exe",
+        "--version"
+      ],
+      "version_regex": "ccache version ([0-9.]+)",
+      "versions": [
+        {
+          "name": "3.7",
+          "status": "recommended",
+          "win64": {
+            "sha256": "37e833f3f354f1145503533e776c1bd44ec2e77ff8a2476a1d2039b0b10c78d6",
+            "size": 142401,
+            "url": "https://dl.espressif.com/dl/ccache-3.7-w64.zip"
+          }
+        }
+      ]
+    }
+  ],
+  "version": 1
+}

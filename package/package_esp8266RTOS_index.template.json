@@ -1,0 +1,55 @@
+{
+  "packages": [
+    {
+      "name": "esp8266RTOS",
+      "maintainer": "alexcajas505@gmail.com",
+      "websiteURL": "https://github.com/alexCajas/DownLoadTest/",
+      "email": "alexcajas505@gmail.com",
+      "help": {
+        "online": "https://github.com/alexCajas/DownLoadTest/"
+      },
+      "platforms": [
+        {
+          "name": "esp8266RTOS",
+          "architecture": "esp8266RTOS",
+          "version": "1.0.0",
+          "category": "ESP8266RTOS",
+          "url": "https://github.com/alexCajas/DownLoadTest/archive/refs/tags/v1.0.0.tar.gz",
+          "archiveFileName": "v1.0.0.tar.gz",
+          "checksum": "SHA-256:fb0e72b181115589a4cfd83e288d0a89f74409f095824ec1950d53328fee02b4",
+          "size": "18566434",
+          "help": {
+            "online": "https://github.com/alexCajas/DownLoadTest/"
+          },
+          "boards": [
+            {
+              "name": "ESP8266 Module"
+            }
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "esp8266RTOS",
+              "name": "xtensa-lx106-elf",
+              "version": "8_4_0-esp-2020r3"
+            }
+          ]
+        }
+      ],
+      "tools": [
+        {
+          "name": "xtensa-lx106-elf",
+          "version": "8_4_0-esp-2020r3",
+          "systems": [
+            {
+              "host": "x86_64-pc-linux-gnu",
+              "url": "https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz",
+              "archiveFileName": "xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz",
+              "checksum": "SHA-256:0a1804b5e2231c6db8b72af6bc2a0f9a5b6994cfba29956d412651109f13fe7e",
+              "size": "88885561"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

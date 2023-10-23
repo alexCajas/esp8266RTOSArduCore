@@ -1,0 +1,65 @@
+# Check ESP-IDF version and error out if it is not in the supported range.
+#
+# Note for arduino-esp32 developers: to bypass the version check locally,
+# set ARDUINO_SKIP_IDF_VERSION_CHECK environment variable to 1. For example:
+#   export ARDUINO_SKIP_IDF_VERSION_CHECK=1
+#   idf.py build
+
+# Works well, get all files from DIR_FILES, and get with src rutes and rutes with .c or .cpp that are not in src directory.
+
+#set(DIR_FILES "/home/alex/.arduino15/packages/esp8266RTOS/hardware/esp8266RTOS/1.0.0/components/arduino/")
+
+set(DIR_FILES ${CMAKE_CURRENT_SOURCE_DIR}) #directorio del fichero,  ${CMAKE_SOURCE_DIR directorio padre de /build.
+
+# Encuentra todos los directorios que contienen archivos .c o .cpp
+file(GLOB_RECURSE SOURCE_FILES
+    "${DIR_FILES}/*.c"
+    "${DIR_FILES}/*.cpp"
+)
+
+# Encuentra todos los directorios que contienen archivos .c o .cpp
+file(GLOB_RECURSE HEADER_FILES
+    "${DIR_FILES}/*.h"
+    "${DIR_FILES}/*.hpp"
+)
+
+# Concatenar las listas y asignar a una tercera variable
+set(ALL_FILES ${SOURCE_FILES} ${HEADER_FILES})
+
+# Filtra solo los directorios
+set(DIRS "")
+# Iterar sobre los archivos y aplicar el filtro
+foreach(file ${ALL_FILES})
+    get_filename_component(dir ${file} DIRECTORY)
+    if("${dir}" MATCHES ".*src$")
+        # Si el directorio termina con "src", entonces es un subdirectorio de "src"
+        list(APPEND DIRS "${dir}")
+    else()
+        # Si no es un subdirectorio de "src", obtenemos el directorio que contiene el archivo
+        get_filename_component(parent_dir ${dir} DIRECTORY)
+        list(APPEND DIRS "${parent_dir}")
+    endif()
+endforeach()
+
+# Filtra los directorios duplicados
+list(REMOVE_DUPLICATES DIRS)
+
+
+# Muestra los directorios encontrados
+message("Directorios con archivos .c o .cpp en dir:")
+message("${DIR_FILES}")
+foreach(DIR ${DIRS})
+    message("${DIR}")
+endforeach()
+
+
+
+set(srcs ${SOURCE_FILES} )
+set(priv_includes cores/esp8266/libb64)
+set(requires spi_flash mbedtls mdns wifi_provisioning wpa_supplicant)
+set(priv_requires fatfs nvs_flash app_update spiffs bootloader_support openssl)
+
+idf_component_register(INCLUDE_DIRS ${DIRS} PRIV_INCLUDE_DIRS ${priv_includes} SRCS ${srcs} REQUIRES ${requires} PRIV_REQUIRES ${priv_requires})
+
+
+ 
