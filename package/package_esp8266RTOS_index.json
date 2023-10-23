@@ -3,10 +3,10 @@
     {
       "name": "esp8266RTOS",
       "maintainer": "alexcajas505@gmail.com",
-      "websiteURL": "https://github.com/alexCajas/DownLoadTest/",
+      "websiteURL": "https://github.com/alexCajas/esp8266RTOSArduCore/",
       "email": "alexcajas505@gmail.com",
       "help": {
-        "online": "https://github.com/alexCajas/DownLoadTest/"
+        "online": "https://github.com/alexCajas/esp8266RTOSArduCore"
       },
       "platforms": [
         {
@@ -14,12 +14,12 @@
           "architecture": "esp8266RTOS",
           "version": "1.0.0",
           "category": "ESP8266RTOS",
-          "url": "https://github.com/alexCajas/DownLoadTest/archive/refs/tags/v1.0.0.tar.gz",
+          "url": "https://github.com/alexCajas/esp8266RTOSArduCore/archive/refs/tags/v1.0.0.tar.gz",
           "archiveFileName": "v1.0.0.tar.gz",
           "checksum": "SHA-256:fb0e72b181115589a4cfd83e288d0a89f74409f095824ec1950d53328fee02b4",
           "size": "18566434",
           "help": {
-            "online": "https://github.com/alexCajas/DownLoadTest/"
+            "online": "https://github.com/alexCajas/esp8266RTOSArduCore/"
           },
           "boards": [
             {
