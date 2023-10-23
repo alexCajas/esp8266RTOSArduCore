@@ -5,7 +5,7 @@
 [![RTOS](https://img.shields.io/badge/-RTOS-blue)](https://github.com/espressif/ESP8266_RTOS_SDK)
 [![framework](https://img.shields.io/badge/framework-IDF-yellow)](https://idf.espressif.com/)
 [![compatibility](https://img.shields.io/badge/compatibility-esp32-orange)]()
-
+[![Release](https://img.shields.io/github/v/release/alexCajas/esp8266RTOSArduCore)](https://github.com/alexCajas/esp8266RTOSArduCore/releases/latest)
 
 # ESP8266RTOSArduCore
 
@@ -44,7 +44,8 @@ RTO_SDK share the same framework with esp-idf [https://github.com/espressif/esp-
 
 # Installation
 
-You can install this core using arduino board manager with this package index [![Latest release](https://img.shields.io/github/release/esp8266/Arduino.svg)](https://github.com/alexCajas/esp8266RTOSArduCore/releases/latest/):
+You can install this core using arduino board manager with this package index [![Release](https://img.shields.io/github/v/release/alexCajas/esp8266RTOSArduCore)](https://github.com/alexCajas/esp8266RTOSArduCore/releases/latest)
+:
 
 ~~~
 https://raw.githubusercontent.com/alexCajas/esp8266RTOSArduCore/main/package/package_esp8266RTOS_index.json
