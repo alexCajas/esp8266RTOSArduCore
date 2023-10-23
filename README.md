@@ -47,7 +47,7 @@ RTO_SDK share the same framework with esp-idf [https://github.com/espressif/esp-
 You can install this core using arduino board manager with this package index [![Latest release](https://img.shields.io/github/release/esp8266/Arduino.svg)](https://github.com/alexCajas/esp8266RTOSArduCore/releases/latest/):
 
 ~~~
-https://raw.githubusercontent.com/alexCajas/DownLoadTest/v1.0.3/package/package_esp8266RTOS_index.json
+https://raw.githubusercontent.com/alexCajas/esp8266RTOSArduCore/main/package/package_esp8266RTOS_index.json
 ~~~
 
 Then you need to install esp8266_RTOS_SDK requirements in your system:
