@@ -23,13 +23,13 @@ RTO_SDK share the same framework with esp-idf [https://github.com/espressif/esp-
 
 # Index
 
-* [Features](https://github.com/alexCajas/ESP8266RTOSArdu/tree/main#features)
-* [Installation](https://github.com/alexCajas/ESP8266RTOSArdu/tree/main#installation)
-* [Limitations](https://github.com/alexCajas/ESP8266RTOSArdu/tree/main#limitations)
-* [To Do List](https://github.com/alexCajas/ESP8266RTOSArdu/tree/main#to-do-list)
-* [List of remaining core files to adapt test and fix](https://github.com/alexCajas/ESP8266RTOSArdu/tree/main#list-of-core-files-to-adapt-test-and-fix)
-* [List of remaining basic libraries to Test and fix](https://github.com/alexCajas/ESP8266RTOSArdu/tree/main#list-of-basic-libraries-to-test-and-fix)
-* [Links of interest](https://github.com/alexCajas/ESP8266RTOSArdu/tree/main#links-of-interest)
+* [Features](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#features)
+* [Installation](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#installation)
+* [Limitations](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#limitations)
+* [To Do List](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#to-do-list)
+* [List of remaining core files to adapt test and fix](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#list-of-core-files-to-adapt-test-and-fix)
+* [List of remaining basic libraries to Test and fix](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#list-of-basic-libraries-to-test-and-fix)
+* [Links of interest](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#links-of-interest)
 
 ---
 
@@ -44,7 +44,7 @@ RTO_SDK share the same framework with esp-idf [https://github.com/espressif/esp-
 
 # Installation
 
-You can install this core using arduino board manager with this package index [![Latest release](https://img.shields.io/github/release/esp8266/Arduino.svg)](https://github.com/alexCajas/ESP8266RTOSArdu/releases/latest/):
+You can install this core using arduino board manager with this package index [![Latest release](https://img.shields.io/github/release/esp8266/Arduino.svg)](https://github.com/alexCajas/esp8266RTOSArduCore/releases/latest/):
 
 ~~~
 https://raw.githubusercontent.com/alexCajas/DownLoadTest/v1.0.3/package/package_esp8266RTOS_index.json
