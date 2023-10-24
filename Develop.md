@@ -150,8 +150,33 @@ esp8266RTOS sdk for arduino.
         ~~~
   * more info: client insecure works find!!.
   * I try to comment client.setCACert(test_root_ca);, and now stack canary watchdog is no fired, so problem is in this way!!:
-    * When I change  test_root_ca to a short mesagge "hello\n", the code works well, lwip_socket connect the socket well, and sll protocol don't run because test_root_ca don't have ca format. ¿Maybe ca is too long for esp8266 memory?
+    * When I change  test_root_ca to a short mesagge "hello\n", the code works well, lwip_socket connect the socket well, and sll protocol don't run because test_root_ca don't have ca format. ¿Maybe ca is too long for esp8266 memory?:
+      * The problem is when try to get handshake in ssl_tls.c:
+      ~~~
+  int mbedtls_ssl_handshake( mbedtls_ssl_context *ssl )
+  {   printf("entry in mbdtls_ssl_handshake\n");
+      int ret = 0;
 
+      if( ssl == NULL || ssl->conf == NULL )
+          return( MBEDTLS_ERR_SSL_BAD_INPUT_DATA );
+
+      MBEDTLS_SSL_DEBUG_MSG( 2, ( "=> handshake" ) );
+
+      while( ssl->state != MBEDTLS_SSL_HANDSHAKE_OVER )
+      {   
+          printf("affer this is fired stackcanary\n");
+          ret = mbedtls_ssl_handshake_step( ssl );
+          printf("ret getted\n");
+          if( ret != 0 )
+              break;
+      }
+
+      MBEDTLS_SSL_DEBUG_MSG( 2, ( "<= handshake" ) );
+      printf("mbdtls_ssl_ret %d\n",ret);
+      return( ret );
+  }      
+      ~~~
+  * ssl_client call to this function in while function, eventualy in one iteration, the stack canary watchdog storeLoad is fired!
 ## Done
 
 ### 22/10/2023
