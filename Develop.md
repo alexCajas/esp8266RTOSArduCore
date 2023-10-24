@@ -129,7 +129,26 @@ esp8266RTOS sdk for arduino.
 
 
 * test and fix libraries of core of esp32 in this core (WiFi, WebServer, ArduinoOta etc...):
-  * WiFiClientSecure: 
+  * WiFiClientSecure v1.0.6: 
+    * need active CONFIG_ESP_TLS_PSK_VERIFICATION in sdkconfig
+    * Bug Stack canary watchpoint triggered (uiT), difference between WiFiClient.hpp
+    * and ssl_client.cpp is use lwip_socket(), WiFiClient use:
+    ~~~
+    socket(AF_INET, SOCK_STREAM, 0){} that call to lwip_socket(AF_INET, SOCK_STREAM, 0).
+   ~~~
+   * And ssl_client.cpp call directly to lwip_socket() with (AF_INET, SOCK_STREAM, IPPROTO_TCP)
+      * Code works well until call to   
+        ~~~
+        err_t // this function is in sys_arch.c freertos version!.
+        sys_mbox_new(sys_mbox_t *mbox, int size){
+              .
+              .
+              .
+          LWIP_DEBUGF(ESP_THREAD_SAFE_DEBUG, ("new *mbox ok mbox=%p os_mbox=%p\n", *mbox, (*mbox)->os_mbox));
+        }
+        
+        ~~~
+  * more info: client insecure works find!!.
 
 ## Done
 

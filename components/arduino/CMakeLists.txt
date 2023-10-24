@@ -96,9 +96,9 @@ set(LIBRARY_SRCS
   #${LIBRARIES_DIR}/WebServer/src/WebServer.cpp
   #${LIBRARIES_DIR}/WebServer/src/Parsing.cpp
   #${LIBRARIES_DIR}/WebServer/src/detail/mimetable.cpp
-  #${LIBRARIES_DIR}/WiFiClientSecure/src/ssl_client.cpp
+  ${LIBRARIES_DIR}/WiFiClientSecure/src/ssl_client.cpp
   #${LIBRARIES_DIR}/WiFiClientSecure/src/esp_crt_bundle.c
-  #${LIBRARIES_DIR}/WiFiClientSecure/src/WiFiClientSecure.cpp
+  ${LIBRARIES_DIR}/WiFiClientSecure/src/WiFiClientSecure.cpp
   ${LIBRARIES_DIR}/WiFi/src/WiFiAP.cpp
   ${LIBRARIES_DIR}/WiFi/src/WiFiClient.cpp
   ${LIBRARIES_DIR}/WiFi/src/WiFi.cpp
@@ -167,7 +167,7 @@ set(includedirs
   #${LIBRARIES_DIR}/Update/src
   #${LIBRARIES_DIR}/USB/src
   #${LIBRARIES_DIR}/WebServer/src
-  #${LIBRARIES_DIR}/WiFiClientSecure/src
+  ${LIBRARIES_DIR}/WiFiClientSecure/src
   ${LIBRARIES_DIR}/WiFi/src
   #${LIBRARIES_DIR}/WiFiProv/src
   #${LIBRARIES_DIR}/Wire/src
