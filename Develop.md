@@ -149,6 +149,7 @@ esp8266RTOS sdk for arduino.
         
         ~~~
   * more info: client insecure works find!!.
+  * I try to comment client.setCACert(test_root_ca);, and now stack canary watchdog is no fired, so problem is is this way!!. 
 
 ## Done
 
