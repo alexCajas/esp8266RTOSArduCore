@@ -65,6 +65,10 @@ cd ~/.arduino15/packages/esp8266RTOS/hardware/esp8266RTOS/1.0.0
 pip3 install -r requirements.txt
 ~~~
 
+* Select esp8266 boards RTOS:
+
+![Online code generation tool](assets/img/arduinoIDEBoardSelection.png)
+
 * **Now you are ready to write and install sketchs using Arduino IDE or VScode IDE!**
 
 # Limitations
