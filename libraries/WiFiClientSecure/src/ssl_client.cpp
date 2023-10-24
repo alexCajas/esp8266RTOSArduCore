@@ -70,7 +70,7 @@ int start_ssl_client(sslclient_context *ssl_client, const char *host, uint32_t p
         log_e("ERROR opening socket");
         return ssl_client->socket;
     }
-
+    log_i("client socket is getted %d",ssl_client->socket);
     IPAddress srv((uint32_t)0);
     if(!WiFiGenericClass::hostByName(host, srv)){
         return -1;

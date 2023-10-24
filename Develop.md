@@ -131,7 +131,7 @@ esp8266RTOS sdk for arduino.
 * test and fix libraries of core of esp32 in this core (WiFi, WebServer, ArduinoOta etc...):
   * WiFiClientSecure v1.0.6: 
     * need active CONFIG_ESP_TLS_PSK_VERIFICATION in sdkconfig
-    * Bug Stack canary watchpoint triggered (uiT), difference between WiFiClient.hpp
+    * Bug Stack canary watchpoint triggered (uiT) bad storeLoad, difference between WiFiClient.hpp
     * and ssl_client.cpp is use lwip_socket(), WiFiClient use:
     ~~~
     socket(AF_INET, SOCK_STREAM, 0){} that call to lwip_socket(AF_INET, SOCK_STREAM, 0).
@@ -149,7 +149,8 @@ esp8266RTOS sdk for arduino.
         
         ~~~
   * more info: client insecure works find!!.
-  * I try to comment client.setCACert(test_root_ca);, and now stack canary watchdog is no fired, so problem is is this way!!. 
+  * I try to comment client.setCACert(test_root_ca);, and now stack canary watchdog is no fired, so problem is in this way!!:
+    * When I change  test_root_ca to a short mesagge "hello\n", the code works well, lwip_socket connect the socket well, and sll protocol don't run because test_root_ca don't have ca format. ¿Maybe ca is too long for esp8266 memory?
 
 ## Done
 
