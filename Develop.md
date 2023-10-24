@@ -128,7 +128,8 @@ esp8266RTOS sdk for arduino.
   * #${CORE_DIR}/firmware_msc_fat.c
 
 
-* test and fix libraries of core of esp32 in this core (WiFi, WebServer, ArduinoOta etc...)
+* test and fix libraries of core of esp32 in this core (WiFi, WebServer, ArduinoOta etc...):
+  * WiFiClientSecure: 
 
 ## Done
 
