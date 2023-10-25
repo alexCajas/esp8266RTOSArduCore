@@ -8,6 +8,7 @@
 
   2017 - Evandro Copercini - Apache 2.0 License.
   2018 - Adapted for PSK by Thorsten von Eicken
+  2023 - Adapted for esp8266RTOSArduCore by Alex Cajas.
 */
 
 #include <WiFiClientSecure.h>
@@ -29,6 +30,7 @@ const char*  psKey = "1a2b3c4d"; // PSK Key (must be hex string without 0x)
 
 WiFiClientSecure client;
 
+void pskExample(void *args);
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(115200);
@@ -47,39 +49,54 @@ void setup() {
 
   Serial.print("Connected to ");
   Serial.println(ssid);
-
-  client.setPreSharedKey(pskIdent, psKey);
-
-  Serial.println("\nStarting connection to server...");
-  if (!client.connect(server, port))
-    Serial.println("Connection failed!");
-  else {
-    Serial.println("Connected to server!");
-    // Make a HTTP request:
-    client.println("GET /a/check HTTP/1.0");
-    client.print("Host: ");
-    client.println(server);
-    client.println("Connection: close");
-    client.println();
-
-    while (client.connected()) {
-      String line = client.readStringUntil('\n');
-      if (line == "\r") {
-        Serial.println("headers received");
-        break;
-      }
-    }
-    // if there are incoming bytes available
-    // from the server, read them and print them:
-    while (client.available()) {
-      char c = client.read();
-      Serial.write(c);
-    }
-
-    client.stop();
-  }
+  
+  xTaskCreate(&pskExample, "psk example task", 8192, NULL, 5, NULL);
 }
 
 void loop() {
   // do nothing
+  vTaskDelay(1);
+}
+
+void pskExample(void *args){
+
+  client.setPreSharedKey(pskIdent, psKey);
+  Serial.println("\nStarting connection to server...");
+
+  while(true){
+
+    if (!client.connect(server, 443)){
+      Serial.println("Connection failed!, waiting 500mlsec until retry connection again");
+      vTaskDelay(500);
+    }
+      
+    else {
+      Serial.println("Connected to server!");
+      // Make a HTTP request:
+      client.println("GET /a/check HTTP/1.0");
+      client.print("Host: ");
+      client.println(server);
+      client.println("Connection: close");
+      client.println();
+
+      while (client.connected()) {
+        String line = client.readStringUntil('\n');
+        if (line == "\r") {
+          Serial.println("headers received");
+          break;
+        }
+      }
+      // if there are incoming bytes available
+      // from the server, read them and print them:
+      while (client.available()) {
+        char c = client.read();
+        Serial.write(c);
+      }
+
+      client.stop();
+      Serial.println();
+      Serial.println("connection closed");
+      vTaskDelete(NULL);
+    }
+  }
 }
