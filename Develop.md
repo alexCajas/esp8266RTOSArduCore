@@ -176,7 +176,10 @@ esp8266RTOS sdk for arduino.
       return( ret );
   }      
       ~~~
-  * ssl_client call to this function in while function, eventualy in one iteration, the stack canary watchdog storeLoad is fired!
+  * ssl_client call to this function in while function, eventualy in one iteration, the stack canary watchdog storeLoad is fired!:
+  
+  * I tested https_medtls example of rtos, and it work well, I use this example to create a test in arduino core and it work well even using example CA of esp32 --> Idea, changes ssl_client.cpp acording to rtos example
+
 ## Done
 
 ### 22/10/2023
