@@ -61,7 +61,7 @@ set(LIBRARY_SRCS
   #${LIBRARIES_DIR}/FFat/src/FFat.cpp
   #${LIBRARIES_DIR}/FS/src/FS.cpp
   #${LIBRARIES_DIR}/FS/src/vfs_api.cpp
-  #${LIBRARIES_DIR}/HTTPClient/src/HTTPClient.cpp
+  ${LIBRARIES_DIR}/HTTPClient/src/HTTPClient.cpp
   #${LIBRARIES_DIR}/HTTPUpdate/src/HTTPUpdate.cpp
   #${LIBRARIES_DIR}/LittleFS/src/LittleFS.cpp
   #${LIBRARIES_DIR}/Insights/src/Insights.cpp
@@ -150,7 +150,7 @@ set(includedirs
   #${LIBRARIES_DIR}/Ethernet/src
   #${LIBRARIES_DIR}/FFat/src
   #${LIBRARIES_DIR}/FS/src
-  #${LIBRARIES_DIR}/HTTPClient/src
+  ${LIBRARIES_DIR}/HTTPClient/src
   #${LIBRARIES_DIR}/HTTPUpdate/src
   #${LIBRARIES_DIR}/LittleFS/src
   #${LIBRARIES_DIR}/Insights/src

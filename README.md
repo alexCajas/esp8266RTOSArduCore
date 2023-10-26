@@ -175,7 +175,7 @@ pip3 install -r requirements.txt
 - [ ] WebServer
 - [x] WiFiClientSecure
 - [ ] WiFiProv
-- [ ] HTTPClient
+- [x] HTTPClient
 - [ ] HttpUpdate
 - [ ] HttpUPdateServer
 - [ ] DNSServer

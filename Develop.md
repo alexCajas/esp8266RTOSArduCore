@@ -129,7 +129,7 @@ esp8266RTOS sdk for arduino.
 
 
 * test and fix libraries of core of esp32 in this core (WiFi, WebServer, ArduinoOta etc...):
-  * WiFiClientSecure v1.0.6: 
+  * WiFiClientSecure v1.0.6: --> done
     * need active CONFIG_ESP_TLS_PSK_VERIFICATION in sdkconfig
     * Bug Stack canary watchpoint triggered (uiT) bad storeLoad, difference between WiFiClient.hpp
     * and ssl_client.cpp is use lwip_socket(), WiFiClient use:
@@ -181,6 +181,8 @@ esp8266RTOS sdk for arduino.
   * I tested https_medtls example of rtos, and it work well, I use this example to create a test in arduino core and it work well even using example CA of esp32 --> Idea, changes ssl_client.cpp acording to rtos example:
     * Fixed!, the issue comes from setup() and loop(), for some reason mbedtls loops fire stack canary watchdog affter few iterations,  but in another task it run well!
     * The problem was that loop and setup was no running in his own task. Solved. The original examples of this libraries works well!.
+  
+   * HttpClient v1.0.6: --> done
 ## Done
 
 ### 22/10/2023
