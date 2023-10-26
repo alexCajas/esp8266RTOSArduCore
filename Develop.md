@@ -71,19 +71,22 @@ esp8266RTOS sdk for arduino.
 
 * Make a list with esp32 core libraries to test and fix!:
 
-- [ ] WebServer
-- [ ] WiFiClientSecure
+- [x] WiFi
+- [x] EmbeddedMqttBroker
+- [x] WrapperFreeRTOS
+- [x] WebServer
+- [x] WiFiClientSecure
 - [ ] WiFiProv
-- [ ] HTTPClient
+- [x] HTTPClient
 - [ ] HttpUpdate
 - [ ] HttpUPdateServer
-- [ ] DNSServer
+- [x] DNSServer
+- [x] ESPmDNS
 - [ ] AyncUDP?
 - [ ] Update
 - [ ] ArduinoOta
 - [ ] EEPROM
 - [ ] ESP[32|8266] examples
-- [ ] ESPmDNS
 - [ ] FFat
 - [ ] FS
 - [ ] NetBios
@@ -94,6 +97,7 @@ esp8266RTOS sdk for arduino.
 - [ ] SPIFFS
 - [ ] Ticker
 - [ ] Wire
+
 
 
 * hardware dependecies files to do: 
@@ -188,6 +192,8 @@ esp8266RTOS sdk for arduino.
 
   * WebServer: --> validated
     * Added http_parser dependency in arduino/CMakeLists.txt
+  
+  * ESPmDNS --> validated 
 
 ## Done
 

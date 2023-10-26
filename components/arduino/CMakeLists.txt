@@ -56,7 +56,7 @@ set(LIBRARY_SRCS
   #${LIBRARIES_DIR}/BluetoothSerial/src/BTScanResultsSet.cpp
   ${LIBRARIES_DIR}/DNSServer/src/DNSServer.cpp
   #${LIBRARIES_DIR}/EEPROM/src/EEPROM.cpp
-  #${LIBRARIES_DIR}/ESPmDNS/src/ESPmDNS.cpp
+  ${LIBRARIES_DIR}/ESPmDNS/src/ESPmDNS.cpp
   #${LIBRARIES_DIR}/Ethernet/src/ETH.cpp
   #${LIBRARIES_DIR}/FFat/src/FFat.cpp
   ${LIBRARIES_DIR}/FS/src/FS.cpp
@@ -146,7 +146,7 @@ set(includedirs
   ${LIBRARIES_DIR}/DNSServer/src
   #${LIBRARIES_DIR}/EEPROM/src
   #${LIBRARIES_DIR}/ESP32/src
-  #${LIBRARIES_DIR}/ESPmDNS/src
+  ${LIBRARIES_DIR}/ESPmDNS/src
   #${LIBRARIES_DIR}/Ethernet/src
   #${LIBRARIES_DIR}/FFat/src
   ${LIBRARIES_DIR}/FS/src

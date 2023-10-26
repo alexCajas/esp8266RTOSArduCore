@@ -179,7 +179,7 @@ pip3 install -r requirements.txt
 - [ ] HttpUpdate
 - [ ] HttpUPdateServer
 - [x] DNSServer
-- [ ] ESPmDNS
+- [x] ESPmDNS
 - [ ] AyncUDP?
 - [ ] Update
 - [ ] ArduinoOta
