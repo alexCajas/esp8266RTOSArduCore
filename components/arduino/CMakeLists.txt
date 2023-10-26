@@ -59,8 +59,8 @@ set(LIBRARY_SRCS
   #${LIBRARIES_DIR}/ESPmDNS/src/ESPmDNS.cpp
   #${LIBRARIES_DIR}/Ethernet/src/ETH.cpp
   #${LIBRARIES_DIR}/FFat/src/FFat.cpp
-  #${LIBRARIES_DIR}/FS/src/FS.cpp
-  #${LIBRARIES_DIR}/FS/src/vfs_api.cpp
+  ${LIBRARIES_DIR}/FS/src/FS.cpp
+  ${LIBRARIES_DIR}/FS/src/vfs_api.cpp
   ${LIBRARIES_DIR}/HTTPClient/src/HTTPClient.cpp
   #${LIBRARIES_DIR}/HTTPUpdate/src/HTTPUpdate.cpp
   #${LIBRARIES_DIR}/LittleFS/src/LittleFS.cpp
@@ -149,7 +149,7 @@ set(includedirs
   #${LIBRARIES_DIR}/ESPmDNS/src
   #${LIBRARIES_DIR}/Ethernet/src
   #${LIBRARIES_DIR}/FFat/src
-  #${LIBRARIES_DIR}/FS/src
+  ${LIBRARIES_DIR}/FS/src
   ${LIBRARIES_DIR}/HTTPClient/src
   #${LIBRARIES_DIR}/HTTPUpdate/src
   #${LIBRARIES_DIR}/LittleFS/src
