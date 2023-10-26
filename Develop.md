@@ -195,8 +195,9 @@ esp8266RTOS sdk for arduino.
   
   * ESPmDNS --> validated 
 
-  * WiFiProvi
-
+  * WiFiProvi:  --> validated
+    * Removed all lines refenced to BLE provisioning
+    
   * AsyncUDP:
     * testar luego NetBios.
 

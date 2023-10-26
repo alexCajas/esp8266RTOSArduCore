@@ -108,7 +108,7 @@ set(LIBRARY_SRCS
   ${LIBRARIES_DIR}/WiFi/src/WiFiServer.cpp
   ${LIBRARIES_DIR}/WiFi/src/WiFiSTA.cpp
   ${LIBRARIES_DIR}/WiFi/src/WiFiUdp.cpp
-  #${LIBRARIES_DIR}/WiFiProv/src/WiFiProv.cpp
+  ${LIBRARIES_DIR}/WiFiProv/src/WiFiProv.cpp
   #${LIBRARIES_DIR}/Wire/src/Wire.cpp
   ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttBroker/MqttBroker.cpp
   ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttClient/MqttClient.cpp
@@ -169,7 +169,7 @@ set(includedirs
   ${LIBRARIES_DIR}/WebServer/src
   ${LIBRARIES_DIR}/WiFiClientSecure/src
   ${LIBRARIES_DIR}/WiFi/src
-  #${LIBRARIES_DIR}/WiFiProv/src
+  ${LIBRARIES_DIR}/WiFiProv/src
   #${LIBRARIES_DIR}/Wire/src
   ${LIBRARIES_DIR}/EmbeddedMqttBroker/src
   ${LIBRARIES_DIR}/WrapperFreeRTOS/src
