@@ -180,7 +180,7 @@ esp8266RTOS sdk for arduino.
   
   * I tested https_medtls example of rtos, and it work well, I use this example to create a test in arduino core and it work well even using example CA of esp32 --> Idea, changes ssl_client.cpp acording to rtos example:
     * Fixed!, the issue comes from setup() and loop(), for some reason mbedtls loops fire stack canary watchdog affter few iterations,  but in another task it run well!
-
+    * The problem was that loop and setup was no running in his own task. Solved. The original examples of this libraries works well!.
 ## Done
 
 ### 22/10/2023

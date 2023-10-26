@@ -6,7 +6,6 @@
 /*|CORE: 0.9x, 1.0.0, 1.0.1 tested, working (newer not tested)|*/
 /*|Supported methods: PEAP + MsCHAPv2, EAP-TTLS + MsCHAPv2    |*/
 /*|-----------------------------------------------------------|*/
-/*2023 - Adapted for esp8266RTOSArduCore by Alex Cajas.*/
 
 #include <WiFi.h>
 #include <WiFiClientSecure.h>
@@ -51,8 +50,6 @@ const char* test_root_ca = \
 //const char* test_client_key = "";   //to verify the client
 //const char* test_client_cert = "";  //to verify the client
 WiFiClientSecure client;
-
-void sslSecureEnterpriseExample(void * args);
 void setup() {
   Serial.begin(115200);
   delay(10);
@@ -75,69 +72,46 @@ void setup() {
       ESP.restart();
     }
   }
-
+  client.setCACert(test_root_ca);
+  //client.setCertificate(test_client_key); // for client verification - certificate
+  //client.setPrivateKey(test_client_cert);  // for client verification - private key
   Serial.println("");
   Serial.println("WiFi connected");
   Serial.println("IP address set: ");
   Serial.println(WiFi.localIP()); //print LAN IP
 }
 void loop() {
-
-  vTaskDelay(1);
-}
-
-void sslSecureEnterpriseExample(void *args)
-{
-  client.setCACert(test_root_ca);
-  // client.setCertificate(test_client_key); // for client verification - certificate
-  // client.setPrivateKey(test_client_cert);  // for client verification - private key
-  Serial.println("\nStarting connection to server...");
-
-  while (true)
-  {
-
-    if (WiFi.status() == WL_CONNECTED)
-    {              // if we are connected to eduroam network
-      counter = 0; // reset counter
-      Serial.println("Wifi is still connected with IP: ");
-      Serial.println(WiFi.localIP()); // inform user about his IP address
-    }
-    else if (WiFi.status() != WL_CONNECTED)
-    { // if we lost connection, retry
-      WiFi.begin(ssid);
-    }
-    while (WiFi.status() != WL_CONNECTED)
-    { // during lost connection, print dots
-      delay(500);
-      Serial.print(".");
-      counter++;
-      if (counter >= 60)
-      { // 30 seconds timeout - reset board
-        ESP.restart();
-      }
-    }
-    Serial.print("Connecting to website: ");
-    Serial.println(host);
-    if (client.connect(host, 443))
-    {
-      String url = "/rele/rele1.txt";
-      client.print(String("GET ") + url + " HTTP/1.1\r\n" + "Host: " + host + "\r\n" + "User-Agent: ESP32\r\n" + "Connection: close\r\n\r\n");
-      while (client.connected())
-      {
-        String header = client.readStringUntil('\n');
-        Serial.println(header);
-        if (header == "\r")
-        {
-          break;
-        }
-      }
-      String line = client.readStringUntil('\n');
-      Serial.println(line);
-    }
-    else
-    {
-      Serial.println("Connection unsucessful");
-    }
-    vTaskDelay(5000);
+  if (WiFi.status() == WL_CONNECTED) { //if we are connected to eduroam network
+    counter = 0; //reset counter
+    Serial.println("Wifi is still connected with IP: ");
+    Serial.println(WiFi.localIP());   //inform user about his IP address
+  } else if (WiFi.status() != WL_CONNECTED) { //if we lost connection, retry
+    WiFi.begin(ssid);
   }
+  while (WiFi.status() != WL_CONNECTED) { //during lost connection, print dots
+    delay(500);
+    Serial.print(".");
+    counter++;
+    if (counter >= 60) { //30 seconds timeout - reset board
+      ESP.restart();
+    }
+  }
+  Serial.print("Connecting to website: ");
+  Serial.println(host);
+  if (client.connect(host, 443)) {
+    String url = "/rele/rele1.txt";
+    client.print(String("GET ") + url + " HTTP/1.1\r\n" + "Host: " + host + "\r\n" + "User-Agent: ESP32\r\n" + "Connection: close\r\n\r\n");
+    while (client.connected()) {
+      String header = client.readStringUntil('\n');
+      Serial.println(header);
+      if (header == "\r") {
+        break;
+      }
+    }
+    String line = client.readStringUntil('\n');
+    Serial.println(line);
+  } else {
+    Serial.println("Connection unsucessful");
+  }
+  delay(5000);
 }
