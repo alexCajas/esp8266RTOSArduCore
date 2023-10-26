@@ -195,6 +195,13 @@ esp8266RTOS sdk for arduino.
   
   * ESPmDNS --> validated 
 
+  * WiFiProvi
+
+  * AsyncUDP:
+    * testar luego NetBios.
+
+  * Update --> httpUpdate --> ArduinoOta
+
 ## Done
 
 ### 22/10/2023
