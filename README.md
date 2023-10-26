@@ -178,13 +178,13 @@ pip3 install -r requirements.txt
 - [x] HTTPClient
 - [ ] HttpUpdate
 - [ ] HttpUPdateServer
-- [ ] DNSServer
+- [x] DNSServer
+- [ ] ESPmDNS
 - [ ] AyncUDP?
 - [ ] Update
 - [ ] ArduinoOta
 - [ ] EEPROM
 - [ ] ESP[32|8266] examples
-- [ ] ESPmDNS
 - [ ] FFat
 - [ ] FS
 - [ ] NetBios
