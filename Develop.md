@@ -76,7 +76,7 @@ esp8266RTOS sdk for arduino.
 - [x] WrapperFreeRTOS
 - [x] WebServer
 - [x] WiFiClientSecure
-- [ ] WiFiProv
+- [x] WiFiProv
 - [x] HTTPClient
 - [ ] HttpUpdate
 - [ ] HttpUPdateServer
@@ -197,7 +197,7 @@ esp8266RTOS sdk for arduino.
 
   * WiFiProvi:  --> validated
     * Removed all lines refenced to BLE provisioning
-    
+
   * AsyncUDP:
     * testar luego NetBios.
 

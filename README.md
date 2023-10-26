@@ -174,7 +174,7 @@ pip3 install -r requirements.txt
 - [x] WrapperFreeRTOS
 - [x] WebServer
 - [x] WiFiClientSecure
-- [ ] WiFiProv
+- [x] WiFiProv
 - [x] HTTPClient
 - [ ] HttpUpdate
 - [ ] HttpUPdateServer
