@@ -182,7 +182,13 @@ esp8266RTOS sdk for arduino.
     * Fixed!, the issue comes from setup() and loop(), for some reason mbedtls loops fire stack canary watchdog affter few iterations,  but in another task it run well!
     * The problem was that loop and setup was no running in his own task. Solved. The original examples of this libraries works well!.
   
-   * HttpClient v1.0.6: --> done
+  * HttpClient v1.0.6: --> done
+  
+  * FS --> test with WebServer: Validated
+
+  * WebServer: --> validated
+    * Added http_parser dependency in arduino/CMakeLists.txt
+
 ## Done
 
 ### 22/10/2023

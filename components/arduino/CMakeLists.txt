@@ -93,9 +93,9 @@ set(LIBRARY_SRCS
   #${LIBRARIES_DIR}/USB/src/USBHIDSystemControl.cpp
   #${LIBRARIES_DIR}/USB/src/USBHIDVendor.cpp
   #${LIBRARIES_DIR}/USB/src/USBVendor.cpp
-  #${LIBRARIES_DIR}/WebServer/src/WebServer.cpp
-  #${LIBRARIES_DIR}/WebServer/src/Parsing.cpp
-  #${LIBRARIES_DIR}/WebServer/src/detail/mimetable.cpp
+  ${LIBRARIES_DIR}/WebServer/src/WebServer.cpp
+  ${LIBRARIES_DIR}/WebServer/src/Parsing.cpp
+  ${LIBRARIES_DIR}/WebServer/src/detail/mimetable.cpp
   ${LIBRARIES_DIR}/WiFiClientSecure/src/ssl_client.cpp
   #${LIBRARIES_DIR}/WiFiClientSecure/src/esp_crt_bundle.c
   ${LIBRARIES_DIR}/WiFiClientSecure/src/WiFiClientSecure.cpp
@@ -166,7 +166,7 @@ set(includedirs
   #${LIBRARIES_DIR}/Ticker/src
   #${LIBRARIES_DIR}/Update/src
   #${LIBRARIES_DIR}/USB/src
-  #${LIBRARIES_DIR}/WebServer/src
+  ${LIBRARIES_DIR}/WebServer/src
   ${LIBRARIES_DIR}/WiFiClientSecure/src
   ${LIBRARIES_DIR}/WiFi/src
   #${LIBRARIES_DIR}/WiFiProv/src
@@ -177,7 +177,7 @@ set(includedirs
 
 set(srcs ${CORE_SRCS} ${LIBRARY_SRCS})
 set(priv_includes ${CORE_DIR}/libb64)
-set(requires spi_flash mbedtls mdns wifi_provisioning wpa_supplicant)
+set(requires spi_flash mbedtls mdns wifi_provisioning wpa_supplicant http_parser)
 set(priv_requires fatfs nvs_flash app_update spiffs bootloader_support openssl)
 
 idf_component_register(INCLUDE_DIRS ${includedirs} PRIV_INCLUDE_DIRS ${priv_includes} SRCS ${srcs} REQUIRES ${requires} PRIV_REQUIRES ${priv_requires})

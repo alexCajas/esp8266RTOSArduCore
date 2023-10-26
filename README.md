@@ -172,7 +172,7 @@ pip3 install -r requirements.txt
 - [x] WiFi
 - [x] EmbeddedMqttBroker
 - [x] WrapperFreeRTOS
-- [ ] WebServer
+- [x] WebServer
 - [x] WiFiClientSecure
 - [ ] WiFiProv
 - [x] HTTPClient
