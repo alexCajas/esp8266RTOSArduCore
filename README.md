@@ -57,7 +57,7 @@ Then you need to install esp8266_RTOS_SDK requirements in your system:
 * Go to your arduino cores installation directory, tipically:
    
 ~~~
-cd ~/.arduino15/packages/esp8266RTOS/hardware/esp8266RTOS/1.0.0 
+cd ~/.arduino15/packages/esp8266RTOS/hardware/esp8266RTOS/1.0.1/ 
 ~~~
 
 * In this path you will find the file requirementes.txt, install that using pip:
