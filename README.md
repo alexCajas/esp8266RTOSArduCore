@@ -130,7 +130,7 @@ void TaskBlink(void *pvParameters)
 
 * More examples in 
 ~~~
-~/.arduino15/packages/esp8266RTOS/hardware/esp8266RTOS/1.0.0/libraries/ 
+~/.arduino15/packages/esp8266RTOS/hardware/esp8266RTOS/1.0.1/libraries/ 
 ~~~
 
 ![Online code generation tool](assets/img/examples.png)
