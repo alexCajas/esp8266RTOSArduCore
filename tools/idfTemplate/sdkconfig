@@ -4,6 +4,8 @@
 #
 CONFIG_IDF_TARGET_ESP8266=y
 CONFIG_IDF_TARGET="esp8266"
+
+# Arduino Configuration
 # CONFIG_ARDUINO_LOOP_STACK_SIZE is not set
 
 #

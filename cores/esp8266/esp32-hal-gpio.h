@@ -24,6 +24,7 @@
 extern "C" {
 #endif
 
+#include "driver/gpio.h"
 #include "esp32-hal.h"
 
 #define LOW               0x0
