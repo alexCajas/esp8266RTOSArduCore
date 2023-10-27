@@ -25,6 +25,7 @@ RTO_SDK share the same framework with esp-idf [https://github.com/espressif/esp-
 
 * [Features](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#features)
 * [Installation](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#installation)
+* [Examples](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#examples)
 * [Limitations](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#limitations)
 * [To Do List](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#to-do-list)
 * [List of remaining core files to adapt test and fix](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#list-of-core-files-to-adapt-test-and-fix)
@@ -70,6 +71,69 @@ pip3 install -r requirements.txt
 ![Online code generation tool](assets/img/arduinoIDEBoardSelection.png)
 
 * **Now you are ready to write and install sketchs using Arduino IDE or VScode IDE!**
+
+# Examples
+
+* **Basic blink example**
+~~~
+
+/*
+* Based on arduino esp32 arduino core FreeRTOS.ino example.
+*/
+
+#ifndef LED_BUILTIN
+#define LED_BUILTIN 2
+#endif
+
+// define two tasks for Blink
+void TaskBlink( void *pvParameters );
+
+// the setup function runs once when you press reset or power the board
+void setup() {
+  
+  // initialize serial communication at 115200 bits per second:
+  Serial.begin(115200);
+  
+  // Now set up tasks to run independently.
+  xTaskCreatePinnedToCore(
+    TaskBlink
+    ,  "TaskBlink"   // A name just for humans
+    ,  1024  // This stack size can be checked & adjusted by reading the Stack Highwater
+    ,  NULL
+    ,  2  // Priority, with 3 (configMAX_PRIORITIES - 1) being the highest, and 0 being the lowest.
+    ,  NULL 
+    ,  ARDUINO_RUNNING_CORE); // in esp8266 allways is 0
+
+  // Now the task scheduler, which takes over control of scheduling individual tasks, is automatically started.
+}
+
+void loop()
+{
+  // do nothing.
+}
+
+
+void TaskBlink(void *pvParameters) 
+{
+  pinMode(LED_BUILTIN, OUTPUT);
+
+  while (true) // A Task shall never return or exit.
+  {
+    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+    vTaskDelay(pdMS_TO_TICKS(500)); 
+    digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+    vTaskDelay(pdMS_TO_TICKS(500)); 
+  }
+}
+
+~~~
+
+* More examples in 
+~~~
+~/.arduino15/packages/esp8266RTOS/hardware/esp8266RTOS/1.0.0/libraries/ 
+~~~
+
+![Online code generation tool](assets/img/examples.png)
 
 # Limitations
 
@@ -184,7 +248,7 @@ pip3 install -r requirements.txt
 - [ ] Update
 - [ ] ArduinoOta
 - [ ] EEPROM
-- [ ] ESP[32|8266] examples
+- [x] ESP[32|8266] examples
 - [ ] FFat
 - [ ] FS
 - [ ] NetBios
