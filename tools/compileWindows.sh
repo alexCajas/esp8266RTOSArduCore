@@ -65,3 +65,6 @@ export PATH="$PATH:$xtensaPath"
 # Build the IDF project
 cd "$build_dir/idfTemplate/"
 $IDF_PATH/tools/idf.py build 1>&2
+
+echo "Press any key to continue"
+read key

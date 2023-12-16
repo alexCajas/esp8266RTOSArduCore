@@ -19,6 +19,15 @@ esp8266RTOS sdk for arduino.
 
 * Opto por quitar las opciones de compilacion de tools/ y de sdk/ para que se usen las de project/cmake
 
+## Windows:
+
+* Msys2 from spressif hasn't cmake and it can install new software, soluction, download oficial msys2, install cmake and copy cmake files to msys-spressif, the files are in mingw64 (see offical cmake package for msys2)
+
+* in msys32/etc/profile add at the end the folowing lines: export PATH=$PATH:/mingw64/bin
+export PATH=$PATH:/mingw32/bin to add python and cmake to path.
+
+* then you are available to install requeriments.txt 
+
 # V1.0.1
 
 ### To do

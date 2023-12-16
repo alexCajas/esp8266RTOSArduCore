@@ -30,6 +30,14 @@ echo xtensa_dir_unix: %xtensa_dir_unix% >&2
 
 REM call to compile.sh
 
-call C:\msys32\msys2.exe %idf_dir%\tools\compile.sh -b %build_dir_unix% -i %idf_dir_unix% -x %xtensa_dir_unix%
+REM call C:\msys32\msys2.exe %idf_dir%\tools\compile.sh -b %build_dir_unix% -i %idf_dir_unix% -x %xtensa_dir_unix%
+REM start "" "C:\msys32\msys2.exe" -login -i /bin/bash -l -c "cd %idf_dir%\tools; bash compile.sh -b %build_dir_unix% -i %idf_dir_unix% -x %xtensa_dir_unix%"
+
+REM arduino arduino replace home enviroment variable, so it is nedded to fix it with the corret HOME enviroment variable
+set HOME=C:\msys32\home\%username%
+
+C:\msys32\msys2.exe %idf_dir%\tools\compileWindows.sh -b %build_dir_unix% -i %idf_dir_unix% -x %xtensa_dir_unix%
+
+REM C:\msys32\msys2.exe C:\msys32\home\Alex\compile.sh 
 
 endlocal

@@ -20,6 +20,7 @@ compiler.cpreprocessor.flags=-D__ets__ -DICACHE_FLASH -U__STRICT_ANSI__ -D_GNU_S
 compiler.libraries.ldflags=
 
 compiler.c.cmd=compile.sh
+
 compiler.c.flags=-std=gnu17 -Os -g -free -fipa-pta -Werror=return-type -Wpointer-arith -Wno-implicit-function-declaration -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals -falign-functions=4 -MMD -ffunction-sections -fdata-sections 
 
 compiler.S.cmd=compile.sh
@@ -71,6 +72,10 @@ recipe.hooks.postbuild.1.pattern=python "{compiler.path}createTemplate.py" -b "{
 recipe.hooks.postbuild.2.pattern="{compiler.path}{compiler.c.cmd}" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}"
 
 recipe.hooks.postbuild.1.pattern.windows=python "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~\Documents\Arduino\libraries"
+recipe.hooks.postbuild.2.pattern.windows="{compiler.path}compile.bat" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}"
+#recipe.hooks.postbuild.2.pattern.windows=cmd /c C:\msys32\msys2.exe C:\msys32\home\Alex\dormir.sh
+#C:\msys32\msys2.exe C:\msys32\home\Alex\dormir.sh
+#=cmd /c "C:\\ruta\\a\\msys2\\msys2_shell.cmd -mingw64 -c \"ruta/a/tu/script.sh\""
 
 ## en upload.pattern no se puede resolver correcamente
 #tools.esptool.upload.pattern.linux="{runtime.platform.path}/tools/flash.sh" -f "{build.source.path}/noRuta"
