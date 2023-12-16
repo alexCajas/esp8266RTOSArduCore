@@ -92,12 +92,17 @@ link.
 ~~~
 
 * This core asume you unzip Msys2 in C:\msys32\
+  
+
 ![Online code generation tool](assets/img/msys32Directory.PNG)
 
 * Then, open a msys terminal, go to your ESP8266RTOSArduCore directory and install requeriments.txt:
+
+
 ![Online code generation tool](assets/img/installRequerimentsMsys.PNG)
 
 * Last, select esp8266 boards RTOS:
+
 
 ![Online code generation tool](assets/img/arduinoIDEBoardSelection.png)
 **Now you are ready to write and install sketchs using Arduino IDE or VScode IDE!**
