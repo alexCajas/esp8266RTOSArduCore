@@ -19,6 +19,33 @@ esp8266RTOS sdk for arduino.
 
 * Opto por quitar las opciones de compilacion de tools/ y de sdk/ para que se usen las de project/cmake
 
+# V1.0.1
+
+### To do
+
+* Adding windows OS compatibility.
+* Idea, write python script to prepare all directories and files to compile the idf project.
+* Use .sh and .bat only to call idf tools (build and flash) 
+
+* Severals isues in windows:
+  * if you write and sketch.ino and .cpp file in the same directory, arduino cli doesn't create sketch.ino.cpp in build/skecth, it create .cpp.cpp, this issue is not in linux.
+  * continues verify call  creates build directorys in build/sketch, I don't test the new script in linux, but porbably this issue is not present in linux.
+
+* In linux the .cpp file added next to sketch.ino is not included well in cmakelist.txt, the system looking for the file in Arduino/libraries but it is in idfTemplate/main together to sketch.ino.cpp
+
+
+## done
+
+* createPreproc.py, it replace preCompile.sh
+* createTemplate.py, it repalce idfTemplate configuration in compile.sh
+* createCmake.py, it replace createProject.py
+* dummy.py, it replace dummy.sh
+* modified get_include_files.py now receive the path of arduino/libraries like argument
+* windowsPathToUnixPath.bat
+* severals .bat to test, this .bat can be removed
+
+---
+
 # V1.0.0
 
 ## current status:

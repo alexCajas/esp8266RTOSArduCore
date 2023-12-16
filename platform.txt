@@ -63,8 +63,10 @@ compiler.elf2hex.extra_flags=
 
 # Handle processing sketch global options
 
-recipe.hooks.prebuild.1.pattern="{compiler.path}preCompile.sh" -b "{build.path}" 
+recipe.hooks.prebuild.1.pattern="{compiler.path}preCompile.sh" -b "{build.path}"
+recipe.hooks.prebuild.1.pattern.windows=python "{compiler.path}createPreproc.py" -b "{build.path}"
 recipe.hooks.postbuild.1.pattern="{compiler.path}{compiler.c.cmd}" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}"
+recipe.hooks.postbuild.1.pattern.windows=python "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~\Documents\Arduino\libraries"
 
 ## en upload.pattern no se puede resolver correcamente
 #tools.esptool.upload.pattern.linux="{runtime.platform.path}/tools/flash.sh" -f "{build.source.path}/noRuta"
@@ -72,23 +74,23 @@ recipe.hooks.postbuild.1.pattern="{compiler.path}{compiler.c.cmd}" -b "{build.pa
 
 ### no empty lines for arduino cli
 ## Compile c files
-recipe.c.o.pattern="{compiler.path}/dummy.sh" -f "/desderecipe.c.o.pattern" 
+recipe.c.o.pattern=python "{compiler.path}dummy.py" -f "/desderecipe.c.o.pattern" 
 
 ## Compile c++ files
-recipe.cpp.o.pattern="{compiler.path}/dummy.sh" -f /desderecipe.cpp.pattern
+recipe.cpp.o.pattern=python "{compiler.path}dummy.py" -f /desderecipe.cpp.pattern
 
 ###
 
 
 ## Compile S files
-recipe.S.o.pattern="{compiler.path}/dummy.sh"
+recipe.S.o.pattern=python "{compiler.path}dummy.py"
 
 ## Create archives, no se puede dejar en blanco o quitar
-recipe.ar.pattern="{compiler.path}/dummy.sh"
+recipe.ar.pattern=python "{compiler.path}dummy.py"
 
 ## Combine gc-sections, archives, and objects, este comando no se puede quitar ni dejar
 # en blanco o en cadena vacia, opto por hacer que llame a un sh dummy
-recipe.c.combine.pattern= "{compiler.path}/dummy.sh"
+recipe.c.combine.pattern= python "{compiler.path}dummy.py"
 ###
 
 
@@ -113,6 +115,10 @@ tools.esptool.upload.params.quiet=
 # Next, do the binary upload
 # Combined in one rule because Arduino doesn't support upload.1.pattern/upload.3.pattern
 tools.esptool.upload.pattern={cmd} -b "{build.path}" -i "{runtime.platform.path}" -x "{runtime.tools.xtensa-lx106-elf.path}"
+
+# For some reason when it is used windows pattern "{runtime.tools.xtensa-lx106-elf.path}" can't be resolved, so flash doesn't receive the correct xtensa_dir.
+tools.esptool.upload.pattern.windows="{runtime.platform.path}/tools/flash.bat" -b "{build.path}" -i "{runtime.platform.path}"
+
 tools.esptool.upload.network_pattern="{network_cmd}" -I "{runtime.platform.path}/tools/espota.py" -i "{serial.port}" -p "{network.port}" "--auth={network.password}" -f "{build.path}/{build.project_name}.bin"
 
 

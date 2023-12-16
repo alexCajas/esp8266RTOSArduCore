@@ -29,8 +29,8 @@ def find_c_cpp_h_hpp_files(directory):
                 h_hpp_dirs.add(root)
     return c_cpp_files, list(h_hpp_dirs)
 
-def find_include(file_name):
-    directory = os.path.expanduser('~/Arduino/libraries')
+def find_include(file_name, libraries_path):
+    directory = os.path.expanduser(libraries_path)
     LIBRARY_SRCS = []
     includedirs = set()
     with open(file_name, 'r') as file:
@@ -51,12 +51,12 @@ def find_include(file_name):
 
 if __name__ == "__main__":
     
-    parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('-r', metavar='path', type=str,
-                        help='the path to the input file')
+    parser = argparse.ArgumentParser(description='Script that looking for the path of include files in .ino sketch.')
+    parser.add_argument('-f', '--file', type=str, required=True, help='The .ino sketch.')
+    parser.add_argument('-l', '--libraries', type=str, required=True, help='The Arduino Libraries path.')
     args = parser.parse_args()
     
-    results = find_include(args.r)
-    results_path = os.path.dirname(args.r)+"/includes.json"
+    results = find_include(args.file, args.libraries)
+    results_path = os.path.dirname(args.file)+"/includes.json"
     with open(results_path, 'w') as f:
         json.dump(results, f)
