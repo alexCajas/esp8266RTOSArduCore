@@ -85,16 +85,24 @@ You can install this core using arduino board manager with this package index [!
 https://raw.githubusercontent.com/alexCajas/esp8266RTOSArduCore/main/package/package_esp8266RTOS_index.json
 ~~~
 
-* Also **You need Msys2**, it is an unix enviroment for windows systems, you can find an official version for esp8266-rtos-sdk [here](https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/windows-setup.html), but RTOSArduCore use a modify version, please download from:
+* Also **You need Msys2**, it is an unix enviroment for windows systems, you can find an official version for esp8266-rtos-sdk from:
   
 ~~~
-link.
+https://dl.espressif.com/dl/esp32_win32_msys2_environment_and_toolchain-20181001.zip
 ~~~
 
 * This core asume you unzip Msys2 in C:\msys32\
   
 
 ![Online code generation tool](assets/img/msys32Directory.PNG)
+
+* Now you need to replace some files, download MsysRTOSArduCorePatch.zip:
+
+~~~
+https://drive.google.com/file/d/1WZ_h3bHvFZLzoajv5q8BT9Hcy7K82l5e/view?usp=drive_link
+~~~
+
+* And replace C:\msys32\mingw64\ directory, and C:\msys32\etc\profile file with their respective counterparts in the zip.
 
 * Then, open a msys terminal, go to your ESP8266RTOSArduCore directory and install requeriments.txt:
 
