@@ -55,3 +55,5 @@ export PATH="$PATH:$xtensaPath"
 cd "$build_dir/idfTemplate/"
 $IDF_PATH/tools/idf.py flash
 
+echo "Press any key to continue"
+read key

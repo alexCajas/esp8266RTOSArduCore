@@ -66,5 +66,19 @@ export PATH="$PATH:$xtensaPath"
 cd "$build_dir/idfTemplate/"
 $IDF_PATH/tools/idf.py build 1>&2
 
-echo "Press any key to continue"
-read key
+
+
+read -p "Press f to flash the device or other key to close the terminal: " -n 1 -r
+echo    
+if [[ $REPLY =~ ^[Ff]$ ]]
+then
+    $IDF_PATH/tools/idf.py flash 1>&2
+    echo 
+    echo "Press any key to continue"
+    read key
+else
+    echo "closing ..."
+fi
+
+
+

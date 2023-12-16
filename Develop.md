@@ -28,6 +28,10 @@ export PATH=$PATH:/mingw32/bin to add python and cmake to path.
 
 * then you are available to install requeriments.txt 
 
+* arduino cli end before msys terminal finish the build/flash actions.
+
+* For some reason  compile.bat doesn't wait to the end of msys process, so arduino  continue with flash while msys is building the project --> solution, don't use flash rule, and add in compileWindos.sh lines to ask to user if flash or not after the building procces.
+
 # V1.0.1
 
 ### To do

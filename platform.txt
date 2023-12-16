@@ -126,8 +126,9 @@ tools.esptool.upload.params.quiet=
 tools.esptool.upload.pattern={cmd} -b "{build.path}" -i "{runtime.platform.path}" -x "{runtime.tools.xtensa-lx106-elf.path}"
 
 # For some reason when it is used windows pattern "{runtime.tools.xtensa-lx106-elf.path}" can't be resolved, so flash doesn't receive the correct xtensa_dir.
-tools.esptool.upload.pattern.windows="{runtime.platform.path}/tools/flash.bat" -b "{build.path}" -i "{runtime.platform.path}"
-
+#tools.esptool.upload.pattern.windows="{runtime.platform.path}/tools/flash.bat" -b "{build.path}" -i "{runtime.platform.path}" -x "{runtime.tools.xtensa-lx106-elf.path}"
+# For some reason postbuild rule in windows run .bat it doesn't wait to the end of msys process, so arduino  continue with flash while msys is building the project, 
+tools.esptool.upload.pattern.windows=python "{runtime.platform.path}/tools/dummy.py"
 tools.esptool.upload.network_pattern="{network_cmd}" -I "{runtime.platform.path}/tools/espota.py" -i "{serial.port}" -p "{network.port}" "--auth={network.password}" -f "{build.path}/{build.project_name}.bin"
 
 
