@@ -92,10 +92,10 @@ link.
 ~~~
 
 * This core asume you unzip Msys2 in C:\msys32\
-![Online code generation tool](assets/img/msys32Directory.png)
+![Online code generation tool](assets/img/msys32Directory.PNG)
 
 * Then, open a msys terminal, go to your ESP8266RTOSArduCore directory and install requeriments.txt:
-![Online code generation tool](assets/img/installRequerimentsMsys.png)
+![Online code generation tool](assets/img/installRequerimentsMsys.PNG)
 
 * Last, select esp8266 boards RTOS:
 
@@ -110,9 +110,9 @@ How esp8266_rtos_sdk use msys2 to build and flash projects, there are **limitati
 * when you **verify or upload** some skecth, arduino cli will open a msys2 terminal, and finish with any error while msys2 terminal are building the project, so the info of compile errors, warnigs etc are in the msys2 terminal.
 * Follow the instrucctions of msys2 terminal to flash the device with the sketch:
 
-![Online code generation tool](assets/img/buildProccess.png)
+![Online code generation tool](assets/img/buildProccess.PNG)
 
-![Online code generation tool](assets/img/buildAndFlash.png)
+![Online code generation tool](assets/img/buildAndFlash.PNG)
 
 
 # Examples
