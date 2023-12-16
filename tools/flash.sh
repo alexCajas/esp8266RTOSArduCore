@@ -51,9 +51,7 @@ xtensaPath=$(pwd)
 export IDF="$idf_dir"
 export PATH="$PATH:$xtensaPath"
 
-
-cd "$build_dir/idfTemplate/"
-
 # Flash the IDF project
+cd "$build_dir/idfTemplate/"
 $IDF/tools/idf.py flash
 

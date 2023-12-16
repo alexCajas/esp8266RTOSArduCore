@@ -29,10 +29,12 @@ esp8266RTOS sdk for arduino.
 
 * Severals isues in windows:
   * if you write and sketch.ino and .cpp file in the same directory, arduino cli doesn't create sketch.ino.cpp in build/skecth, it create .cpp.cpp, this issue is not in linux.
-  * continues verify call  creates build directorys in build/sketch, I don't test the new script in linux, but porbably this issue is not present in linux.
+  * continues verify call  creates build directorys in build/sketch, I don't test the new script in linux, but porbably this issue is not present in linux --> tested in linux all is ok, the issue is from arduino cli in windows.
 
 * In linux the .cpp file added next to sketch.ino is not included well in cmakelist.txt, the system looking for the file in Arduino/libraries but it is in idfTemplate/main together to sketch.ino.cpp
 
+* Scripts.py tested in linux all is ok! it works!
+* remain compile.bat and flash.bat to use msys2 to build and flash idf project.
 
 ## done
 

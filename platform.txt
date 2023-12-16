@@ -63,9 +63,13 @@ compiler.elf2hex.extra_flags=
 
 # Handle processing sketch global options
 
-recipe.hooks.prebuild.1.pattern="{compiler.path}preCompile.sh" -b "{build.path}"
-recipe.hooks.prebuild.1.pattern.windows=python "{compiler.path}createPreproc.py" -b "{build.path}"
-recipe.hooks.postbuild.1.pattern="{compiler.path}{compiler.c.cmd}" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}"
+#recipe.hooks.prebuild.1.pattern="{compiler.path}preCompile.sh" -b "{build.path}" # this line is deprecated
+recipe.hooks.prebuild.1.pattern=python "{compiler.path}createPreproc.py" -b "{build.path}"
+
+#recipe.hooks.postbuild.1.pattern="{compiler.path}{compiler.c.cmd}" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" this line is deprecated
+recipe.hooks.postbuild.1.pattern=python "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~/Arduino/libraries"
+recipe.hooks.postbuild.2.pattern="{compiler.path}{compiler.c.cmd}" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}"
+
 recipe.hooks.postbuild.1.pattern.windows=python "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~\Documents\Arduino\libraries"
 
 ## en upload.pattern no se puede resolver correcamente

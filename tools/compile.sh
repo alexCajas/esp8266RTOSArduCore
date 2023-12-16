@@ -45,15 +45,15 @@ echo "-i: $idf_dir" 1>&2
 echo "-x: $xtensa_dir" 1>&2
 
 # Build IDF project
-cp -r "$idf_dir/tools/idfTemplate" "$build_dir" 1>&2
-mv "$build_dir/sketch/"* "$build_dir/idfTemplate/main"
+#cp -r "$idf_dir/tools/idfTemplate" "$build_dir" 1>&2
+#mv "$build_dir/sketch/"* "$build_dir/idfTemplate/main"
 
 # Build main/CMakeLists.txt using a Python script
-scketchFilePath=$(find "$build_dir/idfTemplate/main" -maxdepth 1 -type f -name '*.ino.cpp')
-python "$idf_dir/tools/get_include_files.py" -r "$scketchFilePath"
+#scketchFilePath=$(find "$build_dir/idfTemplate/main" -maxdepth 1 -type f -name '*.ino.cpp')
+#python "$idf_dir/tools/get_include_files.py" -r "$scketchFilePath"
 
 # Execute the Python script with the absolute path to the include.cache file as an argument
-python "$idf_dir/tools/createProject.py" -i "$build_dir/includes.cache" -m "$build_dir/idfTemplate/main/"
+#python "$idf_dir/tools/createProject.py" -i "$build_dir/includes.cache" -m "$build_dir/idfTemplate/main/"
 
 # Export environment variables
 cd "$xtensa_dir"
@@ -62,9 +62,6 @@ xtensaPath=$(pwd)
 export IDF="$idf_dir"
 export PATH="$PATH:$xtensaPath"
 
-
-
 cd "$build_dir/idfTemplate/"
-
 # Build the IDF project
 $IDF/tools/idf.py build 1>&2
