@@ -25,8 +25,8 @@ RTO_SDK share the same framework with esp-idf [https://github.com/espressif/esp-
 
 * [Features](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#features)
 * [Installation](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#installation):
-    * [Linux systems](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#Linux systems)
-    * [WindowsOS:](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#WindowsOS)
+    * [LinuxOS-MacOS](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#LinuxOS-MacOS)
+    * [WindowsOS](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#WindowsOS)
         * [Warnning](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#Warnning)
 * [Examples](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#examples)
 * [Limitations](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#limitations)
@@ -48,7 +48,7 @@ RTO_SDK share the same framework with esp-idf [https://github.com/espressif/esp-
 
 # Installation
 
-## Linux systems
+## LinuxOS-MacOS
 You can install this core using arduino board manager with this package index [![Release](https://img.shields.io/github/v/release/alexCajas/esp8266RTOSArduCore)](https://github.com/alexCajas/esp8266RTOSArduCore/releases/latest)
 :
 
@@ -85,23 +85,24 @@ You can install this core using arduino board manager with this package index [!
 https://raw.githubusercontent.com/alexCajas/esp8266RTOSArduCore/main/package/package_esp8266RTOS_index.json
 ~~~
 
-Also **You need Msys2**, it is an unix enviroment for windows systems, you can find an official version for esp8266-rtos-sdk [here](https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/windows-setup.html), but RTOSArduCore use a modify version, please download from:
+* Also **You need Msys2**, it is an unix enviroment for windows systems, you can find an official version for esp8266-rtos-sdk [here](https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/windows-setup.html), but RTOSArduCore use a modify version, please download from:
+  
 ~~~
 link.
 ~~~
 
-This core asume you unzip Msys2 in C:\msys32\
+* This core asume you unzip Msys2 in C:\msys32\
 ![Online code generation tool](assets/img/msys32Directory.png)
 
-Then, open a msys terminal, go to your ESP8266RTOSArduCore directory and install requeriments.txt:
+* Then, open a msys terminal, go to your ESP8266RTOSArduCore directory and install requeriments.txt:
 ![Online code generation tool](assets/img/installRequerimentsMsys.png)
 
-Last, select esp8266 boards RTOS:
+* Last, select esp8266 boards RTOS:
 
 ![Online code generation tool](assets/img/arduinoIDEBoardSelection.png)
 **Now you are ready to write and install sketchs using Arduino IDE or VScode IDE!**
 
-### Warnnig:
+### Warnnig
 
 idf building proccess is tipicall more **slow in windows** than linux distributions, I recomend you to use a Linux distribution like ubuntu to develop with this core and idf projects in general.
 
