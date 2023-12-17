@@ -30,7 +30,7 @@ export PATH=$PATH:/mingw32/bin to add python and cmake to path.
 
 * arduino cli end before msys terminal finish the build/flash actions.
 
-* For some reason  compile.bat doesn't wait to the end of msys process, so arduino  continue with flash while msys is building the project --> solution, don't use flash rule, and add in compileWindos.sh lines to ask to user if flash or not after the building procces.
+
 
 # V1.0.1
 
@@ -50,6 +50,8 @@ export PATH=$PATH:/mingw32/bin to add python and cmake to path.
 * remain compile.bat and flash.bat to use msys2 to build and flash idf project.
 
 ## done
+
+* For some reason  compile.bat doesn't wait to the end of msys process, so arduino  continue with flash while msys is building the project --> solution, don't use flash rule, and add in compileWindos.sh lines to ask to user if flash or not after the building procces. --done
 
 * createPreproc.py, it replace preCompile.sh
 * createTemplate.py, it repalce idfTemplate configuration in compile.sh
