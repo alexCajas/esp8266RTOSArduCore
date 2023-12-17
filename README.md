@@ -145,7 +145,7 @@ How esp8266_rtos_sdk use msys2 to build and flash projects, there are **limitati
 # Examples
 
 * **Basic blink example**
-~~~
+~~~c++
 
 /*
 * Based on arduino esp32 arduino core FreeRTOS.ino example.
@@ -199,6 +199,7 @@ void TaskBlink(void *pvParameters)
 ~~~
 
 * More examples in 
+  
 ~~~
 ~/.arduino15/packages/esp8266RTOS/hardware/esp8266RTOS/1.0.1/libraries/ 
 ~~~
@@ -216,12 +217,12 @@ void TaskBlink(void *pvParameters)
 
 **~/Arduino/libraries/libraryOne/headerOne.h**:
 
-~~~
+~~~c++
 #include "headerTwo.h"
 ~~~
 
 **scketchs.ino**:
-~~~
+~~~c++
 #include "headerOne.h"
 
 // sdk don't loock for headers into heraderOne.h!, headerTwo.h is not included in to compile process, so librariOne is not linked with headerTwo in compile time.
@@ -230,12 +231,12 @@ void TaskBlink(void *pvParameters)
 * **Rigth way to include**:
 	
 **~/Arduino/libraries/libraryOne/headerOne.h**:
-~~~
-#include ""headerTwo.h
+~~~c++
+#include "headerTwo.h"
 ~~~
 
 **scketchs.ino**:
-~~~
+~~~c++
 #include "headerOne.h"
 #include "headerTwo.h"
 // now compiler use all data of headerTwo.h to compile and link with headerOne.h and scketchs.ino. 
