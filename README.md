@@ -27,7 +27,7 @@ RTO_SDK share the same framework with esp-idf [https://github.com/espressif/esp-
 * [Installation](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#installation):
     * [LinuxOS-MacOS](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#LinuxOS-MacOS)
     * [WindowsOS](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#WindowsOS)
-        * [Warnning](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#Warnning)
+        * [Warnning](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#warnnig)
 * [Examples](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#examples)
 * [Limitations](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#limitations)
 * [To Do List](https://github.com/alexCajas/esp8266RTOSArduCore/tree/main#to-do-list)
@@ -87,25 +87,25 @@ You can install this core using arduino board manager with this package index [!
 https://raw.githubusercontent.com/alexCajas/esp8266RTOSArduCore/main/package/package_esp8266RTOS_index.json
 ~~~
 
-* at the end of instalation You will get this error:
+* at the end of the installation, You will get this error:
 
 ![Online code generation tool](assets/img/windowsInstalationError.PNG)
 
-* In this point, esp8266RTOS core is installed.
+* In this point, esp8266RTOSArduCore is installed.
 
-* This proccess is to link configuration of core with Arduino IDE, but idf tools needs a git repository in sdk, so, download this project with git and copy the entire git repository to the arduino core installation directory, even .git directory. Tipically you core instalation will be in:
+* This proccess is to link configuration of the esp8266RTOSCore with Arduino IDE, but idf tools needs a git repository in the sdk, so, download this project with git and copy the entire git repository to the arduino core installation directory, even .git directory. Tipically, you core installation will be in:
 
 ~~~
 C:\Users\YouUser\AppData\Local\Arduino15\packages\esp8266RTOS\hardware\esp8266RTOS\1.0.2
 ~~~
 
-* Also **You need Msys2**, it is an unix enviroment for windows systems, you can find an official version for esp8266-rtos-sdk from:
+* Also **You need Msys2**, it is a linux enviroment for windows systems, you can find an official version for esp8266-rtos-sdk in:
   
 ~~~
 https://dl.espressif.com/dl/esp32_win32_msys2_environment_and_toolchain-20181001.zip
 ~~~
 
-* This core asume you unzip Msys2 in C:\msys32\
+* This core asume that you unzip Msys2 in C:\msys32\
   
 
 ![Online code generation tool](assets/img/msys32Directory.PNG)
@@ -118,7 +118,7 @@ https://drive.google.com/file/d/1WZ_h3bHvFZLzoajv5q8BT9Hcy7K82l5e/view?usp=drive
 
 * And replace C:\msys32\mingw64\ directory, and C:\msys32\etc\profile file with their respective counterparts in the zip.
 
-* Then, open a msys terminal, go to your ESP8266RTOSArduCore directory and install requeriments.txt:
+* Then, open a msys terminal (**C:\msys32\msys2.exe**), go to your ESP8266RTOSArduCore directory and install requeriments.txt:
 
 
 ![Online code generation tool](assets/img/installRequerimentsMsys.PNG)
