@@ -14,10 +14,10 @@
           "architecture": "esp8266RTOS",
           "version": "1.0.2",
           "category": "ESP8266RTOS",
-          "url": "https://github.com/alexCajas/esp8266RTOSArduCore/archive/refs/tags/v1.0.1.tar.gz",
+          "url": "https://github.com/alexCajas/esp8266RTOSArduCore/archive/refs/tags/v1.0.2.tar.gz",
           "archiveFileName": "v1.0.2.tar.gz",
-          "checksum": "SHA-256:a9c3efd7cbc0351982e1a6a916c11f582a2c2444ee60cff1e2beb11fb2d691c2",
-          "size": "18303123",
+          "checksum": "SHA-256:2d47f6630a4efb4b50404d7de3a5d0ba6ccf27b05dfcdec098c13c94c354693b",
+          "size": "18543571",
           "help": {
             "online": "https://github.com/alexCajas/esp8266RTOSArduCore/"
           },
