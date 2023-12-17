@@ -78,11 +78,25 @@ pip3 install -r requirements.txt
 
 ## WindowsOS
 
+* **It is experimental, there is not good compatibility between rtos_sdk tools and arduino cli**
+
 You can install this core using arduino board manager with this package index [![Release](https://img.shields.io/github/v/release/alexCajas/esp8266RTOSArduCore)](https://github.com/alexCajas/esp8266RTOSArduCore/releases/latest)
 :
 
 ~~~
 https://raw.githubusercontent.com/alexCajas/esp8266RTOSArduCore/main/package/package_esp8266RTOS_index.json
+~~~
+
+* at the end of instalation You will get this error:
+
+![Online code generation tool](assets/img/windowsInstalationError.PNG)
+
+* In this point, esp8266RTOS core is installed.
+
+* This proccess is to link configuration of core with Arduino IDE, but idf tools needs a git repository in sdk, so, download this project with git and copy the entire git repository to the arduino core installation directory, even .git directory. Tipically you core instalation will be in:
+
+~~~
+C:\Users\YouUser\AppData\Local\Arduino15\packages\esp8266RTOS\hardware\esp8266RTOS\1.0.2
 ~~~
 
 * Also **You need Msys2**, it is an unix enviroment for windows systems, you can find an official version for esp8266-rtos-sdk from:
