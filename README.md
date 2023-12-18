@@ -244,8 +244,6 @@ void TaskBlink(void *pvParameters)
 
 * **Note: if you remove #include "headerTwo.h" of "headerOne.h", libraryOne will  not be linked with "headerTwo.h" even if you include that in sckets.ino.**
 
-* The build process use bash scripts, so you can only use this core on Linux, ubuntu etc... OS, changing bash scripts to python to support other operating systems is still in development.
-
 * libraries or utilities for specific hardware of esp32, like bluetooth or hall sensor is not supported in this core.
 
 * set compile option is not supported yet.
