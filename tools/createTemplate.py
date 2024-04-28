@@ -50,9 +50,12 @@ def main(build_path, idf_path, xtensa_path, libraries_path):
     ino_cpp_file = glob.glob(os.path.join(destination_path, '*.ino.cpp'))[0]
     ino_cpp_file_abs_path = os.path.abspath(ino_cpp_file)
     
+    # obtener ruta a internal arduino libraries
+    internal_libraries_path = idf_path+"/libraries"
+    print(f"internal Libraries Path: {internal_libraries_path}",file=sys.stderr)
     # Llamar al script 'get_include_files.py'
     get_include_files_script = os.path.join(idf_path, 'tools', 'get_include_files.py')
-    subprocess.run(['python', get_include_files_script, '-f', ino_cpp_file_abs_path, '-l', libraries_path])
+    subprocess.run(['python', get_include_files_script, '-f', ino_cpp_file_abs_path, '-l', libraries_path, '-i',internal_libraries_path])
 
     # Llamar al script 'createCMake.py'
     create_cmake_script = os.path.join(idf_path, 'tools', 'createCMake.py')
@@ -67,4 +70,5 @@ if __name__ == "__main__":
     parser.add_argument('-l', '--libraries', type=str, required=True, help='The Arduino Libraries path.')
     args = parser.parse_args()
 
-    main(args.build, args.idf, args.xtensa, args.libraries)
+    libraries_absolute_path = os.path.expanduser(args.libraries)
+    main(args.build, args.idf, args.xtensa, libraries_absolute_path)

@@ -32,6 +32,17 @@ export PATH=$PATH:/mingw32/bin to add python and cmake to path.
 
 
 
+# v1.0.2
+
+### To do
+
+* get_include_files.py think in better way to don't looking for files in examples test ect... subidrectories
+
+* test if internal libraries are include well in sktech cmakelist if it is ok, remove Internal libraries from arduino cmakeList in arduinoCore
+
+* think if looking for in external libraries if <> is not matchet in internal libraries.
+
+### Done
 # V1.0.1
 
 ### To do
