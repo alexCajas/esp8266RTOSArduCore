@@ -16,8 +16,8 @@
           "category": "ESP8266RTOS",
           "url": "https://github.com/alexCajas/esp8266RTOSArduCore/archive/refs/tags/v1.0.3.tar.gz",
           "archiveFileName": "v1.0.3.tar.gz",
-          "checksum": "SHA-256:3e752bdf56488a7650134e257c08c26913ac4d35ebd77af4db5230e5795eb169",
-          "size": "18543378",
+          "checksum": "SHA-256:aa1145e4d7eefdaf2f49bc3fede0a00cc1ff03a996906d7e877b025338671b75",
+          "size": "18580362",
           "help": {
             "online": "https://github.com/alexCajas/esp8266RTOSArduCore/"
           },
