@@ -23,40 +23,25 @@ files_proccessed = set()
 
 files_h_hpp = set()
 files_c_cpp = set()
-
+excluded_dirs = ["build", "extras", "example", "examples", "tests", "test"]
 def parse_file(file, internal_path, external_path):
 
 
     with open(file, 'r') as f:
+        #print(f"file: {f}",file=sys.stderr)
         for line in f:
             # Buscar líneas de inclusión
             match = re.search(r'#include\s+"([^"]+)"|#include\s+<([^>]+)>', line)
             if match:
-                if match.group(1):
-                    path = find_absolute_paths(external_path, match.group(1))
-                    if (path is not None) and ("build" not in path) and ("extras" not in path) and ("example" not in path) and ("examples" not in path) and ("tests" not in path) and ("test" not in path):
+                if match.group(1) is not None:
+                    #print(f'match 1: {match.group(1)}: ',file=sys.stderr)
+                    if not process_path(match.group(1), external_path, libreriasExternas):
+                        process_path(match.group(1), internal_path, libreriasInternas)
 
-                        print(f"math1: {path} {external_path}",file=sys.stderr)
-                        #print(f'match {match.group(1)}, en fichero {file}') 
-                        if path is not None:
-                            if path not in libreriasExternas:
-                                libreriasExternas.add(path)
-                                includes_to_proccess.put(path)
-                                #parse_file(path,externPath)
-                        else:
-                            path = find_absolute_paths(internal_path,match.group(1))
-                            if path is not None and path not in libreriasInternas:
-                                libreriasInternas.add(path)
-                                includes_to_proccess.put(path)
-                elif match.group(2):
-                    path = find_absolute_paths(internal_path, match.group(2))
-                    print(f"math1: {match.group(2)}",file=sys.stderr)
-                    #print(f'match: {match.group(2)}, en fichero {file}')
-                    if path is not None and path not in libreriasInternas:
-                        libreriasInternas.add(path)
-                        includes_to_proccess.put(path)
-                        #parse_file(path,externPath,internalPath)
-    
+                elif match.group(2) is not None:
+                    if not process_path(match.group(2), internal_path,libreriasInternas):
+                        process_path(match.group(2), external_path,libreriasExternas)
+
     files_proccessed.add(file)
 
     if file.endswith(('.c', '.cpp')):
@@ -64,12 +49,33 @@ def parse_file(file, internal_path, external_path):
     elif file.endswith(('.h', '.hpp')):
         files_h_hpp.add(file)    
 
+
+
+def process_path(match_group, path_type, libraries):
+    path = find_absolute_paths(path_type, match_group)
+    if path is not None:
+        #print(f'path: {path}',file=sys.stderr)
+        if not is_path_excluded(path) and path not in libraries:
+            libraries.add(path)
+            includes_to_proccess.put(path)
+            return True
+        
+    return False
+
+def is_path_excluded(path):
+    return any(excluded in path for excluded in excluded_dirs)
+
+
+
 def looking_for_files(path, extensiones):
+    #print(f"dir lookingfor: {path}",file=sys.stderr)
     for root, dirs, files in os.walk(path):
         for file in files:
             if file.endswith(tuple(extensiones)):
                 absolute_path = os.path.abspath(os.path.join(root, file))
-                files_to_proccess.put(absolute_path)
+                if not is_path_excluded(absolute_path):
+                    #print(f"    file: {absolute_path}",file=sys.stderr)
+                    files_to_proccess.put(absolute_path)
 
 
 
@@ -79,8 +85,8 @@ def looking_for_files(path, extensiones):
 def find_absolute_paths(path, lib):
     for root, _, files in os.walk(path):
         for filename in files:
-            filepath = os.path.join(root, filename)
-            if lib in filepath:
+            if lib == filename:
+                filepath = os.path.join(root, filename)
                 return os.path.abspath(filepath)
 
 
@@ -152,8 +158,12 @@ def main():
 
 
     # Uso de la función
+    print(f"files_h_hpp: {files_h_hpp}",file=sys.stderr)
     includedirs = get_include_dirs(files_h_hpp) 
-    print(f"includedirs: {includedirs}",file=sys.stderr)
+    #includedirs.remove('/home/alex/Arduino/libraries/ArduinoJson')
+    #includedirs.add('/home/alex/Arduino/libraries/ArduinoJson/src/')
+    #print(f"includedirs: {includedirs}",file=sys.stderr)
+    #print(f"includecpp: {files_c_cpp}",file=sys.stderr)
     #print(includedirs)
 
 

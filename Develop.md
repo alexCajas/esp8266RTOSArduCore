@@ -36,13 +36,18 @@ export PATH=$PATH:/mingw32/bin to add python and cmake to path.
 
 ### To do
 
+* Important! add Directives in build.cmake (-DARDUINO), to get prerpocessor the definitions that use esp32 and arduino libraries for esp32 core!, you can get that in esp32/platform.txt. It was needded to use ArduinoJSON library!.
+
 * get_include_files.py think in better way to don't looking for files in examples test ect... subidrectories
 
-* test if internal libraries are include well in sktech cmakelist if it is ok, remove Internal libraries from arduino cmakeList in arduinoCore
+* test if internal libraries are include well in sktech cmakelist if it is ok, remove Internal libraries from arduino cmakeList in arduinoCore -- ok!
 
-* think if looking for in external libraries if <> is not matchet in internal libraries.
+* think if looking for in external libraries if <> is not matchet in internal librarie, bad idea, it looking for all system headers in external libraries!, bad use. -- finished
 
 ### Done
+
+---
+
 # V1.0.1
 
 ### To do

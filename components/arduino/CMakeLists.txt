@@ -54,14 +54,14 @@ set(LIBRARY_SRCS
   #${LIBRARIES_DIR}/BluetoothSerial/src/BTAddress.cpp
   #${LIBRARIES_DIR}/BluetoothSerial/src/BTAdvertisedDeviceSet.cpp
   #${LIBRARIES_DIR}/BluetoothSerial/src/BTScanResultsSet.cpp
-  ${LIBRARIES_DIR}/DNSServer/src/DNSServer.cpp
+  #${LIBRARIES_DIR}/DNSServer/src/DNSServer.cpp
   #${LIBRARIES_DIR}/EEPROM/src/EEPROM.cpp
-  ${LIBRARIES_DIR}/ESPmDNS/src/ESPmDNS.cpp
+  #${LIBRARIES_DIR}/ESPmDNS/src/ESPmDNS.cpp
   #${LIBRARIES_DIR}/Ethernet/src/ETH.cpp
   #${LIBRARIES_DIR}/FFat/src/FFat.cpp
   ${LIBRARIES_DIR}/FS/src/FS.cpp
   ${LIBRARIES_DIR}/FS/src/vfs_api.cpp
-  ${LIBRARIES_DIR}/HTTPClient/src/HTTPClient.cpp
+  #${LIBRARIES_DIR}/HTTPClient/src/HTTPClient.cpp
   #${LIBRARIES_DIR}/HTTPUpdate/src/HTTPUpdate.cpp
   #${LIBRARIES_DIR}/LittleFS/src/LittleFS.cpp
   #${LIBRARIES_DIR}/Insights/src/Insights.cpp
@@ -93,46 +93,46 @@ set(LIBRARY_SRCS
   #${LIBRARIES_DIR}/USB/src/USBHIDSystemControl.cpp
   #${LIBRARIES_DIR}/USB/src/USBHIDVendor.cpp
   #${LIBRARIES_DIR}/USB/src/USBVendor.cpp
-  ${LIBRARIES_DIR}/WebServer/src/WebServer.cpp
-  ${LIBRARIES_DIR}/WebServer/src/Parsing.cpp
-  ${LIBRARIES_DIR}/WebServer/src/detail/mimetable.cpp
-  ${LIBRARIES_DIR}/WiFiClientSecure/src/ssl_client.cpp
+  #${LIBRARIES_DIR}/WebServer/src/WebServer.cpp
+  #${LIBRARIES_DIR}/WebServer/src/Parsing.cpp
+  #${LIBRARIES_DIR}/WebServer/src/detail/mimetable.cpp
+  #${LIBRARIES_DIR}/WiFiClientSecure/src/ssl_client.cpp
   #${LIBRARIES_DIR}/WiFiClientSecure/src/esp_crt_bundle.c
-  ${LIBRARIES_DIR}/WiFiClientSecure/src/WiFiClientSecure.cpp
-  ${LIBRARIES_DIR}/WiFi/src/WiFiAP.cpp
-  ${LIBRARIES_DIR}/WiFi/src/WiFiClient.cpp
-  ${LIBRARIES_DIR}/WiFi/src/WiFi.cpp
-  ${LIBRARIES_DIR}/WiFi/src/WiFiGeneric.cpp
-  ${LIBRARIES_DIR}/WiFi/src/WiFiMulti.cpp
-  ${LIBRARIES_DIR}/WiFi/src/WiFiScan.cpp
-  ${LIBRARIES_DIR}/WiFi/src/WiFiServer.cpp
-  ${LIBRARIES_DIR}/WiFi/src/WiFiSTA.cpp
-  ${LIBRARIES_DIR}/WiFi/src/WiFiUdp.cpp
-  ${LIBRARIES_DIR}/WiFiProv/src/WiFiProv.cpp
+  #${LIBRARIES_DIR}/WiFiClientSecure/src/WiFiClientSecure.cpp
+  #${LIBRARIES_DIR}/WiFi/src/WiFiAP.cpp
+  #${LIBRARIES_DIR}/WiFi/src/WiFiClient.cpp
+  #${LIBRARIES_DIR}/WiFi/src/WiFi.cpp
+  #${LIBRARIES_DIR}/WiFi/src/WiFiGeneric.cpp
+  #${LIBRARIES_DIR}/WiFi/src/WiFiMulti.cpp
+  #${LIBRARIES_DIR}/WiFi/src/WiFiScan.cpp
+  #${LIBRARIES_DIR}/WiFi/src/WiFiServer.cpp
+  #${LIBRARIES_DIR}/WiFi/src/WiFiSTA.cpp
+  #${LIBRARIES_DIR}/WiFi/src/WiFiUdp.cpp
+  #${LIBRARIES_DIR}/WiFiProv/src/WiFiProv.cpp
   #${LIBRARIES_DIR}/Wire/src/Wire.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttBroker/MqttBroker.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttClient/MqttClient.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/SubscribeMqttMessage.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/AckConnectMqttMessage.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/MqttMessage.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/PublishMqttMessage.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/ReaderMqttPacket.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/ConnectMqttMessage.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/UnsubscribeMqttMessage.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/FactoryMqttMessage.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/TopicTree/NodeTrie.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/TopicTree/Trie.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/ConcurrentTasks/FreeMqttClientTask.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/ConcurrentTasks/NewClientListenerTask.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/ConcurrentTasks/TCPListenerTask.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/Actions/PublishAction.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/Actions/ActionFactory.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/Actions/DisconnectAction.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/Actions/NoAction.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/Actions/UnSubscribeAction.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/Actions/PingResAction.cpp
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src/Actions/SubscribeAction.cpp
-  ${LIBRARIES_DIR}/WrapperFreeRTOS/src/Task.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttBroker/MqttBroker.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttClient/MqttClient.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/SubscribeMqttMessage.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/AckConnectMqttMessage.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/MqttMessage.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/PublishMqttMessage.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/ReaderMqttPacket.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/ConnectMqttMessage.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/UnsubscribeMqttMessage.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/MqttMessages/FactoryMqttMessage.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/TopicTree/NodeTrie.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/TopicTree/Trie.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/ConcurrentTasks/FreeMqttClientTask.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/ConcurrentTasks/NewClientListenerTask.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/ConcurrentTasks/TCPListenerTask.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/Actions/PublishAction.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/Actions/ActionFactory.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/Actions/DisconnectAction.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/Actions/NoAction.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/Actions/UnSubscribeAction.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/Actions/PingResAction.cpp
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src/Actions/SubscribeAction.cpp
+  #${LIBRARIES_DIR}/WrapperFreeRTOS/src/Task.cpp
   )
 
 
@@ -143,14 +143,14 @@ set(includedirs
   #${LIBRARIES_DIR}/AsyncUDP/src
   #${LIBRARIES_DIR}/BLE/src
   #${LIBRARIES_DIR}/BluetoothSerial/src
-  ${LIBRARIES_DIR}/DNSServer/src
+  #${LIBRARIES_DIR}/DNSServer/src
   #${LIBRARIES_DIR}/EEPROM/src
   #${LIBRARIES_DIR}/ESP32/src
-  ${LIBRARIES_DIR}/ESPmDNS/src
+  #${LIBRARIES_DIR}/ESPmDNS/src
   #${LIBRARIES_DIR}/Ethernet/src
   #${LIBRARIES_DIR}/FFat/src
   ${LIBRARIES_DIR}/FS/src
-  ${LIBRARIES_DIR}/HTTPClient/src
+  #${LIBRARIES_DIR}/HTTPClient/src
   #${LIBRARIES_DIR}/HTTPUpdate/src
   #${LIBRARIES_DIR}/LittleFS/src
   #${LIBRARIES_DIR}/Insights/src
@@ -166,13 +166,13 @@ set(includedirs
   #${LIBRARIES_DIR}/Ticker/src
   #${LIBRARIES_DIR}/Update/src
   #${LIBRARIES_DIR}/USB/src
-  ${LIBRARIES_DIR}/WebServer/src
-  ${LIBRARIES_DIR}/WiFiClientSecure/src
-  ${LIBRARIES_DIR}/WiFi/src
-  ${LIBRARIES_DIR}/WiFiProv/src
+  #${LIBRARIES_DIR}/WebServer/src
+  #${LIBRARIES_DIR}/WiFiClientSecure/src
+  #${LIBRARIES_DIR}/WiFi/src
+  #${LIBRARIES_DIR}/WiFiProv/src
   #${LIBRARIES_DIR}/Wire/src
-  ${LIBRARIES_DIR}/EmbeddedMqttBroker/src
-  ${LIBRARIES_DIR}/WrapperFreeRTOS/src
+  #${LIBRARIES_DIR}/EmbeddedMqttBroker/src
+  #${LIBRARIES_DIR}/WrapperFreeRTOS/src
   )
 
 set(srcs ${CORE_SRCS} ${LIBRARY_SRCS})
