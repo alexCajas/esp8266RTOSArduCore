@@ -96,7 +96,7 @@ https://raw.githubusercontent.com/alexCajas/esp8266RTOSArduCore/main/package/pac
 * This proccess is to link configuration of the esp8266RTOSCore with Arduino IDE, but idf tools needs a git repository in the sdk, so, download this project with git and copy the entire git repository to the arduino core installation directory, even .git directory. Tipically, you core installation will be in:
 
 ~~~
-C:\Users\YouUser\AppData\Local\Arduino15\packages\esp8266RTOS\hardware\esp8266RTOS\1.0.2
+C:\Users\YouUser\AppData\Local\Arduino15\packages\esp8266RTOS\hardware\esp8266RTOS\1.0.3
 ~~~
 
 * Also **You need Msys2**, it is a linux enviroment for windows systems, you can find an official version for esp8266-rtos-sdk in:
@@ -130,6 +130,8 @@ https://drive.google.com/file/d/1WZ_h3bHvFZLzoajv5q8BT9Hcy7K82l5e/view?usp=drive
 **Now you are ready to write and install sketchs using Arduino IDE or VScode IDE!**
 
 ### Warnnig
+
+[!CAUTION]
 
 idf building proccess is tipicall more **slow in windows** than linux distributions, I recomend you to use a Linux distribution like ubuntu to develop with this core and idf projects in general.
 
@@ -208,41 +210,13 @@ void TaskBlink(void *pvParameters)
 
 # Limitations
 
+[!CAUTION]
+
 * The compatibility between libraries of esp8266ArduinoCore based on NONOSDK, and this core, esp8266RTOSArduCore based on FreeRTOS is limited, in general you can use the same esp8266ArduinoCore libraries that have compatibily with esp32 arduino core. 
 
 * It is assumed that external third-party-libaries are in ~/Arduino/libraries.
 
-* There is not supported to recursive includes to external libraries, all libraries you need must be includes in your .ino scketch:
-	*  **example incorrect include**:
-
-**~/Arduino/libraries/libraryOne/headerOne.h**:
-
-~~~c++
-#include "headerTwo.h"
-~~~
-
-**scketchs.ino**:
-~~~c++
-#include "headerOne.h"
-
-// sdk don't loock for headers into heraderOne.h!, headerTwo.h is not included in to compile process, so librariOne is not linked with headerTwo in compile time.
-~~~
-
-* **Rigth way to include**:
-	
-**~/Arduino/libraries/libraryOne/headerOne.h**:
-~~~c++
-#include "headerTwo.h"
-~~~
-
-**scketchs.ino**:
-~~~c++
-#include "headerOne.h"
-#include "headerTwo.h"
-// now compiler use all data of headerTwo.h to compile and link with headerOne.h and scketchs.ino. 
-~~~
-
-* **Note: if you remove #include "headerTwo.h" of "headerOne.h", libraryOne will  not be linked with "headerTwo.h" even if you include that in sckets.ino.**
+* ~~There is not supported to recursive includes to external libraries, all libraries you need must be includes in your .ino scketch~~
 
 * libraries or utilities for specific hardware of esp32, like bluetooth or hall sensor is not supported in this core.
 
@@ -254,11 +228,11 @@ void TaskBlink(void *pvParameters)
 
 # To Do List
 
-- [ ] Implement way to resolve recursive includes.
+- [x] Implement way to resolve recursive includes.
 - [ ] Rewrite paltafrom.txt to give support to compile options. 
 - [ ] Add esp8266 boards configurations in boards.txt
 - [ ] Add pins map support for more models of esp8266 boards.
-- [ ] Changes bash scripts to python scripts to support more OS.
+- [x] Changes bash scripts to python scripts to support more OS.
 - [ ] adapt, test and fix remaining core files with hardware dependencies of esp32 core. [See this section](https://github.com/alexCajas/ESP8266RTOSArdu/tree/main#list-of-core-files-to-adapt-test-and-fix). 
 - [ ] Test and fix remaining basic libraries of esp32 core. [See this section](https://github.com/alexCajas/ESP8266RTOSArdu/tree/main#list-of-basic-libraries-to-test-and-fix).
 - [ ] Think in add #if TARGET_CONF_esp32 to more compatibility. --> I think that is a good idea because RTOS is more ligth than FreeRtos.
