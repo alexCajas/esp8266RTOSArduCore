@@ -12,6 +12,31 @@
         {
           "name": "esp8266RTOS",
           "architecture": "esp8266RTOS",
+          "version": "1.0.3",
+          "category": "ESP8266RTOS",
+          "url": "https://github.com/alexCajas/esp8266RTOSArduCore/archive/refs/tags/v1.0.3.tar.gz",
+          "archiveFileName": "v1.0.3.tar.gz",
+          "checksum": "SHA-256:3e752bdf56488a7650134e257c08c26913ac4d35ebd77af4db5230e5795eb169",
+          "size": "18543378",
+          "help": {
+            "online": "https://github.com/alexCajas/esp8266RTOSArduCore/"
+          },
+          "boards": [
+            {
+              "name": "ESP8266 Module"
+            }
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "esp8266RTOS",
+              "name": "xtensa-lx106-elf",
+              "version": "8_4_0-esp-2020r3"
+            }
+          ]
+        },
+        {
+          "name": "esp8266RTOS",
+          "architecture": "esp8266RTOS",
           "version": "1.0.2",
           "category": "ESP8266RTOS",
           "url": "https://github.com/alexCajas/esp8266RTOSArduCore/archive/refs/tags/v1.0.2.tar.gz",
@@ -33,7 +58,7 @@
               "version": "8_4_0-esp-2020r3"
             }
           ]
-        }
+        }        
       ],
       "tools": [
         {
