@@ -35,7 +35,6 @@ export PATH=$PATH:/mingw32/bin to add python and cmake to path.
 
 ### To do
 
-* see TODO v1.0.2
 * add install.sh to build a env and install requeriments in this env:
   ~~~
   #preresiquite install python3.10
@@ -49,23 +48,29 @@ export PATH=$PATH:/mingw32/bin to add python and cmake to path.
   ~~~
   sudo apt install cmake ninja-build
   ~~~
-* modify platform.txt and scripts to use execute in env env
-  * examle: comiple fail when esp32-matter library is in arduino/libaries, filter by architecture and implemente better script for looking for real include dependencies the project target.
-
-
-* commons compile issues:
-  * same library in arduino/libraries and core libraries. (exampel WrapperFreeRTOS.h)
-  * libraries that has .hpp up and/or down levels of src like ArduinoJSON 
-# v1.0.2
-
-### To do
 
 * Important! add Directives in build.cmake (-DARDUINO), to get prerpocessor the definitions that use esp32 and arduino libraries for esp32 core!, you can get that in esp32/platform.txt. It was needded to use ArduinoJSON library!.
+
+
+
+## Doing
+
+
+## Done
+
+### 19/03/2026
 
 * get_include_files.py think in better way to don't looking for files in examples test ect... subidrectories:
   * I tried to use fileHeader == fileSarched, it is better.
   * I tried to compare "src" in absolute_path, but some libraries has his headers and c/c++ files in proyect root!, so it is not good idea.
+  * commons compile issues:
+    * same library in arduino/libraries and core libraries. (exampel WrapperFreeRTOS.h)
+    * libraries that has .hpp up and/or down levels of src like ArduinoJSON 
+  * soveld with an intelligent loocking for include targets.
 
+# v1.0.2
+
+### To do
 
 
 ### Done

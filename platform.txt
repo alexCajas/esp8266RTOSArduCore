@@ -69,10 +69,10 @@ compiler.elf2hex.extra_flags=
 recipe.hooks.prebuild.1.pattern="{python.venv.path}" "{compiler.path}createPreproc.py" -b "{build.path}"
 
 #recipe.hooks.postbuild.1.pattern="{compiler.path}{compiler.c.cmd}" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" this line is deprecated
-recipe.hooks.postbuild.1.pattern="{python.venv.path}" "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~/Arduino/libraries"
+recipe.hooks.postbuild.1.pattern="{python.venv.path}" "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~/Arduino/libraries" -s "{build.source.path}"
 recipe.hooks.postbuild.2.pattern="{compiler.path}{compiler.c.cmd}" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}"
 
-recipe.hooks.postbuild.1.pattern.windows="{python.venv.path}" "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~\Documents\Arduino\libraries"
+recipe.hooks.postbuild.1.pattern.windows="{python.venv.path}" "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~\Documents\Arduino\libraries" -s "{build.source.path}"
 recipe.hooks.postbuild.2.pattern.windows="{compiler.path}compile.bat" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}"
 #recipe.hooks.postbuild.2.pattern.windows=cmd /c C:\msys32\msys2.exe C:\msys32\home\Alex\dormir.sh
 #C:\msys32\msys2.exe C:\msys32\home\Alex\dormir.sh
