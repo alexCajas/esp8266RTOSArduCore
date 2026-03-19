@@ -31,6 +31,105 @@ export PATH=$PATH:/mingw32/bin to add python and cmake to path.
 * arduino cli end before msys terminal finish the build/flash actions.
 
 
+## local deployment:
+  * create a json package with official regex name
+  
+
+  {
+  "packages": [
+    {
+      "name": "esp8266RTOS",
+      "maintainer": "alexcajas505@gmail.com",
+      "websiteURL": "https://github.com/alexCajas/esp8266RTOSArduCore/",
+      "email": "alexcajas505@gmail.com",
+      "help": {
+        "online": "https://github.com/alexCajas/esp8266RTOSArduCore"
+      },
+      "platforms": [
+        {
+          "name": "ESP8266 RTOS Arduino Core",
+          "architecture": "esp8266RTOS",
+          "version": "1.0.3",
+          "category": "ESP8266RTOS",
+          "url": "http://localhost:8080/esp8266RTOS-1.0.3.tar.gz",
+          "archiveFileName": "esp8266RTOS-1.0.3.tar.gz",
+          "checksum": "SHA-256:<PEGA_AQUI_EL_SHA256>",
+          "size": "<PEGA_AQUI_EL_TAMAÑO_EN_BYTES>",
+          "help": {
+            "online": "https://github.com/alexCajas/esp8266RTOSArduCore/"
+          },
+          "boards": [
+            {
+              "name": "ESP8266 Module"
+            }
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "esp8266RTOS",
+              "name": "xtensa-lx106-elf",
+              "version": "8_4_0-esp-2020r3"
+            }
+          ]
+        }
+      ],
+      "tools": [
+        {
+          "name": "xtensa-lx106-elf",
+          "version": "8_4_0-esp-2020r3",
+          "systems": [
+            {
+              "host": "x86_64-pc-linux-gnu",
+              "url": "https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz",
+              "archiveFileName": "xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz",
+              "checksum": "SHA-256:0a1804b5e2231c6db8b72af6bc2a0f9a5b6994cfba29956d412651109f13fe7e",
+              "size": "88885561"
+            },
+            {
+              "host": "i686-mingw32",
+              "url": "https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-win32.zip",
+              "archiveFileName": "xtensa-lx106-elf-gcc8_4_0-esp-2020r3-win32.zip",
+              "checksum": "SHA-256:733b4da8723471b430f8692b943a7917ad5920b98e7bc6bdf9fb7617182c2b33",
+              "size": "108711860"
+            },
+            {
+              "host": "x86_64-apple-darwin",
+              "url": "https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-macos.tar.gz",
+              "archiveFileName": "xtensa-lx106-elf-gcc8_4_0-esp-2020r3-macos.tar.gz",
+              "checksum": "SHA-256:7823c5fdf3cea2b588cf0c5bd962774ab60a30b8d9c19ae0056a0ef3697537db",
+              "size": "95436978"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+
+
+* for get info:
+
+ * 1. Copia tu carpeta de trabajo a una con el nombre exacto de la versión
+cp -r esp8266RTOSArduCore esp8266RTOS-1.0.3
+
+* 2. Comprime LA CARPETA (no el asterisco)
+tar -czvf esp8266RTOS-1.0.3.tar.gz esp8266RTOS-1.0.3/
+
+* 3. datos
+
+* Obtener el nuevo tamaño en bytes
+stat -c%s esp8266RTOS-1.0.3.tar.gz
+
+* Obtener el nuevo SHA-256
+sha256sum esp8266RTOS-1.0.3.tar.gz
+
+* run localhost donde esta el json y el tar.gz:
+python -m http.server 8080
+
+* usar url en arduino boards:
+http://localhost:8080/package_esp8266RTOS_index.json
+
+
 # v1.0.3
 
 ### To do
