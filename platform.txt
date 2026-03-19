@@ -70,10 +70,10 @@ recipe.hooks.prebuild.1.pattern="{python.venv.path}" "{compiler.path}createPrepr
 
 #recipe.hooks.postbuild.1.pattern="{compiler.path}{compiler.c.cmd}" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" this line is deprecated
 recipe.hooks.postbuild.1.pattern="{python.venv.path}" "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~/Arduino/libraries" -s "{build.source.path}"
-recipe.hooks.postbuild.2.pattern="{python.venv.path}" "{compiler.path}compile.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}"
+recipe.hooks.postbuild.2.pattern="{python.venv.path}" "{compiler.path}compile.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}"
 
 recipe.hooks.postbuild.1.pattern.windows="{python.venv.path}" "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~\Documents\Arduino\libraries" -s "{build.source.path}"
-recipe.hooks.postbuild.2.pattern.windows="{python.venv.path}" "{compiler.path}compile.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}"
+recipe.hooks.postbuild.2.pattern.windows="{python.venv.path}" "{compiler.path}compile.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}"
 #recipe.hooks.postbuild.2.pattern.windows=cmd /c C:\msys32\msys2.exe C:\msys32\home\Alex\dormir.sh
 #C:\msys32\msys2.exe C:\msys32\home\Alex\dormir.sh
 #=cmd /c "C:\\ruta\\a\\msys2\\msys2_shell.cmd -mingw64 -c \"ruta/a/tu/script.sh\""

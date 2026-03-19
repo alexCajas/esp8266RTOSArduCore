@@ -55,6 +55,9 @@ export PATH=$PATH:/mingw32/bin to add python and cmake to path.
 
 ## Doing
 
+* improve compile and flash:
+  * move all to .py instead of .bat and .sh
+  * add memory consume of sktech to compile output
 
 ## Done
 
