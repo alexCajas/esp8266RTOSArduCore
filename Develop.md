@@ -35,8 +35,10 @@ export PATH=$PATH:/mingw32/bin to add python and cmake to path.
 
 ### To do
 
-* add to readme prerequisite install python3.10 and python3.10-env in ubuntu.
-  * it is no need to execute pip because it execution is automatic via post_install.sh
+* add to readme prerequisite install python3.10 and python3.10-env in ubuntu:
+  * it is no need to execute pip because it execution is automatic via setup_env.sh:
+  * now the check and instalation of python3.10 and python3.10-env are via setup_env.sh
+  * the user only need to execute setup_env.sh
 
 * Important! add Directives in build.cmake (-DARDUINO), to get prerpocessor the definitions that use esp32 and arduino libraries for esp32 core!, you can get that in esp32/platform.txt. It was needded to use ArduinoJSON library!.
 
