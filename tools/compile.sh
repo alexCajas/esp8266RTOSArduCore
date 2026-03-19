@@ -3,6 +3,25 @@
 # Script: compile.sh
 # Description: Build an IDF project with specified parameters.
 
+# =========================
+# Python VENV CONFIG
+# =========================
+
+# Detect venv python relative to platform
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PYTHON_VENV="$SCRIPT_DIR/../env/bin/python"
+
+# Fallback if venv does not exist
+if [ ! -f "$PYTHON_VENV" ]; then
+    echo "[WARN] VENV python not found, using system python" 1>&2
+    PYTHON_VENV="python"
+fi
+
+# Optional: prepend venv to PATH (safe for most cases)
+export PATH="$(dirname "$PYTHON_VENV"):$PATH"
+export PATH="/usr/bin:$PATH"
+# =========================
+
 # Function to display script usage
 usage() {
     echo "Usage: $0 -b <build.path> -i <idf.path> -x <xtensa.path>"
@@ -44,24 +63,22 @@ echo "-b: $build_dir" 1>&2
 echo "-i: $idf_dir" 1>&2
 echo "-x: $xtensa_dir" 1>&2
 
-# Build IDF project
-#cp -r "$idf_dir/tools/idfTemplate" "$build_dir" 1>&2
-#mv "$build_dir/sketch/"* "$build_dir/idfTemplate/main"
+# =========================
+# TOOLCHAIN SETUP
+# =========================
 
-# Build main/CMakeLists.txt using a Python script
-#scketchFilePath=$(find "$build_dir/idfTemplate/main" -maxdepth 1 -type f -name '*.ino.cpp')
-#python "$idf_dir/tools/get_include_files.py" -r "$scketchFilePath"
-
-# Execute the Python script with the absolute path to the include.cache file as an argument
-#python "$idf_dir/tools/createProject.py" -i "$build_dir/includes.cache" -m "$build_dir/idfTemplate/main/"
-
-# Export environment variables
 cd "$xtensa_dir"
 cd ./bin
 xtensaPath=$(pwd)
+
 export IDF_PATH="$idf_dir"
 export PATH="$PATH:$xtensaPath"
 
-# Build the IDF project
+# =========================
+# BUILD
+# =========================
+
 cd "$build_dir/idfTemplate/"
-$IDF_PATH/tools/idf.py build 1>&2
+
+# Force IDF to use the venv Python
+"$PYTHON_VENV" "$IDF_PATH/tools/idf.py" build 1>&2

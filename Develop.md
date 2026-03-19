@@ -31,7 +31,31 @@ export PATH=$PATH:/mingw32/bin to add python and cmake to path.
 * arduino cli end before msys terminal finish the build/flash actions.
 
 
+# v1.0.3
 
+### To do
+
+* see TODO v1.0.2
+* add install.sh to build a env and install requeriments in this env:
+  ~~~
+  #preresiquite install python3.10
+  cd /ruta/a/tu/esp8266RTOSArduCore/
+  python3.10 -m venv env
+  ./env/bin/python -m pip install "setuptools<60" wheel #lo podriamos dejar en requirements.txt
+  ./env/bin/pip install -r requirements.txt
+  ~~~
+  * add install script for cmake and ninja.
+  
+  ~~~
+  sudo apt install cmake ninja-build
+  ~~~
+* modify platform.txt and scripts to use execute in env env
+  * examle: comiple fail when esp32-matter library is in arduino/libaries, filter by architecture and implemente better script for looking for real include dependencies the project target.
+
+
+* commons compile issues:
+  * same library in arduino/libraries and core libraries. (exampel WrapperFreeRTOS.h)
+  * libraries that has .hpp up and/or down levels of src like ArduinoJSON 
 # v1.0.2
 
 ### To do

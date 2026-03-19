@@ -1,4 +1,3 @@
-
 # ESP8266 platform
 # ------------------------------
 
@@ -7,6 +6,8 @@
 
 name=ESP8266 Boards RTOS (1.0.3)
 version=1.0.3
+
+python.venv.path={runtime.platform.path}/env/bin/python
 
 compiler.path={runtime.platform.path}/tools/
 compiler.sdk.path={runtime.platform.path}/tools/sdk
@@ -65,13 +66,13 @@ compiler.elf2hex.extra_flags=
 # Handle processing sketch global options
 
 #recipe.hooks.prebuild.1.pattern="{compiler.path}preCompile.sh" -b "{build.path}" # this line is deprecated
-recipe.hooks.prebuild.1.pattern=python "{compiler.path}createPreproc.py" -b "{build.path}"
+recipe.hooks.prebuild.1.pattern="{python.venv.path}" "{compiler.path}createPreproc.py" -b "{build.path}"
 
 #recipe.hooks.postbuild.1.pattern="{compiler.path}{compiler.c.cmd}" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" this line is deprecated
-recipe.hooks.postbuild.1.pattern=python "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~/Arduino/libraries"
+recipe.hooks.postbuild.1.pattern="{python.venv.path}" "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~/Arduino/libraries"
 recipe.hooks.postbuild.2.pattern="{compiler.path}{compiler.c.cmd}" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}"
 
-recipe.hooks.postbuild.1.pattern.windows=python "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~\Documents\Arduino\libraries"
+recipe.hooks.postbuild.1.pattern.windows="{python.venv.path}" "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~\Documents\Arduino\libraries"
 recipe.hooks.postbuild.2.pattern.windows="{compiler.path}compile.bat" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}"
 #recipe.hooks.postbuild.2.pattern.windows=cmd /c C:\msys32\msys2.exe C:\msys32\home\Alex\dormir.sh
 #C:\msys32\msys2.exe C:\msys32\home\Alex\dormir.sh
@@ -83,23 +84,23 @@ recipe.hooks.postbuild.2.pattern.windows="{compiler.path}compile.bat" -b "{build
 
 ### no empty lines for arduino cli
 ## Compile c files
-recipe.c.o.pattern=python "{compiler.path}dummy.py" -f "/desderecipe.c.o.pattern" 
+recipe.c.o.pattern="{python.venv.path}" "{compiler.path}dummy.py" -f "/desderecipe.c.o.pattern" 
 
 ## Compile c++ files
-recipe.cpp.o.pattern=python "{compiler.path}dummy.py" -f /desderecipe.cpp.pattern
+recipe.cpp.o.pattern="{python.venv.path}" "{compiler.path}dummy.py" -f /desderecipe.cpp.pattern
 
 ###
 
 
 ## Compile S files
-recipe.S.o.pattern=python "{compiler.path}dummy.py"
+recipe.S.o.pattern="{python.venv.path}" "{compiler.path}dummy.py"
 
 ## Create archives, no se puede dejar en blanco o quitar
-recipe.ar.pattern=python "{compiler.path}dummy.py"
+recipe.ar.pattern="{python.venv.path}" "{compiler.path}dummy.py"
 
 ## Combine gc-sections, archives, and objects, este comando no se puede quitar ni dejar
 # en blanco o en cadena vacia, opto por hacer que llame a un sh dummy
-recipe.c.combine.pattern= python "{compiler.path}dummy.py"
+recipe.c.combine.pattern= "{python.venv.path}" "{compiler.path}dummy.py"
 ###
 
 
@@ -111,7 +112,7 @@ tools.esptool.path=
 # will point to "{runtime.platform.path}/tools/python3/python3" in GIT and
 # "{runtime.tools.python3.path}/python3" for JSON board manager releases.
 tools.esptool.cmd="{runtime.platform.path}/tools/flash.sh"
-tools.esptool.network_cmd={runtime.tools.python3.path}/python3
+tools.esptool.network_cmd="{python.venv.path}"
 
 
 
@@ -128,9 +129,5 @@ tools.esptool.upload.pattern={cmd} -b "{build.path}" -i "{runtime.platform.path}
 # For some reason when it is used windows pattern "{runtime.tools.xtensa-lx106-elf.path}" can't be resolved, so flash doesn't receive the correct xtensa_dir.
 #tools.esptool.upload.pattern.windows="{runtime.platform.path}/tools/flash.bat" -b "{build.path}" -i "{runtime.platform.path}" -x "{runtime.tools.xtensa-lx106-elf.path}"
 # For some reason postbuild rule in windows run .bat it doesn't wait to the end of msys process, so arduino  continue with flash while msys is building the project, 
-tools.esptool.upload.pattern.windows=python "{runtime.platform.path}/tools/dummy.py"
+tools.esptool.upload.pattern.windows="{python.venv.path}" "{runtime.platform.path}/tools/dummy.py"
 tools.esptool.upload.network_pattern="{network_cmd}" -I "{runtime.platform.path}/tools/espota.py" -i "{serial.port}" -p "{network.port}" "--auth={network.password}" -f "{build.path}/{build.project_name}.bin"
-
-
-
-

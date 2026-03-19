@@ -3,6 +3,28 @@
 # Script: flash.sh
 # Description: Flash an IDF project with specified parameters.
 
+# =========================
+# Python VENV CONFIG
+# =========================
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PYTHON_VENV="$SCRIPT_DIR/../env/bin/python"
+
+# Fallback si no existe el venv
+if [ ! -f "$PYTHON_VENV" ]; then
+    echo "[WARN] VENV python not found, using system python" 1>&2
+    PYTHON_VENV="python"
+fi
+
+# Asegurar prioridad del venv en PATH
+export PATH="$(dirname "$PYTHON_VENV"):$PATH"
+
+# (opcional pero recomendado para IDF modernos)
+export IDF_PYTHON_ENV_PATH="$(dirname "$PYTHON_VENV")"
+
+export PATH="/usr/bin:$PATH"
+# =========================
+
 # Function to display script usage
 usage() {
     echo "Usage: $0 -b <build.path> -i <idf.path> -x <xtensa.path>"
@@ -44,14 +66,22 @@ echo "-b: $build_dir" 1>&2
 echo "-i: $idf_dir" 1>&2
 echo "-x: $xtensa_dir" 1>&2
 
-# Export environment variables
+# =========================
+# TOOLCHAIN SETUP
+# =========================
+
 cd "$xtensa_dir"
 cd ./bin
 xtensaPath=$(pwd)
+
 export IDF_PATH="$idf_dir"
 export PATH="$PATH:$xtensaPath"
 
-# Flash the IDF project
-cd "$build_dir/idfTemplate/"
-$IDF_PATH/tools/idf.py flash
+# =========================
+# FLASH
+# =========================
 
+cd "$build_dir/idfTemplate/"
+
+# Ejecutar con python del venv
+"$PYTHON_VENV" "$IDF_PATH/tools/idf.py" flash
