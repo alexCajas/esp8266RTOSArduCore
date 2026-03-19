@@ -13,7 +13,7 @@ if exist "%MSYS_BASH%" (
     for /f "delims=" %%i in ('"%MSYS_BASH%" -lc "cygpath -u '%CORE_DIR%'"') do set "CORE_DIR_UNIX=%%i"
     
     REM Run pip install within the MSYS2 environment
-    "%MSYS_BASH%" -lc "cd '%CORE_DIR_UNIX%'; pip install setuptools wheel; pip install -r tools/requirements.txt"
+    "%MSYS_BASH%" -lc "cd '%CORE_DIR_UNIX%'; pip install setuptools wheel; pip install -r ./requirements.txt"
     
     echo [Setup] Windows environment configured successfully.
 ) else (
