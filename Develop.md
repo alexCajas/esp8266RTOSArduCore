@@ -35,6 +35,20 @@ export PATH=$PATH:/mingw32/bin to add python and cmake to path.
 
 ### To do
 
+* add like prerequisite install python3.10 and python3.10-env in ubuntu.
+* it is no need to execute pip because it execution is automatic via post_install.sh
+
+* Important! add Directives in build.cmake (-DARDUINO), to get prerpocessor the definitions that use esp32 and arduino libraries for esp32 core!, you can get that in esp32/platform.txt. It was needded to use ArduinoJSON library!.
+
+
+
+## Doing
+
+
+
+## Done
+
+### 19/03/2026
 * add install.sh to build a env and install requeriments in this env:
   ~~~
   #preresiquite install python3.10
@@ -49,19 +63,10 @@ export PATH=$PATH:/mingw32/bin to add python and cmake to path.
   sudo apt install cmake ninja-build
   ~~~
 
-* Important! add Directives in build.cmake (-DARDUINO), to get prerpocessor the definitions that use esp32 and arduino libraries for esp32 core!, you can get that in esp32/platform.txt. It was needded to use ArduinoJSON library!.
 
-
-
-## Doing
-
-* improve compile and flash:
-  * move all to .py instead of .bat and .sh
-  * add memory consume of sktech to compile output
-
-## Done
-
-### 19/03/2026
+* improve compile and flash: --> done
+  * move all to .py instead of .bat and .sh --> done
+  * add memory consume of sktech to compile output --> done
 
 * get_include_files.py think in better way to don't looking for files in examples test ect... subidrectories:
   * I tried to use fileHeader == fileSarched, it is better.
