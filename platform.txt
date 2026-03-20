@@ -1,8 +1,13 @@
+# ESP8266 platform
+# ------------------------------
+
 name=ESP8266 Boards RTOS (1.0.3)
 version=1.0.3
 
-# Variables Python
+# Default Python path for Linux and macOS
 python.venv.path={runtime.platform.path}/env/bin/python
+
+# Override Python path for Windows
 python.venv.path.windows=C:/msys32/mingw32/bin/python.exe
 
 compiler.path={runtime.platform.path}/tools/
@@ -12,9 +17,9 @@ xtensa.path={runtime.tools.xtensa-lx106-elf.path}
 
 compiler.libc.path={runtime.platform.path}/tools/
 compiler.cpreprocessor.flags=-D__ets__ -DICACHE_FLASH -U__STRICT_ANSI__ -D_GNU_SOURCE -DESP8266 
+
 compiler.libraries.ldflags=
 
-# Comandos base
 compiler.c.cmd=compile.py
 compiler.c.flags=-std=gnu17 -Os -g -free -fipa-pta -Werror=return-type -Wpointer-arith -Wno-implicit-function-declaration -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals -falign-functions=4 -MMD -ffunction-sections -fdata-sections 
 
@@ -36,30 +41,30 @@ compiler.elf2hex.flags=
 build.extra_flags=
 
 # ------------------------------
-# HOOKS DE PRE/POST COMPILACIÓN (BUILD)
+# BUILD HOOKS
 # ------------------------------
 recipe.hooks.prebuild.1.pattern="{python.venv.path}" "{compiler.path}createPreproc.py" -b "{build.path}"
 
-# LINUX BUILD
+# Linux/Mac Build Hook (Receives -f and -m)
 recipe.hooks.postbuild.1.pattern="{python.venv.path}" "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~/Arduino/libraries" -s "{build.source.path}"
-recipe.hooks.postbuild.2.pattern="{python.venv.path}" "{compiler.path}compile.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}"
+recipe.hooks.postbuild.2.pattern="{python.venv.path}" "{compiler.path}compile.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
 
-# WINDOWS BUILD
+# Windows Build Hook (Receives -f and -m)
 recipe.hooks.postbuild.1.pattern.windows="{python.venv.path}" "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~\Documents\Arduino\libraries" -s "{build.source.path}"
-recipe.hooks.postbuild.2.pattern.windows="{python.venv.path}" "{compiler.path}compile.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}"
-
+recipe.hooks.postbuild.2.pattern.windows="{python.venv.path}" "{compiler.path}compile.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
 
 # ------------------------------
-# CÁLCULO NATIVO DE TAMAÑO (SIZE) - LLAMA A size.py
+# NATIVE SIZE CALCULATION (Calls size.py)
 # ------------------------------
-recipe.size.pattern="{python.venv.path}" "{compiler.path}size.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}"
-recipe.size.pattern.windows="{python.venv.path}" "{compiler.path}size.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}"
+# Receives both maximum size and physical flash size
+recipe.size.pattern="{python.venv.path}" "{compiler.path}size.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
+recipe.size.pattern.windows="{python.venv.path}" "{compiler.path}size.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
 
+# Arduino IDE will intercept this Regex from stdout and calculate the % automatically
 recipe.size.regex=Total image size:\s*(?:~)?\s*([0-9]+)\s+bytes
 
-
 # ------------------------------
-# REGLAS VACÍAS
+# EMPTY RULES
 # ------------------------------
 recipe.c.o.pattern="{python.venv.path}" "{compiler.path}dummy.py"
 recipe.cpp.o.pattern="{python.venv.path}" "{compiler.path}dummy.py"
