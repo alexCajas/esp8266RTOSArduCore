@@ -1,14 +1,17 @@
+from __future__ import print_function
 import argparse
 import os
 import sys
 
 
 def main(build_path):
-    print(f"preCompile Build Path: {build_path}", file=sys.stderr)
+    print("preCompile Build Path: {}".format(build_path), file=sys.stderr)
     
     # Crear la carpeta 'preproc' y el archivo 'ctags_target_for_gcc_minus_e.cpp' en 'build_path'
     preproc_path = os.path.join(build_path, 'preproc')
-    os.makedirs(preproc_path, exist_ok=True)
+    # PON ESTO EN SU LUGAR:
+    if not os.path.exists(preproc_path):
+        os.makedirs(preproc_path)
 
     file_path = os.path.join(preproc_path, 'ctags_target_for_gcc_minus_e.cpp')
     if not os.path.exists(file_path):

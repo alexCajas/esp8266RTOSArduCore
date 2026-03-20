@@ -1,9 +1,12 @@
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 import os
 import sys
 import argparse
 import shutil
 import glob
 import re
+import io  # Required for safe utf-8 reading in Python 2.7
 
 def copy_folder(source, destination):
     if not os.path.exists(destination):
@@ -18,7 +21,7 @@ def copy_folder(source, destination):
 
 def move_sketch_files(source, destination):
     for ext in ['cpp', 'c', 'S', 'h', 'hpp']:
-        files = glob.glob(os.path.join(source, f"*.{ext}"))
+        files = glob.glob(os.path.join(source, "*.{}".format(ext)))
         for file in files:
             dest_file = os.path.join(destination, os.path.basename(file))
             if os.path.exists(dest_file):
@@ -52,7 +55,7 @@ def main():
     parser.add_argument('-i', '--idf', required=True)
     parser.add_argument('-x', '--xtensa', required=True)
     parser.add_argument('-l', '--libraries', required=True)
-    parser.add_argument('-s', '--sketch', required=True) # <-- Nueva variable
+    parser.add_argument('-s', '--sketch', required=True)
     args = parser.parse_args()
 
     external_libs_path = os.path.expanduser(args.libraries)
@@ -73,11 +76,11 @@ def main():
     files_to_parse = []
     processed_libs = set()
 
-    # Añadimos el directorio original del sketch a los includes para que gcc encuentre las rutas relativas
+    # Add the original sketch directory to includes so gcc finds relative paths
     include_dirs.add(os.path.abspath(args.sketch))
 
     for ext in ['cpp', 'c', 'S', 'h', 'hpp']:
-        for f in glob.glob(os.path.join(main_component_dir, f"*.{ext}")):
+        for f in glob.glob(os.path.join(main_component_dir, "*.{}".format(ext))):
             abs_f = os.path.abspath(f)
             files_to_parse.append(abs_f)
             if ext in ['cpp', 'c', 'S']:
@@ -90,30 +93,29 @@ def main():
         
         processed_files.add(current_file)
 
-        # Determinar el directorio base para resolver rutas relativas
-        # Si es el sketch copiado, su base real es args.sketch. Si no, es su propia carpeta.
+        # Determine the base directory to resolve relative paths.
         if current_file.endswith('.ino.cpp') and main_component_dir in current_file:
             current_base_dir = args.sketch
         else:
             current_base_dir = os.path.dirname(current_file)
 
         try:
-            with open(current_file, 'r', encoding='utf-8', errors='ignore') as f:
+            # Use io.open for reading ONLY, as it handles utf-8 safely in Py2.7
+            with io.open(current_file, 'r', encoding='utf-8', errors='ignore') as f:
                 for line in f:
                     match = re.search(r'#include\s*[<"]([^>"]+)[>"]', line)
                     if match:
                         header_name = match.group(1)
                         
-                        # -- MAGIA 1: Resolución de Rutas Relativas/Locales --
-                        # Comprobamos si el archivo está físicamente junto a quien lo llama o en la ruta relativa
+                        # -- Local/Relative Path Resolution --
                         local_path = os.path.abspath(os.path.join(current_base_dir, header_name))
                         if os.path.exists(local_path):
                             include_dirs.add(os.path.dirname(local_path))
                             if local_path not in processed_files and local_path not in files_to_parse:
                                 files_to_parse.append(local_path)
-                            continue # Ya resuelto localmente, no buscar en librerías
+                            continue 
                         
-                        # -- MAGIA 2: Búsqueda en Librerías Globales --
+                        # -- Global Library Search --
                         root_header = header_name.split('/')[0] if '/' in header_name else header_name
                         if root_header in processed_libs:
                             continue
@@ -135,22 +137,26 @@ def main():
         except Exception as e:
             pass
 
-    formatted_srcs = '\n    '.join([f'"{s.replace(chr(92), "/")}"' for s in sources])
-    formatted_dirs = '\n    '.join([f'"{d.replace(chr(92), "/")}"' for d in include_dirs])
+    formatted_srcs = '\n    '.join(['"{}"'.format(s.replace(chr(92), "/")) for s in sources])
+    formatted_dirs = '\n    '.join(['"{}"'.format(d.replace(chr(92), "/")) for d in include_dirs])
 
-    cmake_content = f"""
+    cmake_content = """
 set(LIBRARY_SRCS
-    {formatted_srcs}
+    {0}
 )
 
 set(includedirs
-    {formatted_dirs}
+    {1}
 )
 
 idf_component_register(SRCS "${{LIBRARY_SRCS}}" INCLUDE_DIRS "${{includedirs}}")
-"""
+""".format(formatted_srcs, formatted_dirs)
+
     cmake_path = os.path.join(main_component_dir, "CMakeLists.txt")
-    with open(cmake_path, "w", encoding="utf-8") as f:
+    
+    # MAGIC: Use standard built-in open() for writing. 
+    # This works natively with strings in Py2.7 and Py3.10 without throwing Unicode errors.
+    with open(cmake_path, "w") as f:
         f.write(cmake_content)
 
 if __name__ == "__main__":
