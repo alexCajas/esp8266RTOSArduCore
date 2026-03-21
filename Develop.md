@@ -153,6 +153,17 @@ http://localhost:8080/package_esp8266RTOS_index.json
   * get_include_files.py
   * compile|flash|size .py
 
+* fix fail boar instalation in windows:
+  ~~~~
+  Cannot run program "In" (in directory C:\Users\user\AppData\Local\Arduino15\packages\esp8266RTOS\hardware\esp8266RTOS\1.0.3\components\coap\libcoap): CreateProcess error=2, El sistema no puede encontrar el archivo especificado.
+  ~~~~
+
+*  Este flag obliga a tar a seguir los enlaces simbólicos y empaquetar el archivo real en lugar del enlace que luego windows no puede resolver:
+  
+  ~~~~
+    # Genera el empaquetado seguro para Windows (sin symlinks) desde linux
+    tar -czvhf esp8266RTOS-1.0.3.tar.gz esp8266RTOS-1.0.3/
+  ~~~~
 
 ## Doing
 
