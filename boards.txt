@@ -53,6 +53,27 @@ generic.menu.ResetMethod.nodemcu.upload.resetmethod=--before default_reset --aft
 generic.menu.ResetMethod.ck=no dtr (aka ck)
 generic.menu.ResetMethod.ck.upload.resetmethod=--before no_reset --after soft_reset
 
+# -------------------------------------------------------------------------
+# DEBUG LEVEL MENU (Mapped to CONFIG_ARDUHAL_LOG_DEFAULT_LEVEL)
+# -------------------------------------------------------------------------
+generic.menu.lvl.None____=None
+generic.menu.lvl.None____.build.arduhal_log_level=0
+
+generic.menu.lvl.Error=Error
+generic.menu.lvl.Error.build.arduhal_log_level=1
+
+generic.menu.lvl.Warn=Warn
+generic.menu.lvl.Warn.build.arduhal_log_level=2
+
+generic.menu.lvl.Info=Info
+generic.menu.lvl.Info.build.arduhal_log_level=3
+
+generic.menu.lvl.Debug=Debug
+generic.menu.lvl.Debug.build.arduhal_log_level=4
+
+generic.menu.lvl.Verbose=Verbose
+generic.menu.lvl.Verbose.build.arduhal_log_level=5
+
 # --- 1MB BOARDS ---
 generic.menu.eesz.1M64=1MB (FS:64KB OTA:~470KB)
 generic.menu.eesz.1M64.build.flash_size=1M
@@ -200,6 +221,27 @@ nodemcuv2.menu.xtal.80.build.f_cpu=80000000L
 nodemcuv2.menu.xtal.160=160 MHz
 nodemcuv2.menu.xtal.160.build.f_cpu=160000000L
 
+# -------------------------------------------------------------------------
+# DEBUG LEVEL MENU (Mapped to CONFIG_ARDUHAL_LOG_DEFAULT_LEVEL)
+# -------------------------------------------------------------------------
+nodemcuv2.menu.lvl.None____=None
+nodemcuv2.menu.lvl.None____.build.arduhal_log_level=0
+
+nodemcuv2.menu.lvl.Error=Error
+nodemcuv2.menu.lvl.Error.build.arduhal_log_level=1
+
+nodemcuv2.menu.lvl.Warn=Warn
+nodemcuv2.menu.lvl.Warn.build.arduhal_log_level=2
+
+nodemcuv2.menu.lvl.Info=Info
+nodemcuv2.menu.lvl.Info.build.arduhal_log_level=3
+
+nodemcuv2.menu.lvl.Debug=Debug
+nodemcuv2.menu.lvl.Debug.build.arduhal_log_level=4
+
+nodemcuv2.menu.lvl.Verbose=Verbose
+nodemcuv2.menu.lvl.Verbose.build.arduhal_log_level=5
+
 
 ##############################################################
 # 3. LOLIN(WEMOS) D1 R2 & mini - Fixed 4MB Chip
@@ -246,6 +288,27 @@ d1_mini.menu.xtal.80.build.f_cpu=80000000L
 d1_mini.menu.xtal.160=160 MHz
 d1_mini.menu.xtal.160.build.f_cpu=160000000L
 
+# -------------------------------------------------------------------------
+# DEBUG LEVEL MENU (Mapped to CONFIG_ARDUHAL_LOG_DEFAULT_LEVEL)
+# -------------------------------------------------------------------------
+d1_mini.menu.lvl.None____=None
+d1_mini.menu.lvl.None____.build.arduhal_log_level=0
+
+d1_mini.menu.lvl.Error=Error
+d1_mini.menu.lvl.Error.build.arduhal_log_level=1
+
+d1_mini.menu.lvl.Warn=Warn
+d1_mini.menu.lvl.Warn.build.arduhal_log_level=2
+
+d1_mini.menu.lvl.Info=Info
+d1_mini.menu.lvl.Info.build.arduhal_log_level=3
+
+d1_mini.menu.lvl.Debug=Debug
+d1_mini.menu.lvl.Debug.build.arduhal_log_level=4
+
+d1_mini.menu.lvl.Verbose=Verbose
+d1_mini.menu.lvl.Verbose.build.arduhal_log_level=5
+
 
 ##############################################################
 # 4. Generic ESP8266 ESP-01 1M - Fixed 1MB Chip
@@ -291,3 +354,24 @@ esp01_1m.menu.eesz.1M=1MB (FS:none OTA:~502KB)
 esp01_1m.menu.eesz.1M.build.flash_size=1M
 esp01_1m.menu.eesz.1M.build.flash_size_arg=1MB
 esp01_1m.menu.eesz.1M.upload.maximum_size=514048
+
+# -------------------------------------------------------------------------
+# DEBUG LEVEL MENU (Mapped to CONFIG_ARDUHAL_LOG_DEFAULT_LEVEL)
+# -------------------------------------------------------------------------
+esp01_1m.menu.lvl.None____=None
+esp01_1m.menu.lvl.None____.build.arduhal_log_level=0
+
+esp01_1m.menu.lvl.Error=Error
+esp01_1m.menu.lvl.Error.build.arduhal_log_level=1
+
+esp01_1m.menu.lvl.Warn=Warn
+esp01_1m.menu.lvl.Warn.build.arduhal_log_level=2
+
+esp01_1m.menu.lvl.Info=Info
+esp01_1m.menu.lvl.Info.build.arduhal_log_level=3
+
+esp01_1m.menu.lvl.Debug=Debug
+esp01_1m.menu.lvl.Debug.build.arduhal_log_level=4
+
+esp01_1m.menu.lvl.Verbose=Verbose
+esp01_1m.menu.lvl.Verbose.build.arduhal_log_level=5
