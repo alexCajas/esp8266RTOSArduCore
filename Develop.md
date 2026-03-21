@@ -170,22 +170,25 @@ http://localhost:8080/package_esp8266RTOS_index.json
 
 ## Doing
 
-* add debug log level via ide:
-  * creates global variable in sdkconfig:--> done
-    * there was need kconfig.projbuild for thast --> done
-  * integratie in board.txt and send variable to rewrite sdkconfig wiht new value.
 
-* test all in ubunut after improvements in windows!:
-  * re install requisites to test wiht python 3.10 maybe it is necesary instal python2.7 instead of 3.10 to be compatible with windows
 
 * Important! add Directives in build.cmake (-DARDUINO), to get prerpocessor the definitions that use esp32 and arduino libraries for esp32 core!, you can get that in esp32/platform.txt. It was needded to use ArduinoJSON library!.
-* add board configuration to compile and flash settings in scripts
+
 
 * add more supported boards? 8265?
 
 ## Done
 
 ### 21/03/2026
+* add board configuration to compile and flash settings in scripts
+* add debug log level via ide: --> done
+  * creates global variable in sdkconfig:--> done
+    * there was need kconfig.projbuild for thast --> done
+  * integratie in board.txt and send variable to rewrite sdkconfig wiht new value:
+    * created set_user_values.py that take user sets and rewrite sdkconfig.--> done
+
+* test all in ubunut after improvements in windows!:
+  * re install requisites to test wiht python 3.10 maybe it is necesary instal python2.7 instead of 3.10 to be compatible with windows
 
 * windows:
   * fix fail to install core via windows
