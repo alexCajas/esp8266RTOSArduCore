@@ -170,7 +170,10 @@ http://localhost:8080/package_esp8266RTOS_index.json
 
 ## Doing
 
-
+* add debug log level via ide:
+  * creates global variable in sdkconfig:--> done
+    * there was need kconfig.projbuild for thast --> done
+  * integratie in board.txt and send variable to rewrite sdkconfig wiht new value.
 
 * test all in ubunut after improvements in windows!:
   * re install requisites to test wiht python 3.10 maybe it is necesary instal python2.7 instead of 3.10 to be compatible with windows

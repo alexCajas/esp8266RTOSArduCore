@@ -1,0 +1,18 @@
+menu "Arduino Configuration"
+
+    config ARDUHAL_LOG_DEFAULT_LEVEL
+        int "Arduino HAL Log Default Level"
+        default 0
+        range 0 5
+        help
+            Set the default log level for the Arduino Hardware Abstraction Layer (HAL).
+            0: None (No logs)
+            1: Error
+            2: Warn
+            3: Info
+            4: Debug
+            5: Verbose
+            
+            This value will define the CORE_DEBUG_LEVEL macro used by Arduino libraries.
+
+endmenu
