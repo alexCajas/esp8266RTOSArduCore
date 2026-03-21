@@ -84,13 +84,15 @@ recipe.hooks.postbuild.2.pattern.windows="{python.venv.path}" "{compiler.path}co
 # It calls our OS-specific scripts to read the compiled .elf file sections.
 
 # Linux / macOS Size Script
-recipe.size.pattern="{python.venv.path}" "{compiler.path}size_linux.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
+#recipe.size.pattern="{python.venv.path}" "{compiler.path}size_linux.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
+recipe.size.pattern="{python.venv.path}" "{compiler.path}dummy.py"
 
 # Windows Size Script
-recipe.size.pattern.windows="{python.venv.path}" "{compiler.path}size_windows.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
+#recipe.size.pattern.windows="{python.venv.path}" "{compiler.path}size_windows.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
+recipe.size.pattern.windows="{python.venv.path}" "{compiler.path}dummy.py"
 
 # Arduino IDE intercepts this exact string via Regex to calculate the memory percentage automatically.
-recipe.size.regex=Total image size:\s*(?:~)?\s*([0-9]+)\s+bytes
+#recipe.size.regex=Total image size:\s*(?:~)?\s*([0-9]+)\s+bytes
 
 
 # ------------------------------------------------------------------------------

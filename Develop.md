@@ -165,11 +165,12 @@ http://localhost:8080/package_esp8266RTOS_index.json
     tar -czvhf esp8266RTOS-1.0.3.tar.gz esp8266RTOS-1.0.3/
   ~~~~
 
+* correct size calculation:
+  * future versions o a last try with size_[].py, there are comments in platform.txt
+
 ## Doing
 
-* windows:
-  * fix fail to install core via windows
-  * automatice downlaod of msys (patched) research if it is posible via index.json or via setup_env.bat
+
 
 * test all in ubunut after improvements in windows!:
   * re install requisites to test wiht python 3.10 maybe it is necesary instal python2.7 instead of 3.10 to be compatible with windows
@@ -182,6 +183,10 @@ http://localhost:8080/package_esp8266RTOS_index.json
 ## Done
 
 ### 21/03/2026
+
+* windows:
+  * fix fail to install core via windows
+  * automatice downlaod of msys (patched) research if it is posible via index.json or via setup_env.bat
 
 * setup_env.bat, now downlaod toolkit and install python requisites automatic 
 
