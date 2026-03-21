@@ -17,7 +17,7 @@ def main():
     parser.add_argument('-b', '--build', required=True)
     parser.add_argument('-i', '--idf', required=True)
     parser.add_argument('-x', '--xtensa', required=True)
-    parser.add_argument('-m', '--max_size', required=False) # Ignorado en compile
+    parser.add_argument('-m', '--max_size', required=False) # Ignored in compile
     args, unknown = parser.parse_known_args()
 
     is_windows = os.name == 'nt' or sys.platform in ['win32', 'cygwin', 'msys']
@@ -27,7 +27,7 @@ def main():
         os.makedirs(work_dir)
 
     if is_windows:
-        # ==================== WINDOWS BUILD (CON VENTANA PARA EVADIR TTY) ====================
+        # ==================== WINDOWS BUILD (PURE TTY + SMART PAUSE + COLORS) ====================
         msys_bash = r"C:\msys32\usr\bin\bash.exe"
         idf_msys = to_msys_path(args.idf)
         xtensa_msys = to_msys_path(os.path.join(args.xtensa, "bin"))
@@ -39,41 +39,66 @@ def main():
 
         with open(build_sh_path, "w") as f:
             f.write("#!/bin/bash\n")
+            
+            # --- DEFINICIÓN DE COLORES Y FORMATOS ANSI AVANZADOS ---
+            f.write("RED='\\033[1;31m'\n")
+            f.write("GREEN='\\033[1;32m'\n")
+            f.write("YELLOW='\\033[1;33m'\n")
+            f.write("CYAN='\\033[1;36m'\n")
+            # [NUEVO] Fondo Rojo Intenso + Texto Blanco en Negrita (Para alertas críticas)
+            f.write("ALERT_BOX='\\033[1;37;41m'\n") 
+            f.write("NC='\\033[0m' # No Color\n")
+            
             f.write("export PATH=\"/mingw32/bin:/usr/bin:{}:$PATH\"\n".format(xtensa_msys))
             f.write("export IDF_PATH=\"{}\"\n".format(idf_msys))
             f.write("cd \"{}\"\n".format(work_msys))
             
-            f.write("echo '========================================'\n")
-            f.write("echo '   ESP8266 RTOS SDK Build in MSYS2      '\n")
-            f.write("echo '========================================'\n")
-            f.write("echo -e '\\n[Builder] Starting compilation...'\n")
+            f.write("echo -e \"${CYAN}========================================${NC}\"\n")
+            f.write("echo -e \"${CYAN}   ESP8266 RTOS SDK Build in MSYS2      ${NC}\"\n")
+            f.write("echo -e \"${CYAN}========================================${NC}\"\n")
+            f.write("echo -e \"\\n[Builder] Starting compilation...\"\n")
             
-            # Compilamos
+            # Compilamos Pura (Sin 'tee')
             f.write("/mingw32/bin/python.exe \"{}/tools/idf.py\" build\n".format(idf_msys))
             f.write("BUILD_RET=$?\n")
             
-            # Notificamos el resultado
+            # --- MANEJO DE ERROR (ROJO) ---
             f.write("if [ $BUILD_RET -ne 0 ]; then\n")
-            f.write("  echo -e '\\n[ERROR] Compilation failed with code '$BUILD_RET'!'\n")
-            f.write("else\n")
-            f.write("  echo -e '\\n[SUCCESS] Build finished successfully!'\n")
+            f.write("  echo -e \"\\n${RED}[ERROR] Compilation failed with code $BUILD_RET!${NC}\"\n")
+            f.write("  echo -e \"${RED}Please review the red errors above.\\n${NC}\"\n")
+            f.write("  read -p \"Press Enter to close this window and cancel upload...\" dummy\n")
+            f.write("  exit $BUILD_RET\n")
             f.write("fi\n")
             
-            # [FIX UX]: Pausamos SIEMPRE la ventana para que el usuario pueda leer logs y warnings
-            f.write("echo ''\n")
-            f.write("read -p 'Press Enter to close this window and continue...' dummy\n")
+            # --- MANEJO DE ÉXITO Y ALERTA VISUAL EXTREMA ---
+            f.write("if [ -f build/compile_commands.json ]; then\n")
+            f.write("  echo -e \"\\n${GREEN}[SUCCESS] Build finished successfully!${NC}\"\n")
             
-            # Salimos devolviendo el código original de la compilación
-            f.write("exit $BUILD_RET\n")
+            # Dibujamos un bloque gigante y colorido para llamar la atención sí o sí
+            f.write("  echo -e \"\\n${ALERT_BOX}                                                         ${NC}\"\n")
+            f.write("  echo -e \"${ALERT_BOX}   WARNINGS MAY EXIST IN THE LOG ABOVE!                  ${NC}\"\n")
+            f.write("  echo -e \"${ALERT_BOX}   PRESS ANY KEY NOW TO PAUSE AND REVIEW THEM            ${NC}\"\n")
+            f.write("  echo -e \"${ALERT_BOX}                                                         ${NC}\\n\"\n")
+            
+            # Pausa de 3 segundos. Si pulsa, se detiene indefinidamente.
+            f.write("  read -t 3 -n 1 -p \"Closing automatically in 3 seconds...\" dummy\n")
+            f.write("  if [ $? -eq 0 ]; then\n")
+            f.write("    echo -e \"\\n\\n${YELLOW}=== PAUSED ===${NC}\"\n")
+            f.write("    echo -e \"${YELLOW}Scroll up to read compiler warnings.${NC}\"\n")
+            f.write("    echo -e \"${YELLOW}Press Enter to exit and continue with upload.${NC}\"\n")
+            f.write("    read dummy\n")
+            f.write("  fi\n")
+            f.write("fi\n")
+            
+            f.write("exit 0\n")
 
         print("[Builder] Opening MSYS2 Terminal for compilation...", file=sys.stderr)
         sys.stderr.flush()
 
-        # Este flag es obligatorio para que idf.py/winpty no crasheen con el error TTY
+        # Flag OBLIGATORIO para emulación TTY
         CREATE_NEW_CONSOLE = 0x00000010
 
         try:
-            # Arduino se queda congelado en esta línea esperando a que la ventana negra se cierre
             p = subprocess.Popen([msys_bash, "--login", "-c", to_msys_path(build_sh_path)],
                                  creationflags=CREATE_NEW_CONSOLE, env=win_env)
             p.wait()
@@ -87,7 +112,7 @@ def main():
             sys.exit(1)
 
     else:
-        # ==================== LINUX BUILD (ORIGINAL, SILENCIOSO) ====================
+        # ==================== LINUX BUILD (ORIGINAL) ====================
         env = os.environ.copy()
         env["IDF_PATH"] = args.idf
         xtensa_bin = os.path.join(args.xtensa, "bin")
