@@ -1,80 +1,115 @@
-# ESP8266 platform
-# ------------------------------
+# ==============================================================================
+# ESP8266 RTOS SDK - ARDUINO HYBRID PLATFORM CONFIGURATION
+# ==============================================================================
 
 name=ESP8266 Boards RTOS (1.0.3)
 version=1.0.3
 
-# Default Python path for Linux and macOS
+# ------------------------------------------------------------------------------
+# 1. PYTHON ENVIRONMENT CONFIGURATION
+# ------------------------------------------------------------------------------
+# The RTOS SDK requires Python. We map OS-specific paths here.
+# For Linux/macOS, we use the isolated venv created during installation.
 python.venv.path={runtime.platform.path}/env/bin/python
 
-# Override Python path for Windows
+# For Windows, we bypass the venv and directly use the MSYS2 MinGW32 Python
+# to prevent winpty/TTY emulation crashes during CMake execution.
 python.venv.path.windows=C:/msys32/mingw32/bin/python.exe
 
+
+# ------------------------------------------------------------------------------
+# 2. PATH DEFINITIONS
+# ------------------------------------------------------------------------------
+# Define where the tools, the ESP-IDF SDK, and the Xtensa Toolchain are located.
 compiler.path={runtime.platform.path}/tools/
 compiler.sdk.path={runtime.platform.path}/tools/sdk
 idf.path={runtime.platform.path}
 xtensa.path={runtime.tools.xtensa-lx106-elf.path}
-
 compiler.libc.path={runtime.platform.path}/tools/
-compiler.cpreprocessor.flags=-D__ets__ -DICACHE_FLASH -U__STRICT_ANSI__ -D_GNU_SOURCE -DESP8266 
 
+
+# ------------------------------------------------------------------------------
+# 3. BASE COMPILER FLAGS (Mostly bypassed by CMake)
+# ------------------------------------------------------------------------------
+# These flags are kept for Arduino IDE compatibility and preprocessing.
+# The actual compilation flags are managed by CMake/Ninja inside the RTOS SDK.
+compiler.cpreprocessor.flags=-D__ets__ -DICACHE_FLASH -U__STRICT_ANSI__ -D_GNU_SOURCE -DESP8266 
 compiler.libraries.ldflags=
 
-compiler.c.cmd=compile.py
 compiler.c.flags=-std=gnu17 -Os -g -free -fipa-pta -Werror=return-type -Wpointer-arith -Wno-implicit-function-declaration -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals -falign-functions=4 -MMD -ffunction-sections -fdata-sections 
-
-compiler.S.cmd=compile.py
 compiler.S.flags=-c -g -x assembler-with-cpp -MMD -mlongcalls
-
 compiler.c.elf.flags= -Os -nostdlib -Wl,--no-check-sections  -Wl,-static  "-Tlocal.eagle.flash.ld" -Wl,--gc-sections -Wl,-wrap,system_restart_local -Wl,-wrap,spi_flash_read
-compiler.c.elf.cmd=compile.py
 compiler.c.elf.libs=-lhal -lphy -lpp  -lwpa -lcrypto -lmain -lwps -lbearssl -lespnow -lsmartconfig -lairkiss  -lm -lc -lgcc
-
-compiler.cpp.cmd=compile.py
 compiler.cpp.flags=-Os -g -free -fipa-pta -Werror=return-type -mlongcalls -mtext-section-literals -fno-rtti -falign -MMD -ffunction-sections
-
-compiler.as.cmd=compile.py
-compiler.ar.cmd=compile.py
 compiler.ar.flags=cru
-compiler.elf2hex.cmd=compile.py
 compiler.elf2hex.flags=
 build.extra_flags=
 
-# ------------------------------
-# BUILD HOOKS
-# ------------------------------
+# Base tool commands point to dummy.py because actual compilation is delegated to the Post-Build Hooks.
+compiler.c.cmd=dummy.py
+compiler.S.cmd=dummy.py
+compiler.c.elf.cmd=dummy.py
+compiler.cpp.cmd=dummy.py
+compiler.as.cmd=dummy.py
+compiler.ar.cmd=dummy.py
+compiler.elf2hex.cmd=dummy.py
+
+
+# ------------------------------------------------------------------------------
+# 4. PRE/POST BUILD HOOKS (The Core Architecture)
+# ------------------------------------------------------------------------------
+# We hijack the Arduino build process here. Instead of compiling file by file,
+# we create a CMake project structure and trigger idf.py to build everything.
+
+# Pre-Build: Generates prerequisites before Arduino attempts any logic.
 recipe.hooks.prebuild.1.pattern="{python.venv.path}" "{compiler.path}createPreproc.py" -b "{build.path}"
 
-# Linux/Mac Build Hook (Receives -f and -m)
+# Linux / macOS Build Hooks
+# 1. Generate the CMakeLists and project structure
 recipe.hooks.postbuild.1.pattern="{python.venv.path}" "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~/Arduino/libraries" -s "{build.source.path}"
-recipe.hooks.postbuild.2.pattern="{python.venv.path}" "{compiler.path}compile.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
+# 2. Invoke the native POSIX compilation script
+recipe.hooks.postbuild.2.pattern="{python.venv.path}" "{compiler.path}compile_linux.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
 
-# Windows Build Hook (Receives -f and -m)
+# Windows Build Hooks
+# 1. Generate the CMakeLists and project structure
 recipe.hooks.postbuild.1.pattern.windows="{python.venv.path}" "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~\Documents\Arduino\libraries" -s "{build.source.path}"
-recipe.hooks.postbuild.2.pattern.windows="{python.venv.path}" "{compiler.path}compile.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
+# 2. Invoke the Windows MSYS2 wrapper script (Opens TTY Window to avoid crashes)
+recipe.hooks.postbuild.2.pattern.windows="{python.venv.path}" "{compiler.path}compile_windows.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
 
-# ------------------------------
-# NATIVE SIZE CALCULATION (Calls size.py)
-# ------------------------------
-# Receives both maximum size and physical flash size
-recipe.size.pattern="{python.venv.path}" "{compiler.path}size.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
-recipe.size.pattern.windows="{python.venv.path}" "{compiler.path}size.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
 
-# Arduino IDE will intercept this Regex from stdout and calculate the % automatically
+# ------------------------------------------------------------------------------
+# 5. NATIVE SIZE CALCULATION (Memory Bar)
+# ------------------------------------------------------------------------------
+# Automatically triggered by Arduino IDE after the Post-Build Hooks finish successfully.
+# It calls our OS-specific scripts to read the compiled .elf file sections.
+
+# Linux / macOS Size Script
+recipe.size.pattern="{python.venv.path}" "{compiler.path}size_linux.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
+
+# Windows Size Script
+recipe.size.pattern.windows="{python.venv.path}" "{compiler.path}size_windows.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
+
+# Arduino IDE intercepts this exact string via Regex to calculate the memory percentage automatically.
 recipe.size.regex=Total image size:\s*(?:~)?\s*([0-9]+)\s+bytes
 
-# ------------------------------
-# EMPTY RULES
-# ------------------------------
+
+# ------------------------------------------------------------------------------
+# 6. DUMMY RULES (Bypassing Arduino CLI)
+# ------------------------------------------------------------------------------
+# We map all default Arduino file-by-file compilation patterns to a dummy python script.
+# This prevents the IDE from attempting to compile C/C++ files natively, forcing it to
+# rely entirely on the CMake RTOS Build Hooks defined above.
 recipe.c.o.pattern="{python.venv.path}" "{compiler.path}dummy.py"
 recipe.cpp.o.pattern="{python.venv.path}" "{compiler.path}dummy.py"
 recipe.S.o.pattern="{python.venv.path}" "{compiler.path}dummy.py"
 recipe.ar.pattern="{python.venv.path}" "{compiler.path}dummy.py"
 recipe.c.combine.pattern="{python.venv.path}" "{compiler.path}dummy.py"
 
-# ------------------------------
-# UPLOAD / ESPTOOL
-# ------------------------------
+
+# ------------------------------------------------------------------------------
+# 7. UPLOADER / ESPTOOL (Flashing the ESP8266)
+# ------------------------------------------------------------------------------
+# Configuration for uploading the compiled firmware to the ESP8266 over serial/network.
 tools.esptool.path={runtime.platform.path}/tools
 tools.esptool.cmd=flash.py
 tools.esptool.network_cmd="{runtime.platform.path}/env/bin/python"
@@ -82,6 +117,11 @@ tools.esptool.upload.protocol=esp
 tools.esptool.upload.params.verbose=
 tools.esptool.upload.params.quiet=
 
-tools.esptool.upload.pattern="{runtime.platform.path}/env/bin/python" "{runtime.platform.path}/tools/flash.py" -b "{build.path}" -i "{runtime.platform.path}" -x "{runtime.tools.xtensa-lx106-elf.path}" -p "{serial.port}"
-tools.esptool.upload.pattern.windows="C:/msys32/mingw32/bin/python.exe" "{runtime.platform.path}/tools/flash.py" -b "{build.path}" -i "{runtime.platform.path}" -x "{runtime.tools.xtensa-lx106-elf.path}" -p "{serial.port}"
+# Linux / macOS Upload Pattern (Uses native python and idf.py abstraction)
+tools.esptool.upload.pattern="{runtime.platform.path}/env/bin/python" "{runtime.platform.path}/tools/flash_linux.py" -b "{build.path}" -i "{runtime.platform.path}" -x "{runtime.tools.xtensa-lx106-elf.path}" -p "{serial.port}"
+
+# Windows Upload Pattern (Directly calls esptool.py using native MinGW32 Python to evade MSYS2)
+tools.esptool.upload.pattern.windows="C:/msys32/mingw32/bin/python.exe" "{runtime.platform.path}/tools/flash_windows.py" -b "{build.path}" -i "{runtime.platform.path}" -x "{runtime.tools.xtensa-lx106-elf.path}" -p "{serial.port}"
+
+# OTA (Over-The-Air) Upload Pattern
 tools.esptool.upload.network_pattern="{tools.esptool.network_cmd}" "{runtime.platform.path}/tools/espota.py" -i "{serial.port}" -p "{network.port}" "--auth={network.password}" -f "{build.path}/{build.project_name}.bin"

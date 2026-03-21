@@ -143,6 +143,13 @@ http://localhost:8080/package_esp8266RTOS_index.json
 
 * Important! add Directives in build.cmake (-DARDUINO), to get prerpocessor the definitions that use esp32 and arduino libraries for esp32 core!, you can get that in esp32/platform.txt. It was needded to use ArduinoJSON library!.
 
+* cleaning deprecate scripts:
+  * compile.sh
+  * compile.bat
+  * flash.sh
+  * flash.bat
+  * get_include_files.py
+  * compile|flash|size .py
 
 
 ## Doing
@@ -153,6 +160,8 @@ http://localhost:8080/package_esp8266RTOS_index.json
 
 * test all in ubunut after improvements in windows!:
   * re install requisites to test wiht python 3.10 maybe it is necesary instal python2.7 instead of 3.10 to be compatible with windows
+
+* add more supported boards?
 
 ## Done
 
