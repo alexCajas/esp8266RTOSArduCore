@@ -139,7 +139,9 @@ http://localhost:8080/package_esp8266RTOS_index.json
   * now the check and instalation of python3.10 and python3.10-env are via setup_env.sh
   * the user only need to execute setup_env.sh
   * idem for windows, only execute setup_env.bat
+  * setup_env.bat now dowload toolkit (msys) and install python requirements
   * new work of windows, now it is not experimental now is functional like ubuntu!.
+  * 
 
 * Important! add Directives in build.cmake (-DARDUINO), to get prerpocessor the definitions that use esp32 and arduino libraries for esp32 core!, you can get that in esp32/platform.txt. It was needded to use ArduinoJSON library!.
 
@@ -161,11 +163,16 @@ http://localhost:8080/package_esp8266RTOS_index.json
 * test all in ubunut after improvements in windows!:
   * re install requisites to test wiht python 3.10 maybe it is necesary instal python2.7 instead of 3.10 to be compatible with windows
 
-* add more supported boards?
+* Important! add Directives in build.cmake (-DARDUINO), to get prerpocessor the definitions that use esp32 and arduino libraries for esp32 core!, you can get that in esp32/platform.txt. It was needded to use ArduinoJSON library!.
+* add board configuration to compile and flash settings in scripts
+
+* add more supported boards? 8265?
 
 ## Done
 
 ### 21/03/2026
+
+* setup_env.bat, now downlaod toolkit and install python requisites automatic 
 
 * added all configuration of most popular boards.
 * improvement windows experience:
