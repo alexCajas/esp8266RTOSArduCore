@@ -69,7 +69,7 @@ recipe.hooks.prebuild.1.pattern="{python.venv.path}" "{compiler.path}createPrepr
 # 1. Generate the CMakeLists and project structure
 recipe.hooks.postbuild.1.pattern="{python.venv.path}" "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~/Arduino/libraries" -s "{build.source.path}"
 # 2. Inject Arduino IDE menu selections into the ESP-IDF sdkconfig
-recipe.hooks.postbuild.2.pattern="{python.venv.path}" "{compiler.path}set_user_values.py" -b "{build.path}" -c "{build.f_cpu}" -fm "{build.flash_mode}" -ff "{build.flash_freq}" -fs "{build.flash_size_arg}" -l "{build.arduhal_log_level}"
+recipe.hooks.postbuild.2.pattern="{python.venv.path}" "{compiler.path}set_user_values.py" -b "{build.path}" -c "{build.f_cpu}" -fm "{build.flash_mode}" -ff "{build.flash_freq}" -fs "{build.flash_size_arg}" -l "{build.arduhal_log_level}" -e "{build.extra_flags}"
 # 3. Invoke the native POSIX compilation script
 recipe.hooks.postbuild.3.pattern="{python.venv.path}" "{compiler.path}compile_linux.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
 
@@ -78,7 +78,7 @@ recipe.hooks.postbuild.3.pattern="{python.venv.path}" "{compiler.path}compile_li
 # 1. Generate the CMakeLists and project structure
 recipe.hooks.postbuild.1.pattern.windows="{python.venv.path}" "{compiler.path}createTemplate.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -l "~\Documents\Arduino\libraries" -s "{build.source.path}"
 # 2. Inject Arduino IDE menu selections into the ESP-IDF sdkconfig
-recipe.hooks.postbuild.2.pattern.windows="{python.venv.path}" "{compiler.path}set_user_values.py" -b "{build.path}" -c "{build.f_cpu}" -fm "{build.flash_mode}" -ff "{build.flash_freq}" -fs "{build.flash_size_arg}" -l "{build.arduhal_log_level}"
+recipe.hooks.postbuild.2.pattern.windows="{python.venv.path}" "{compiler.path}set_user_values.py" -b "{build.path}" -c "{build.f_cpu}" -fm "{build.flash_mode}" -ff "{build.flash_freq}" -fs "{build.flash_size_arg}" -l "{build.arduhal_log_level}" -e "{build.extra_flags}"
 # 3. Invoke the Windows MSYS2 wrapper script
 recipe.hooks.postbuild.3.pattern.windows="{python.venv.path}" "{compiler.path}compile_windows.py" -b "{build.path}" -i "{idf.path}" -x "{xtensa.path}" -m "{upload.maximum_size}" -f "{build.flash_size_arg}"
 

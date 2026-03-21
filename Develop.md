@@ -141,9 +141,8 @@ http://localhost:8080/package_esp8266RTOS_index.json
   * idem for windows, only execute setup_env.bat
   * setup_env.bat now dowload toolkit (msys) and install python requirements
   * new work of windows, now it is not experimental now is functional like ubuntu!.
-  * 
-
-* Important! add Directives in build.cmake (-DARDUINO), to get prerpocessor the definitions that use esp32 and arduino libraries for esp32 core!, you can get that in esp32/platform.txt. It was needded to use ArduinoJSON library!.
+  * suport extra flags:
+    * debug log level can be set via board config or arduino.json iqual that esp32 with extra flags and it can be set oghers directives like -DARDUINO
 
 * cleaning deprecate scripts:
   * compile.sh
@@ -171,15 +170,13 @@ http://localhost:8080/package_esp8266RTOS_index.json
 ## Doing
 
 
-
-* Important! add Directives in build.cmake (-DARDUINO), to get prerpocessor the definitions that use esp32 and arduino libraries for esp32 core!, you can get that in esp32/platform.txt. It was needded to use ArduinoJSON library!.
-
-
 * add more supported boards? 8265?
 
 ## Done
 
 ### 21/03/2026
+* Important! add Directives in build.cmake (-DARDUINO), to get prerpocessor the definitions that use esp32 and arduino libraries for esp32 core!, you can get that in esp32/platform.txt. It was needded to use ArduinoJSON library!.
+
 * add board configuration to compile and flash settings in scripts
 * add debug log level via ide: --> done
   * creates global variable in sdkconfig:--> done

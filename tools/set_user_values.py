@@ -5,7 +5,7 @@ import sys
 import argparse
 
 def main():
-    parser = argparse.ArgumentParser(description='Inject Arduino IDE hardware settings into ESP-IDF sdkconfig')
+    parser = argparse.ArgumentParser(description='Inject Arduino IDE hardware settings into ESP-IDF sdkconfig and CMake')
     parser.add_argument('-b',  '--build', required=True, help='Build directory path')
     parser.add_argument('-c',  '--cpu_freq', required=True, help='CPU Frequency (e.g., 80000000L)')
     parser.add_argument('-fm', '--flash_mode', required=True, help='Flash Mode (e.g., qio, dio)')
@@ -13,9 +13,13 @@ def main():
     parser.add_argument('-fs', '--flash_size', required=True, help='Physical Flash Size (e.g., 4MB)')
     parser.add_argument('-l',  '--log_level', required=True, help='Arduino HAL Log Level (0-5)')
     
+    # [NEW] Capture build.extra_flags from Arduino IDE or VSCode arduino.json
+    parser.add_argument('-e',  '--extra_flags', nargs=argparse.REMAINDER, default=[], help='Custom C/C++ Compiler Flags')
     args, unknown = parser.parse_known_args()
 
-    sdkconfig_path = os.path.join(args.build, "idfTemplate", "sdkconfig")
+    idf_template_dir = os.path.join(args.build, "idfTemplate")
+    sdkconfig_path = os.path.join(idf_template_dir, "sdkconfig")
+    cmakelists_path = os.path.join(idf_template_dir, "CMakeLists.txt")
     
     if not os.path.exists(sdkconfig_path):
         print("[Config Injector] Error: sdkconfig not found at {}".format(sdkconfig_path), file=sys.stderr)
@@ -23,8 +27,10 @@ def main():
 
     print("[Config Injector] Translating Arduino IDE settings to ESP-IDF Kconfig...", file=sys.stderr)
 
-    # 1. Map Arduino values to ESP-IDF Kconfig keys
-    # A dictionary where Value=String sets it to "y" or the literal string, and Value=None removes it.
+    # =========================================================================
+    # FASE 1: INYECTAR KCONFIG EN SDKCONFIG (Hardware Menus)
+    # =========================================================================
+    
     config_updates = {
         "CONFIG_ARDUHAL_LOG_DEFAULT_LEVEL": args.log_level
     }
@@ -64,11 +70,10 @@ def main():
         else:
             config_updates[key] = None
 
-    # 2. Read the existing sdkconfig
+    # Read and strip out old configurations
     with open(sdkconfig_path, "r") as f:
         lines = f.readlines()
 
-    # 3. Filter out lines that we are about to update or remove
     new_lines = []
     keys_to_modify = list(config_updates.keys())
     
@@ -76,7 +81,6 @@ def main():
         stripped_line = line.strip()
         keep_line = True
         
-        # Check if the line defines one of our target keys (e.g., "CONFIG_XYZ=y" or "# CONFIG_XYZ is not set")
         for key in keys_to_modify:
             if stripped_line.startswith(key + "=") or stripped_line == "# {} is not set".format(key):
                 keep_line = False
@@ -85,17 +89,44 @@ def main():
         if keep_line:
             new_lines.append(line)
 
-    # 4. Append our new requested configurations
+    # Append new Kconfig variables
     new_lines.append("\n# --- Arduino IDE Injected Configurations ---\n")
     for key, value in config_updates.items():
         if value is not None:
             new_lines.append("{}={}\n".format(key, value))
 
-    # 5. Write the modified sdkconfig back to disk
     with open(sdkconfig_path, "w") as f:
         f.writelines(new_lines)
 
-    print("[Config Injector] Success! sdkconfig updated for CMake.", file=sys.stderr)
+
+    # =========================================================================
+    # FASE 2: INYECTAR EXTRA FLAGS EN CMAKELISTS.TXT (Bypass para VSCode)
+    # =========================================================================
+    
+    extra_flags_clean = " ".join(args.extra_flags).strip()
+    
+    if extra_flags_clean == '""' or extra_flags_clean == "''":
+        extra_flags_clean = ""
+    
+    if extra_flags_clean and os.path.exists(cmakelists_path):
+        print("[Config Injector] Custom build.extra_flags detected! Forcing into CMake...", file=sys.stderr)
+        
+        with open(cmakelists_path, "r") as f:
+            cmake_lines = f.readlines()
+
+        injection = [
+            "\n# --- Arduino IDE / VSCode Custom build.extra_flags ---\n",
+            "set(CMAKE_C_FLAGS \"${CMAKE_C_FLAGS} %s\")\n" % extra_flags_clean,
+            "set(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} %s\")\n" % extra_flags_clean,
+            "# -----------------------------------------------------\n\n"
+        ]
+        
+        cmake_lines = injection + cmake_lines
+
+        with open(cmakelists_path, "w") as f:
+            f.writelines(cmake_lines)
+
+    print("[Config Injector] Success! Configuration bridge fully synced.", file=sys.stderr)
 
 if __name__ == "__main__":
     main()
