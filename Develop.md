@@ -161,6 +161,7 @@ http://localhost:8080/package_esp8266RTOS_index.json
   
   ~~~~
     # Genera el empaquetado seguro para Windows (sin symlinks) desde linux
+    # probado y testado correcto funcionamiento en windows!
     tar -czvhf esp8266RTOS-1.0.3.tar.gz esp8266RTOS-1.0.3/
   ~~~~
 
