@@ -121,7 +121,7 @@ Select esp8266 boards RTOS:
 > [!CAUTION]
 > 
 
-How esp8266_rtos_sdk use msys2 to build and flash projects, there are **limitations with arduino**:
+Since esp8266_rtos_sdk use msys2 to build and flash projects, there are **limitations with arduino**:
 * when you **verify** some skecth, arduino cli will open a msys2 terminal and wait for compile process, if there are any error it will showed in this terminal but not in arduino's terminal.
   
 ![Online code generation tool](assets/img/build-process-windows.png)
