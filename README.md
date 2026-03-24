@@ -76,7 +76,7 @@ cd ~/.arduino15/packages/esp8266RTOS/hardware/esp8266RTOS/x.x.x/
   * cmake
   * ninja
   * other requirements including in requirements.txt
-  * a python env for this core.
+  * a python env for this core, in order to comply with PEP 668 implementing in modern linux distros.
 
 * Select esp8266 boards RTOS:
 
@@ -122,12 +122,11 @@ Select esp8266 boards RTOS:
 > 
 
 How esp8266_rtos_sdk use msys2 to build and flash projects, there are **limitations with arduino**:
-* when you **verify** some skecth, arduino cli will open a msys2 terminal and wait for compile process, if there any error it will show in this terminal but not in arduino's terminal.
+* when you **verify** some skecth, arduino cli will open a msys2 terminal and wait for compile process, if there are any error it will showed in this terminal but not in arduino's terminal.
   
+![Online code generation tool](assets/img/build-process-windows.png)
+
 * **flash** process use a hide msys terminal but the process log will showed in arduino's terminal.
-
-![Online code generation tool](assets/img/buildProccess.PNG)
-
 
 # Examples
 
