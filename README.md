@@ -56,19 +56,27 @@ You can install this core using arduino board manager with this package index [!
 https://raw.githubusercontent.com/alexCajas/esp8266RTOSArduCore/main/package/package_esp8266RTOS_index.json
 ~~~
 
-Then you need to install esp8266_RTOS_SDK requirements in your system:
+Then you need to configure a python environment for esp8266_RTOS_SDK in your system:
 
 * Go to your arduino cores installation directory, tipically:
    
 ~~~
-cd ~/.arduino15/packages/esp8266RTOS/hardware/esp8266RTOS/1.0.1/ 
+cd ~/.arduino15/packages/esp8266RTOS/hardware/esp8266RTOS/x.x.x/ 
 ~~~
 
-* In this path you will find the file requirementes.txt, install that using pip:
+* In this path you will find setup_env.sh run this to configure your environment:
 
 ~~~
-pip3 install -r requirements.txt
+./setup_env.sh
 ~~~
+
+* This script will install:
+  * python3.10 (lastest version compatible with esp8266_rtos_sdk)
+  * python3.10-env
+  * cmake
+  * ninja
+  * other requirements including in requirements.txt
+  * a python env for this core.
 
 * Select esp8266 boards RTOS:
 
@@ -78,8 +86,6 @@ pip3 install -r requirements.txt
 
 ## WindowsOS
 
-* **It is experimental, there is not good compatibility between rtos_sdk tools and arduino cli**
-
 You can install this core using arduino board manager with this package index [![Release](https://img.shields.io/github/v/release/alexCajas/esp8266RTOSArduCore)](https://github.com/alexCajas/esp8266RTOSArduCore/releases/latest)
 :
 
@@ -87,61 +93,40 @@ You can install this core using arduino board manager with this package index [!
 https://raw.githubusercontent.com/alexCajas/esp8266RTOSArduCore/main/package/package_esp8266RTOS_index.json
 ~~~
 
-* at the end of the installation, You will get this error:
+Then you need to download and install esp8266_rtos_sdk requirements in your system:
 
-![Online code generation tool](assets/img/windowsInstalationError.PNG)
-
-* In this point, esp8266RTOSArduCore is installed.
-
-* This proccess is to link configuration of the esp8266RTOSCore with Arduino IDE, but idf tools needs a git repository in the sdk, so, download this project with git and copy the entire git repository to the arduino core installation directory, even .git directory. Tipically, you core installation will be in:
-
+* Go to your arduino cores installation directory, tipically:
+   
 ~~~
-C:\Users\YouUser\AppData\Local\Arduino15\packages\esp8266RTOS\hardware\esp8266RTOS\1.0.3
+C:\Users\YouUser\AppData\Local\Arduino15\packages\esp8266RTOS\hardware\esp8266RTOS\x.x.x
 ~~~
 
-* Also **You need Msys2**, it is a linux enviroment for windows systems, you can find an official version for esp8266-rtos-sdk in:
-  
-~~~
-https://dl.espressif.com/dl/esp32_win32_msys2_environment_and_toolchain-20181001.zip
-~~~
-
-* This core asume that you unzip Msys2 in C:\msys32\
-  
-
-![Online code generation tool](assets/img/msys32Directory.PNG)
-
-* Now you need to replace some files, download MsysRTOSArduCorePatch.zip:
+* In this path you will find setup_env.bat run this to download and install all requirements:
 
 ~~~
-https://drive.google.com/file/d/1WZ_h3bHvFZLzoajv5q8BT9Hcy7K82l5e/view?usp=drive_link
+setup_env.bat
 ~~~
 
-* And replace C:\msys32\mingw64\ directory, and C:\msys32\etc\profile file with their respective counterparts in the zip.
+* This script will download a patched version of msys and will install it in C: root (it is important, all compile and flash scripts assume C:\\msys32 directory).
 
-* Then, open a msys terminal (**C:\msys32\msys2.exe**), go to your ESP8266RTOSArduCore directory and install requeriments.txt:
+* And will install python requirements in msys including cmake and ninja.
 
-
-![Online code generation tool](assets/img/installRequerimentsMsys.PNG)
-
-* Last, select esp8266 boards RTOS:
+Select esp8266 boards RTOS:
 
 
 ![Online code generation tool](assets/img/arduinoIDEBoardSelection.png)
-**Now you are ready to write and install sketchs using Arduino IDE or VScode IDE!**
+* **Now you are ready to write and install sketchs using Arduino IDE or VScode IDE!**
 
 ### Warnnig
-
-[!CAUTION]
-
-idf building proccess is tipicall more **slow in windows** than linux distributions, I recomend you to use a Linux distribution like ubuntu to develop with this core and idf projects in general.
+> [!CAUTION]
+> 
 
 How esp8266_rtos_sdk use msys2 to build and flash projects, there are **limitations with arduino**:
-* when you **verify or upload** some skecth, arduino cli will open a msys2 terminal, and finish with any error while msys2 terminal are building the project, so the info of compile errors, warnigs etc are in the msys2 terminal.
-* Follow the instrucctions of msys2 terminal to flash the device with the sketch:
+* when you **verify** some skecth, arduino cli will open a msys2 terminal and wait for compile process, if there any error it will show in this terminal but not in arduino's terminal.
+  
+* **flash** process use a hide msys terminal but the process log will showed in arduino's terminal.
 
 ![Online code generation tool](assets/img/buildProccess.PNG)
-
-![Online code generation tool](assets/img/buildAndFlash.PNG)
 
 
 # Examples
@@ -203,15 +188,15 @@ void TaskBlink(void *pvParameters)
 * More examples in 
   
 ~~~
-~/.arduino15/packages/esp8266RTOS/hardware/esp8266RTOS/1.0.1/libraries/ 
+/packages/esp8266RTOS/hardware/esp8266RTOS/x.x.x/libraries/ 
 ~~~
 
 ![Online code generation tool](assets/img/examples.png)
 
 # Limitations
 
-[!CAUTION]
-
+> [!CAUTION]
+> 
 * The compatibility between libraries of esp8266ArduinoCore based on NONOSDK, and this core, esp8266RTOSArduCore based on FreeRTOS is limited, in general you can use the same esp8266ArduinoCore libraries that have compatibily with esp32 arduino core. 
 
 * It is assumed that external third-party-libaries are in ~/Arduino/libraries.
@@ -220,17 +205,17 @@ void TaskBlink(void *pvParameters)
 
 * libraries or utilities for specific hardware of esp32, like bluetooth or hall sensor is not supported in this core.
 
-* set compile option is not supported yet.
+* ~~set compile option is not supported yet~~.
 
 * for now only support generic board esp8266 pins map, that is only for the way to name gpios pin in scketchs. You can install scketchs in others boards using generic name of gipo pins.  
 
-* It is not supported changes deboug level info from IDE yet, you need to changes it manually in esp32-hal-log.h
+* ~~It is not supported changes deboug level info from IDE yet, you need to changes it manually in esp32-hal-log.h~~
 
 # To Do List
 
 - [x] Implement way to resolve recursive includes.
-- [ ] Rewrite paltafrom.txt to give support to compile options. 
-- [ ] Add esp8266 boards configurations in boards.txt
+- [x] Rewrite paltafrom.txt to give support to compile options. 
+- [x] Add esp8266 boards configurations in boards.txt
 - [ ] Add pins map support for more models of esp8266 boards.
 - [x] Changes bash scripts to python scripts to support more OS.
 - [ ] adapt, test and fix remaining core files with hardware dependencies of esp32 core. [See this section](https://github.com/alexCajas/ESP8266RTOSArdu/tree/main#list-of-core-files-to-adapt-test-and-fix). 
