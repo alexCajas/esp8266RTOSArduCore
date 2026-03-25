@@ -12,9 +12,9 @@ def main():
     parser.add_argument('-ff', '--flash_freq', required=True, help='Flash Frequency (e.g., 40, 80)')
     parser.add_argument('-fs', '--flash_size', required=True, help='Physical Flash Size (e.g., 4MB)')
     parser.add_argument('-l',  '--log_level', required=True, help='Arduino HAL Log Level (0-5)')
-    
-    # [NEW] Capture build.extra_flags from Arduino IDE or VSCode arduino.json
+    parser.add_argument('-v',  '--variant', required=True, help='Board Variant Folder Name')
     parser.add_argument('-e',  '--extra_flags', nargs=argparse.REMAINDER, default=[], help='Custom C/C++ Compiler Flags')
+    
     args, unknown = parser.parse_known_args()
 
     idf_template_dir = os.path.join(args.build, "idfTemplate")
@@ -100,33 +100,49 @@ def main():
 
 
     # =========================================================================
-    # FASE 2: INYECTAR EXTRA FLAGS EN CMAKELISTS.TXT (Bypass para VSCode)
+    # PHASE 2: INJECT VARIANT AND EXTRA FLAGS INTO CMAKELISTS.TXT
     # =========================================================================
     
     extra_flags_clean = " ".join(args.extra_flags).strip()
+    variant_clean = args.variant.strip()
     
     if extra_flags_clean == '""' or extra_flags_clean == "''":
         extra_flags_clean = ""
     
-    if extra_flags_clean and os.path.exists(cmakelists_path):
-        print("[Config Injector] Custom build.extra_flags detected! Forcing into CMake...", file=sys.stderr)
-        
+    if os.path.exists(cmakelists_path):
         with open(cmakelists_path, "r") as f:
             cmake_lines = f.readlines()
 
-        injection = [
-            "\n# --- Arduino IDE / VSCode Custom build.extra_flags ---\n",
-            "set(CMAKE_C_FLAGS \"${CMAKE_C_FLAGS} %s\")\n" % extra_flags_clean,
-            "set(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} %s\")\n" % extra_flags_clean,
-            "# -----------------------------------------------------\n\n"
-        ]
-        
-        cmake_lines = injection + cmake_lines
+        injection = []
 
-        with open(cmakelists_path, "w") as f:
-            f.writelines(cmake_lines)
+        # 1. ALWAYS inject the board variant (Mandatory for pins_arduino.h)
+        if variant_clean:
+            print("[Config Injector] Linking board variant '{}'...".format(variant_clean), file=sys.stderr)
+            injection.extend([
+                "\n# --- Arduino IDE Board Variant Linkage ---\n",
+                'set(ARDUINO_VARIANT "{}" CACHE STRING "Arduino Board Variant" FORCE)\n'.format(variant_clean),
+                'add_compile_options("-DARDUINO_VARIANT_{}")\n'.format(variant_clean.upper().replace("-", "_").replace(".", "_")),
+                "# -----------------------------------------------------\n\n"
+            ])
+
+        # 2. ONLY inject extra_flags if the user defined them in boards.txt or arduino.json
+        if extra_flags_clean:
+            print("[Config Injector] Custom build.extra_flags detected! Forcing into CMake...", file=sys.stderr)
+            injection.extend([
+                "\n# --- Arduino IDE / VSCode Custom build.extra_flags ---\n",
+                'set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} %s")\n' % extra_flags_clean,
+                'set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} %s")\n' % extra_flags_clean,
+                "# -----------------------------------------------------\n\n"
+            ])
+        
+        # If we have anything to inject, prepend it to the CMakeLists.txt
+        if injection:
+            cmake_lines = injection + cmake_lines
+            with open(cmakelists_path, "w") as f:
+                f.writelines(cmake_lines)
 
     print("[Config Injector] Success! Configuration bridge fully synced.", file=sys.stderr)
+
 
 if __name__ == "__main__":
     main()

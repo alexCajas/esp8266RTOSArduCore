@@ -522,66 +522,87 @@ modwifi.menu.lvl.Verbose.build.arduhal_log_level=5
 
 # --- Definición Base y Variantes ---
 d1.name=Wemos D1 R1
+d1.build.board=ESP8266RTOS_D1
 d1.build.variant=d1
 
 espino.name=ESPino
+espino.build.board=ESP8266RTOS_ESPINO
 espino.build.variant=espino
 
 inventone.name=Invent One
+inventone.build.board=ESP8266RTOS_INVENTONE
 inventone.build.variant=inventone
 
 phoenix_v1.name=Phoenix 1.0
+phoenix_v1.build.board=ESP8266RTOS_PHOENIX_V1
 phoenix_v1.build.variant=phoenix_v1
 
 agruminolemonv4.name=Agrumino Lemon v4
+agruminolemonv4.build.board=ESP8266RTOS_AGRUMINOLEMONV4
 agruminolemonv4.build.variant=agruminolemonv4
 
 eduinowifi.name=Eduino WiFi
+eduinowifi.build.board=ESP8266RTOS_EDUINOWIFI
 eduinowifi.build.variant=eduinowifi
 
 espinotee.name=ThaiEasyElec ESPino
+espinotee.build.board=ESP8266RTOS_ESPINOTEE
 espinotee.build.variant=espinotee
 
 phoenix_v2.name=Phoenix 2.0
+phoenix_v2.build.board=ESP8266RTOS_PHOENIX_V2
 phoenix_v2.build.variant=phoenix_v2
 
 wifio.name=Wifio
+wifio.build.board=ESP8266RTOS_WIFIO
 wifio.build.variant=wifio
 
 arduino_spi.name=Arduino WiFi Shield (SPI)
+arduino_spi.build.board=ESP8266RTOS_ARDUINO_SPI
 arduino_spi.build.variant=arduino_spi
 
 espresso_lite_v1.name=ESPresso Lite 1.0
+espresso_lite_v1.build.board=ESP8266RTOS_ESPRESSO_LITE_V1
 espresso_lite_v1.build.variant=espresso_lite_v1
 
 wifi_slot.name=Amperka WiFi Slot
+wifi_slot.build.board=ESP8266RTOS_WIFI_SLOT
 wifi_slot.build.variant=wifi_slot
 
 arduino_uart.name=Arduino WiFi Shield (UART)
+arduino_uart.build.board=ESP8266RTOS_ARDUINO_UART
 arduino_uart.build.variant=arduino_uart
 
 ESPDuino.name=ESPDuino
+ESPDuino.build.board=ESP8266RTOS_ESPDUINO
 ESPDuino.build.variant=ESPDuino
 
 espresso_lite_v2.name=ESPresso Lite 2.0
+espresso_lite_v2.build.board=ESP8266RTOS_ESPRESSO_LITE_V2
 espresso_lite_v2.build.variant=espresso_lite_v2
 
 wifiduino.name=Wifiduino
+wifiduino.build.board=ESP8266RTOS_WIFIDUINO
 wifiduino.build.variant=wifiduino
 
 wiolink.name=Seeed Wio Link
+wiolink.build.board=ESP8266RTOS_WIOLINK
 wiolink.build.variant=wiolink
 
 espectro.name=Espectro Core
+espectro.build.board=ESP8266RTOS_ESPECTRO
 espectro.build.variant=espectro
 
 oak.name=Digistump Oak
+oak.build.board=ESP8266RTOS_OAK
 oak.build.variant=oak
 
 wifi_kit_8.name=Heltec WiFi Kit 8
+wifi_kit_8.build.board=ESP8266RTOS_WIFI_KIT_8
 wifi_kit_8.build.variant=wifi_kit_8
 
 xinabox.name=XinaBox CW01
+xinabox.build.board=ESP8266RTOS_XINABOX
 xinabox.build.variant=xinabox
 
 # --- Configuración de Compilador y Flasheo ---

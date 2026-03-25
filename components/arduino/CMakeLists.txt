@@ -137,7 +137,7 @@ set(LIBRARY_SRCS
 
 
 set(includedirs
-  #variants/${CONFIG_ARDUINO_VARIANT}/
+  ${PARENT_DIR}/variants/${ARDUINO_VARIANT}/
   ${CORE_DIR}/
   #${LIBRARIES_DIR}/ArduinoOTA/src
   #${LIBRARIES_DIR}/AsyncUDP/src
