@@ -1,6 +1,6 @@
-#
+# ==============================================================================
 # ESP8266 RTOS SDK Arduino Core - boards.txt
-#
+# ==============================================================================
 
 menu.BoardModel=Model
 menu.ESPModule=Module
@@ -16,10 +16,11 @@ menu.ResetMethod=Reset Method
 menu.dbg=Debug port
 menu.lvl=Debug Level
 
-##############################################################
-# 1. GENERIC ESP8266 MODULE
-# (Full menu available for custom hardware)
-##############################################################
+# ==============================================================================
+# 1. GENERIC MODULES (Unrestricted Menus for Custom Hardware)
+# ==============================================================================
+
+# --- Generic ESP8266 Module ---
 generic.name=Generic ESP8266 Module
 generic.build.board=ESP8266_GENERIC
 generic.build.mcu=esp8266
@@ -53,199 +54,164 @@ generic.menu.ResetMethod.nodemcu.upload.resetmethod=--before default_reset --aft
 generic.menu.ResetMethod.ck=no dtr (aka ck)
 generic.menu.ResetMethod.ck.upload.resetmethod=--before no_reset --after soft_reset
 
-# -------------------------------------------------------------------------
-# DEBUG LEVEL MENU (Mapped to CONFIG_ARDUHAL_LOG_DEFAULT_LEVEL)
-# -------------------------------------------------------------------------
+# Debug Level
 generic.menu.lvl.None____=None
 generic.menu.lvl.None____.build.arduhal_log_level=0
-
 generic.menu.lvl.Error=Error
 generic.menu.lvl.Error.build.arduhal_log_level=1
-
 generic.menu.lvl.Warn=Warn
 generic.menu.lvl.Warn.build.arduhal_log_level=2
-
 generic.menu.lvl.Info=Info
 generic.menu.lvl.Info.build.arduhal_log_level=3
-
 generic.menu.lvl.Debug=Debug
 generic.menu.lvl.Debug.build.arduhal_log_level=4
-
 generic.menu.lvl.Verbose=Verbose
 generic.menu.lvl.Verbose.build.arduhal_log_level=5
 
-# --- 1MB BOARDS ---
-generic.menu.eesz.1M64=1MB (FS:64KB OTA:~470KB)
-generic.menu.eesz.1M64.build.flash_size=1M
-generic.menu.eesz.1M64.build.flash_size_arg=1MB
-generic.menu.eesz.1M64.upload.maximum_size=481280
-
-generic.menu.eesz.1M128=1MB (FS:128KB OTA:~438KB)
-generic.menu.eesz.1M128.build.flash_size=1M
-generic.menu.eesz.1M128.build.flash_size_arg=1MB
-generic.menu.eesz.1M128.upload.maximum_size=448512
-
-generic.menu.eesz.1M256=1MB (FS:256KB OTA:~374KB)
-generic.menu.eesz.1M256.build.flash_size=1M
-generic.menu.eesz.1M256.build.flash_size_arg=1MB
-generic.menu.eesz.1M256.upload.maximum_size=382976
-
-generic.menu.eesz.1M512=1MB (FS:512KB OTA:~246KB)
-generic.menu.eesz.1M512.build.flash_size=1M
-generic.menu.eesz.1M512.build.flash_size_arg=1MB
-generic.menu.eesz.1M512.upload.maximum_size=251904
-
+# Flash Size (Full 1MB to 16MB Menu)
 generic.menu.eesz.1M=1MB (FS:none OTA:~502KB)
 generic.menu.eesz.1M.build.flash_size=1M
 generic.menu.eesz.1M.build.flash_size_arg=1MB
 generic.menu.eesz.1M.upload.maximum_size=514048
-
-# --- 2MB BOARDS ---
-generic.menu.eesz.2M64=2MB (FS:64KB OTA:~992KB)
-generic.menu.eesz.2M64.build.flash_size=2M
-generic.menu.eesz.2M64.build.flash_size_arg=2MB
-generic.menu.eesz.2M64.upload.maximum_size=1015808
-
-generic.menu.eesz.2M1M=2MB (FS:1MB OTA:~512KB)
-generic.menu.eesz.2M1M.build.flash_size=2M
-generic.menu.eesz.2M1M.build.flash_size_arg=2MB
-generic.menu.eesz.2M1M.upload.maximum_size=524288
 
 generic.menu.eesz.2M=2MB (FS:none OTA:~1019KB)
 generic.menu.eesz.2M.build.flash_size=2M
 generic.menu.eesz.2M.build.flash_size_arg=2MB
 generic.menu.eesz.2M.upload.maximum_size=1043456
 
-# --- 4MB BOARDS ---
-generic.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
-generic.menu.eesz.4M2M.build.flash_size=4M
-generic.menu.eesz.4M2M.build.flash_size_arg=4MB
-generic.menu.eesz.4M2M.upload.maximum_size=1043456
-
-generic.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
-generic.menu.eesz.4M3M.build.flash_size=4M
-generic.menu.eesz.4M3M.build.flash_size_arg=4MB
-generic.menu.eesz.4M3M.upload.maximum_size=524288
-
-generic.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
-generic.menu.eesz.4M1M.build.flash_size=4M
-generic.menu.eesz.4M1M.build.flash_size_arg=4MB
-generic.menu.eesz.4M1M.upload.maximum_size=1043456
-
 generic.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
 generic.menu.eesz.4M.build.flash_size=4M
 generic.menu.eesz.4M.build.flash_size_arg=4MB
 generic.menu.eesz.4M.upload.maximum_size=1043456
-
-# --- 8MB BOARDS ---
-generic.menu.eesz.8M6M=8MB (FS:6MB OTA:~1019KB)
-generic.menu.eesz.8M6M.build.flash_size=8M
-generic.menu.eesz.8M6M.build.flash_size_arg=8MB
-generic.menu.eesz.8M6M.upload.maximum_size=1043456
 
 generic.menu.eesz.8M=8MB (FS:none OTA:~1019KB)
 generic.menu.eesz.8M.build.flash_size=8M
 generic.menu.eesz.8M.build.flash_size_arg=8MB
 generic.menu.eesz.8M.upload.maximum_size=1043456
 
-# --- 16MB BOARDS ---
-generic.menu.eesz.16M14M=16MB (FS:14MB OTA:~1019KB)
-generic.menu.eesz.16M14M.build.flash_size=16M
-generic.menu.eesz.16M14M.build.flash_size_arg=16MB
-generic.menu.eesz.16M14M.upload.maximum_size=1043456
-
 generic.menu.eesz.16M=16MB (FS:none OTA:~1019KB)
 generic.menu.eesz.16M.build.flash_size=16M
 generic.menu.eesz.16M.build.flash_size_arg=16MB
 generic.menu.eesz.16M.upload.maximum_size=1043456
-
-# --- 512KB BOARDS ---
-generic.menu.eesz.512K64=512KB (FS:64KB OTA:~214KB)
-generic.menu.eesz.512K64.build.flash_size=512K
-generic.menu.eesz.512K64.build.flash_size_arg=512KB
-generic.menu.eesz.512K64.upload.maximum_size=219136
-
-generic.menu.eesz.512K=512KB (FS:none OTA:~246KB)
-generic.menu.eesz.512K.build.flash_size=512K
-generic.menu.eesz.512K.build.flash_size_arg=512KB
-generic.menu.eesz.512K.upload.maximum_size=251904
 
 generic.menu.baud.115200=115200
 generic.menu.baud.115200.upload.speed=115200
 generic.menu.baud.921600=921600
 generic.menu.baud.921600.upload.speed=921600
 
+# --- Generic ESP8285 Module (1MB DOUT) ---
+esp8285.name=Generic ESP8285 Module
+esp8285.build.board=ESP8285_GENERIC
+esp8285.build.mcu=esp8266
+esp8285.build.core=esp8266
+esp8285.build.variant=esp8285
+esp8285.upload.tool=esptool
+esp8285.upload.speed=115200
+esp8285.upload.resetmethod=--before default_reset --after hard_reset
+esp8285.build.f_cpu=80000000L
+esp8285.build.flash_mode=dout
+esp8285.build.flash_freq=40
 
-##############################################################
-# 2. NodeMCU 1.0 (ESP-12E Module) - Fixed 4MB Chip
-##############################################################
-nodemcuv2.name=NodeMCU 1.0 (ESP-12E Module)
-nodemcuv2.build.board=ESP8266_NODEMCU_ESP12E
-nodemcuv2.build.mcu=esp8266
-nodemcuv2.build.core=esp8266
-nodemcuv2.build.variant=nodemcu
-nodemcuv2.upload.tool=esptool
-nodemcuv2.upload.speed=115200
-nodemcuv2.upload.resetmethod=--before default_reset --after hard_reset
-nodemcuv2.upload.maximum_data_size=81920
-nodemcuv2.upload.wait_for_upload_port=true
-nodemcuv2.serial.disableDTR=true
-nodemcuv2.serial.disableRTS=true
-nodemcuv2.build.f_cpu=80000000L
-nodemcuv2.build.flash_mode=dio
-nodemcuv2.build.flash_freq=40
+esp8285.menu.eesz.1M64=1MB (FS:64KB OTA:~470KB)
+esp8285.menu.eesz.1M64.build.flash_size=1M
+esp8285.menu.eesz.1M64.build.flash_size_arg=1MB
+esp8285.menu.eesz.1M64.upload.maximum_size=481280
 
-# Restrict menu to 4MB partition layouts only
-nodemcuv2.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
-nodemcuv2.menu.eesz.4M2M.build.flash_size=4M
-nodemcuv2.menu.eesz.4M2M.build.flash_size_arg=4MB
-nodemcuv2.menu.eesz.4M2M.upload.maximum_size=1043456
+esp8285.menu.eesz.1M128=1MB (FS:128KB OTA:~438KB)
+esp8285.menu.eesz.1M128.build.flash_size=1M
+esp8285.menu.eesz.1M128.build.flash_size_arg=1MB
+esp8285.menu.eesz.1M128.upload.maximum_size=448512
 
-nodemcuv2.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
-nodemcuv2.menu.eesz.4M3M.build.flash_size=4M
-nodemcuv2.menu.eesz.4M3M.build.flash_size_arg=4MB
-nodemcuv2.menu.eesz.4M3M.upload.maximum_size=524288
+esp8285.menu.eesz.1M256=1MB (FS:256KB OTA:~374KB)
+esp8285.menu.eesz.1M256.build.flash_size=1M
+esp8285.menu.eesz.1M256.build.flash_size_arg=1MB
+esp8285.menu.eesz.1M256.upload.maximum_size=382976
 
-nodemcuv2.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
-nodemcuv2.menu.eesz.4M1M.build.flash_size=4M
-nodemcuv2.menu.eesz.4M1M.build.flash_size_arg=4MB
-nodemcuv2.menu.eesz.4M1M.upload.maximum_size=1043456
+esp8285.menu.eesz.1M512=1MB (FS:512KB OTA:~246KB)
+esp8285.menu.eesz.1M512.build.flash_size=1M
+esp8285.menu.eesz.1M512.build.flash_size_arg=1MB
+esp8285.menu.eesz.1M512.upload.maximum_size=251904
 
-nodemcuv2.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
-nodemcuv2.menu.eesz.4M.build.flash_size=4M
-nodemcuv2.menu.eesz.4M.build.flash_size_arg=4MB
-nodemcuv2.menu.eesz.4M.upload.maximum_size=1043456
+esp8285.menu.eesz.1M=1MB (FS:none OTA:~502KB)
+esp8285.menu.eesz.1M.build.flash_size=1M
+esp8285.menu.eesz.1M.build.flash_size_arg=1MB
+esp8285.menu.eesz.1M.upload.maximum_size=514048
 
-nodemcuv2.menu.xtal.80=80 MHz
-nodemcuv2.menu.xtal.80.build.f_cpu=80000000L
-nodemcuv2.menu.xtal.160=160 MHz
-nodemcuv2.menu.xtal.160.build.f_cpu=160000000L
+esp8285.menu.xtal.80=80 MHz
+esp8285.menu.xtal.80.build.f_cpu=80000000L
+esp8285.menu.xtal.160=160 MHz
+esp8285.menu.xtal.160.build.f_cpu=160000000L
 
-# -------------------------------------------------------------------------
-# DEBUG LEVEL MENU (Mapped to CONFIG_ARDUHAL_LOG_DEFAULT_LEVEL)
-# -------------------------------------------------------------------------
-nodemcuv2.menu.lvl.None____=None
-nodemcuv2.menu.lvl.None____.build.arduhal_log_level=0
-
-nodemcuv2.menu.lvl.Error=Error
-nodemcuv2.menu.lvl.Error.build.arduhal_log_level=1
-
-nodemcuv2.menu.lvl.Warn=Warn
-nodemcuv2.menu.lvl.Warn.build.arduhal_log_level=2
-
-nodemcuv2.menu.lvl.Info=Info
-nodemcuv2.menu.lvl.Info.build.arduhal_log_level=3
-
-nodemcuv2.menu.lvl.Debug=Debug
-nodemcuv2.menu.lvl.Debug.build.arduhal_log_level=4
-
-nodemcuv2.menu.lvl.Verbose=Verbose
-nodemcuv2.menu.lvl.Verbose.build.arduhal_log_level=5
+esp8285.menu.lvl.None____=None
+esp8285.menu.lvl.None____.build.arduhal_log_level=0
+esp8285.menu.lvl.Error=Error
+esp8285.menu.lvl.Error.build.arduhal_log_level=1
+esp8285.menu.lvl.Warn=Warn
+esp8285.menu.lvl.Warn.build.arduhal_log_level=2
+esp8285.menu.lvl.Info=Info
+esp8285.menu.lvl.Info.build.arduhal_log_level=3
+esp8285.menu.lvl.Debug=Debug
+esp8285.menu.lvl.Debug.build.arduhal_log_level=4
+esp8285.menu.lvl.Verbose=Verbose
+esp8285.menu.lvl.Verbose.build.arduhal_log_level=5
 
 
-##############################################################
-# 3. LOLIN(WEMOS) D1 R2 & mini - Fixed 4MB Chip
-##############################################################
+# ==============================================================================
+# 2. POPULAR 4MB DEVELOPMENT BOARDS
+# ==============================================================================
+
+# --- NodeMCU 1.0 (ESP-12E) ---
+nodemcu.name=NodeMCU 1.0 (ESP-12E Module)
+nodemcu.build.board=ESP8266_NODEMCU
+nodemcu.build.mcu=esp8266
+nodemcu.build.core=esp8266
+nodemcu.build.variant=nodemcu
+nodemcu.upload.tool=esptool
+nodemcu.upload.speed=115200
+nodemcu.upload.resetmethod=--before default_reset --after hard_reset
+nodemcu.build.flash_mode=dio
+nodemcu.build.flash_freq=40
+
+nodemcu.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+nodemcu.menu.eesz.4M2M.build.flash_size=4M
+nodemcu.menu.eesz.4M2M.build.flash_size_arg=4MB
+nodemcu.menu.eesz.4M2M.upload.maximum_size=1043456
+
+nodemcu.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+nodemcu.menu.eesz.4M3M.build.flash_size=4M
+nodemcu.menu.eesz.4M3M.build.flash_size_arg=4MB
+nodemcu.menu.eesz.4M3M.upload.maximum_size=524288
+
+nodemcu.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+nodemcu.menu.eesz.4M1M.build.flash_size=4M
+nodemcu.menu.eesz.4M1M.build.flash_size_arg=4MB
+nodemcu.menu.eesz.4M1M.upload.maximum_size=1043456
+
+nodemcu.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+nodemcu.menu.eesz.4M.build.flash_size=4M
+nodemcu.menu.eesz.4M.build.flash_size_arg=4MB
+nodemcu.menu.eesz.4M.upload.maximum_size=1043456
+
+nodemcu.menu.xtal.80=80 MHz
+nodemcu.menu.xtal.80.build.f_cpu=80000000L
+nodemcu.menu.xtal.160=160 MHz
+nodemcu.menu.xtal.160.build.f_cpu=160000000L
+
+nodemcu.menu.lvl.None____=None
+nodemcu.menu.lvl.None____.build.arduhal_log_level=0
+nodemcu.menu.lvl.Error=Error
+nodemcu.menu.lvl.Error.build.arduhal_log_level=1
+nodemcu.menu.lvl.Warn=Warn
+nodemcu.menu.lvl.Warn.build.arduhal_log_level=2
+nodemcu.menu.lvl.Info=Info
+nodemcu.menu.lvl.Info.build.arduhal_log_level=3
+nodemcu.menu.lvl.Debug=Debug
+nodemcu.menu.lvl.Debug.build.arduhal_log_level=4
+nodemcu.menu.lvl.Verbose=Verbose
+nodemcu.menu.lvl.Verbose.build.arduhal_log_level=5
+
+
+# --- Wemos D1 Mini ---
 d1_mini.name=LOLIN(WEMOS) D1 R2 & mini
 d1_mini.build.board=ESP8266_WEMOS_D1MINI
 d1_mini.build.mcu=esp8266
@@ -254,15 +220,9 @@ d1_mini.build.variant=d1_mini
 d1_mini.upload.tool=esptool
 d1_mini.upload.speed=921600
 d1_mini.upload.resetmethod=--before default_reset --after hard_reset
-d1_mini.upload.maximum_data_size=81920
-d1_mini.upload.wait_for_upload_port=true
-d1_mini.serial.disableDTR=true
-d1_mini.serial.disableRTS=true
-d1_mini.build.f_cpu=80000000L
 d1_mini.build.flash_mode=dio
 d1_mini.build.flash_freq=40
 
-# Restrict menu to 4MB partition layouts only
 d1_mini.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
 d1_mini.menu.eesz.4M2M.build.flash_size=4M
 d1_mini.menu.eesz.4M2M.build.flash_size_arg=4MB
@@ -288,90 +248,1135 @@ d1_mini.menu.xtal.80.build.f_cpu=80000000L
 d1_mini.menu.xtal.160=160 MHz
 d1_mini.menu.xtal.160.build.f_cpu=160000000L
 
-# -------------------------------------------------------------------------
-# DEBUG LEVEL MENU (Mapped to CONFIG_ARDUHAL_LOG_DEFAULT_LEVEL)
-# -------------------------------------------------------------------------
 d1_mini.menu.lvl.None____=None
 d1_mini.menu.lvl.None____.build.arduhal_log_level=0
-
 d1_mini.menu.lvl.Error=Error
 d1_mini.menu.lvl.Error.build.arduhal_log_level=1
-
 d1_mini.menu.lvl.Warn=Warn
 d1_mini.menu.lvl.Warn.build.arduhal_log_level=2
-
 d1_mini.menu.lvl.Info=Info
 d1_mini.menu.lvl.Info.build.arduhal_log_level=3
-
 d1_mini.menu.lvl.Debug=Debug
 d1_mini.menu.lvl.Debug.build.arduhal_log_level=4
-
 d1_mini.menu.lvl.Verbose=Verbose
 d1_mini.menu.lvl.Verbose.build.arduhal_log_level=5
 
 
-##############################################################
-# 4. Generic ESP8266 ESP-01 1M - Fixed 1MB Chip
-##############################################################
-esp01_1m.name=Generic ESP8266 ESP-01 1M
-esp01_1m.build.board=ESP8266_ESP01
-esp01_1m.build.mcu=esp8266
-esp01_1m.build.core=esp8266
-esp01_1m.build.variant=generic
-esp01_1m.upload.tool=esptool
-esp01_1m.upload.speed=115200
-esp01_1m.upload.resetmethod=--before default_reset --after hard_reset
-esp01_1m.upload.maximum_data_size=81920
-esp01_1m.upload.wait_for_upload_port=true
-esp01_1m.serial.disableDTR=true
-esp01_1m.serial.disableRTS=true
-esp01_1m.build.f_cpu=80000000L
-esp01_1m.build.flash_mode=dout
-esp01_1m.build.flash_freq=40
+# --- Adafruit Feather HUZZAH ESP8266 ---
+adafruit.name=Adafruit Feather HUZZAH ESP8266
+adafruit.build.board=ESP8266_ADAFRUIT_HUZZAH
+adafruit.build.mcu=esp8266
+adafruit.build.core=esp8266
+adafruit.build.variant=adafruit
+adafruit.upload.tool=esptool
+adafruit.upload.speed=115200
+adafruit.upload.resetmethod=--before default_reset --after hard_reset
+adafruit.build.flash_mode=dio
+adafruit.build.flash_freq=40
 
-# Restrict menu to 1MB partition layouts only
-esp01_1m.menu.eesz.1M64=1MB (FS:64KB OTA:~470KB)
-esp01_1m.menu.eesz.1M64.build.flash_size=1M
-esp01_1m.menu.eesz.1M64.build.flash_size_arg=1MB
-esp01_1m.menu.eesz.1M64.upload.maximum_size=481280
+adafruit.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+adafruit.menu.eesz.4M2M.build.flash_size=4M
+adafruit.menu.eesz.4M2M.build.flash_size_arg=4MB
+adafruit.menu.eesz.4M2M.upload.maximum_size=1043456
 
-esp01_1m.menu.eesz.1M128=1MB (FS:128KB OTA:~438KB)
-esp01_1m.menu.eesz.1M128.build.flash_size=1M
-esp01_1m.menu.eesz.1M128.build.flash_size_arg=1MB
-esp01_1m.menu.eesz.1M128.upload.maximum_size=448512
+adafruit.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+adafruit.menu.eesz.4M3M.build.flash_size=4M
+adafruit.menu.eesz.4M3M.build.flash_size_arg=4MB
+adafruit.menu.eesz.4M3M.upload.maximum_size=524288
 
-esp01_1m.menu.eesz.1M256=1MB (FS:256KB OTA:~374KB)
-esp01_1m.menu.eesz.1M256.build.flash_size=1M
-esp01_1m.menu.eesz.1M256.build.flash_size_arg=1MB
-esp01_1m.menu.eesz.1M256.upload.maximum_size=382976
+adafruit.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+adafruit.menu.eesz.4M1M.build.flash_size=4M
+adafruit.menu.eesz.4M1M.build.flash_size_arg=4MB
+adafruit.menu.eesz.4M1M.upload.maximum_size=1043456
 
-esp01_1m.menu.eesz.1M512=1MB (FS:512KB OTA:~246KB)
-esp01_1m.menu.eesz.1M512.build.flash_size=1M
-esp01_1m.menu.eesz.1M512.build.flash_size_arg=1MB
-esp01_1m.menu.eesz.1M512.upload.maximum_size=251904
+adafruit.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+adafruit.menu.eesz.4M.build.flash_size=4M
+adafruit.menu.eesz.4M.build.flash_size_arg=4MB
+adafruit.menu.eesz.4M.upload.maximum_size=1043456
 
-esp01_1m.menu.eesz.1M=1MB (FS:none OTA:~502KB)
-esp01_1m.menu.eesz.1M.build.flash_size=1M
-esp01_1m.menu.eesz.1M.build.flash_size_arg=1MB
-esp01_1m.menu.eesz.1M.upload.maximum_size=514048
+adafruit.menu.xtal.80=80 MHz
+adafruit.menu.xtal.80.build.f_cpu=80000000L
+adafruit.menu.xtal.160=160 MHz
+adafruit.menu.xtal.160.build.f_cpu=160000000L
 
-# -------------------------------------------------------------------------
-# DEBUG LEVEL MENU (Mapped to CONFIG_ARDUHAL_LOG_DEFAULT_LEVEL)
-# -------------------------------------------------------------------------
-esp01_1m.menu.lvl.None____=None
-esp01_1m.menu.lvl.None____.build.arduhal_log_level=0
+adafruit.menu.lvl.None____=None
+adafruit.menu.lvl.None____.build.arduhal_log_level=0
+adafruit.menu.lvl.Error=Error
+adafruit.menu.lvl.Error.build.arduhal_log_level=1
+adafruit.menu.lvl.Warn=Warn
+adafruit.menu.lvl.Warn.build.arduhal_log_level=2
+adafruit.menu.lvl.Info=Info
+adafruit.menu.lvl.Info.build.arduhal_log_level=3
+adafruit.menu.lvl.Debug=Debug
+adafruit.menu.lvl.Debug.build.arduhal_log_level=4
+adafruit.menu.lvl.Verbose=Verbose
+adafruit.menu.lvl.Verbose.build.arduhal_log_level=5
 
-esp01_1m.menu.lvl.Error=Error
-esp01_1m.menu.lvl.Error.build.arduhal_log_level=1
 
-esp01_1m.menu.lvl.Warn=Warn
-esp01_1m.menu.lvl.Warn.build.arduhal_log_level=2
+# ==============================================================================
+# 3. SPECIALIZED & SPECIFIC SIZE BOARDS
+# ==============================================================================
 
-esp01_1m.menu.lvl.Info=Info
-esp01_1m.menu.lvl.Info.build.arduhal_log_level=3
+# --- SparkFun ESP8266 Thing (512KB) ---
+thing.name=SparkFun ESP8266 Thing
+thing.build.board=ESP8266_SPARKFUN_THING
+thing.build.mcu=esp8266
+thing.build.core=esp8266
+thing.build.variant=thing
+thing.upload.tool=esptool
+thing.upload.speed=115200
+thing.upload.resetmethod=--before default_reset --after hard_reset
+thing.build.flash_mode=dio
+thing.build.flash_freq=40
 
-esp01_1m.menu.lvl.Debug=Debug
-esp01_1m.menu.lvl.Debug.build.arduhal_log_level=4
+thing.menu.eesz.512K64=512KB (FS:64KB OTA:~214KB)
+thing.menu.eesz.512K64.build.flash_size=512K
+thing.menu.eesz.512K64.build.flash_size_arg=512KB
+thing.menu.eesz.512K64.upload.maximum_size=219136
 
-esp01_1m.menu.lvl.Verbose=Verbose
-esp01_1m.menu.lvl.Verbose.build.arduhal_log_level=5
+thing.menu.eesz.512K=512KB (FS:none OTA:~246KB)
+thing.menu.eesz.512K.build.flash_size=512K
+thing.menu.eesz.512K.build.flash_size_arg=512KB
+thing.menu.eesz.512K.upload.maximum_size=251904
+
+thing.menu.xtal.80=80 MHz
+thing.menu.xtal.80.build.f_cpu=80000000L
+thing.menu.xtal.160=160 MHz
+thing.menu.xtal.160.build.f_cpu=160000000L
+
+thing.menu.lvl.None____=None
+thing.menu.lvl.None____.build.arduhal_log_level=0
+thing.menu.lvl.Error=Error
+thing.menu.lvl.Error.build.arduhal_log_level=1
+thing.menu.lvl.Warn=Warn
+thing.menu.lvl.Warn.build.arduhal_log_level=2
+thing.menu.lvl.Info=Info
+thing.menu.lvl.Info.build.arduhal_log_level=3
+thing.menu.lvl.Debug=Debug
+thing.menu.lvl.Debug.build.arduhal_log_level=4
+thing.menu.lvl.Verbose=Verbose
+thing.menu.lvl.Verbose.build.arduhal_log_level=5
+
+
+# --- ITEAD Sonoff (1MB DOUT) ---
+itead.name=ITEAD Sonoff
+itead.build.board=ESP8266_SONOFF
+itead.build.mcu=esp8266
+itead.build.core=esp8266
+itead.build.variant=itead
+itead.upload.tool=esptool
+itead.upload.speed=115200
+itead.upload.resetmethod=--before no_reset --after soft_reset
+itead.build.flash_mode=dout
+itead.build.flash_freq=40
+
+itead.menu.eesz.1M64=1MB (FS:64KB OTA:~470KB)
+itead.menu.eesz.1M64.build.flash_size=1M
+itead.menu.eesz.1M64.build.flash_size_arg=1MB
+itead.menu.eesz.1M64.upload.maximum_size=481280
+
+itead.menu.eesz.1M128=1MB (FS:128KB OTA:~438KB)
+itead.menu.eesz.1M128.build.flash_size=1M
+itead.menu.eesz.1M128.build.flash_size_arg=1MB
+itead.menu.eesz.1M128.upload.maximum_size=448512
+
+itead.menu.eesz.1M256=1MB (FS:256KB OTA:~374KB)
+itead.menu.eesz.1M256.build.flash_size=1M
+itead.menu.eesz.1M256.build.flash_size_arg=1MB
+itead.menu.eesz.1M256.upload.maximum_size=382976
+
+itead.menu.eesz.1M512=1MB (FS:512KB OTA:~246KB)
+itead.menu.eesz.1M512.build.flash_size=1M
+itead.menu.eesz.1M512.build.flash_size_arg=1MB
+itead.menu.eesz.1M512.upload.maximum_size=251904
+
+itead.menu.eesz.1M=1MB (FS:none OTA:~502KB)
+itead.menu.eesz.1M.build.flash_size=1M
+itead.menu.eesz.1M.build.flash_size_arg=1MB
+itead.menu.eesz.1M.upload.maximum_size=514048
+
+itead.menu.xtal.80=80 MHz
+itead.menu.xtal.80.build.f_cpu=80000000L
+itead.menu.xtal.160=160 MHz
+itead.menu.xtal.160.build.f_cpu=160000000L
+
+itead.menu.lvl.None____=None
+itead.menu.lvl.None____.build.arduhal_log_level=0
+itead.menu.lvl.Error=Error
+itead.menu.lvl.Error.build.arduhal_log_level=1
+itead.menu.lvl.Warn=Warn
+itead.menu.lvl.Warn.build.arduhal_log_level=2
+itead.menu.lvl.Info=Info
+itead.menu.lvl.Info.build.arduhal_log_level=3
+itead.menu.lvl.Debug=Debug
+itead.menu.lvl.Debug.build.arduhal_log_level=4
+itead.menu.lvl.Verbose=Verbose
+itead.menu.lvl.Verbose.build.arduhal_log_level=5
+
+
+# --- WifInfo (1MB) ---
+wifinfo.name=WifInfo
+wifinfo.build.board=ESP8266_WIFINFO
+wifinfo.build.mcu=esp8266
+wifinfo.build.core=esp8266
+wifinfo.build.variant=wifinfo
+wifinfo.upload.tool=esptool
+wifinfo.upload.speed=115200
+wifinfo.upload.resetmethod=--before default_reset --after hard_reset
+wifinfo.build.flash_mode=dio
+wifinfo.build.flash_freq=40
+
+wifinfo.menu.eesz.1M64=1MB (FS:64KB OTA:~470KB)
+wifinfo.menu.eesz.1M64.build.flash_size=1M
+wifinfo.menu.eesz.1M64.build.flash_size_arg=1MB
+wifinfo.menu.eesz.1M64.upload.maximum_size=481280
+
+wifinfo.menu.eesz.1M128=1MB (FS:128KB OTA:~438KB)
+wifinfo.menu.eesz.1M128.build.flash_size=1M
+wifinfo.menu.eesz.1M128.build.flash_size_arg=1MB
+wifinfo.menu.eesz.1M128.upload.maximum_size=448512
+
+wifinfo.menu.eesz.1M256=1MB (FS:256KB OTA:~374KB)
+wifinfo.menu.eesz.1M256.build.flash_size=1M
+wifinfo.menu.eesz.1M256.build.flash_size_arg=1MB
+wifinfo.menu.eesz.1M256.upload.maximum_size=382976
+
+wifinfo.menu.eesz.1M512=1MB (FS:512KB OTA:~246KB)
+wifinfo.menu.eesz.1M512.build.flash_size=1M
+wifinfo.menu.eesz.1M512.build.flash_size_arg=1MB
+wifinfo.menu.eesz.1M512.upload.maximum_size=251904
+
+wifinfo.menu.eesz.1M=1MB (FS:none OTA:~502KB)
+wifinfo.menu.eesz.1M.build.flash_size=1M
+wifinfo.menu.eesz.1M.build.flash_size_arg=1MB
+wifinfo.menu.eesz.1M.upload.maximum_size=514048
+
+wifinfo.menu.xtal.80=80 MHz
+wifinfo.menu.xtal.80.build.f_cpu=80000000L
+wifinfo.menu.xtal.160=160 MHz
+wifinfo.menu.xtal.160.build.f_cpu=160000000L
+
+wifinfo.menu.lvl.None____=None
+wifinfo.menu.lvl.None____.build.arduhal_log_level=0
+wifinfo.menu.lvl.Error=Error
+wifinfo.menu.lvl.Error.build.arduhal_log_level=1
+wifinfo.menu.lvl.Warn=Warn
+wifinfo.menu.lvl.Warn.build.arduhal_log_level=2
+wifinfo.menu.lvl.Info=Info
+wifinfo.menu.lvl.Info.build.arduhal_log_level=3
+wifinfo.menu.lvl.Debug=Debug
+wifinfo.menu.lvl.Debug.build.arduhal_log_level=4
+wifinfo.menu.lvl.Verbose=Verbose
+wifinfo.menu.lvl.Verbose.build.arduhal_log_level=5
+
+
+# --- Olimex MOD-WIFI (2MB) ---
+modwifi.name=Olimex MOD-WIFI
+modwifi.build.board=ESP8266_MODWIFI
+modwifi.build.mcu=esp8266
+modwifi.build.core=esp8266
+modwifi.build.variant=modwifi
+modwifi.upload.tool=esptool
+modwifi.upload.speed=115200
+modwifi.upload.resetmethod=--before default_reset --after hard_reset
+modwifi.build.flash_mode=qio
+modwifi.build.flash_freq=40
+
+modwifi.menu.eesz.2M64=2MB (FS:64KB OTA:~992KB)
+modwifi.menu.eesz.2M64.build.flash_size=2M
+modwifi.menu.eesz.2M64.build.flash_size_arg=2MB
+modwifi.menu.eesz.2M64.upload.maximum_size=1015808
+
+modwifi.menu.eesz.2M1M=2MB (FS:1MB OTA:~512KB)
+modwifi.menu.eesz.2M1M.build.flash_size=2M
+modwifi.menu.eesz.2M1M.build.flash_size_arg=2MB
+modwifi.menu.eesz.2M1M.upload.maximum_size=524288
+
+modwifi.menu.eesz.2M=2MB (FS:none OTA:~1019KB)
+modwifi.menu.eesz.2M.build.flash_size=2M
+modwifi.menu.eesz.2M.build.flash_size_arg=2MB
+modwifi.menu.eesz.2M.upload.maximum_size=1043456
+
+modwifi.menu.xtal.80=80 MHz
+modwifi.menu.xtal.80.build.f_cpu=80000000L
+modwifi.menu.xtal.160=160 MHz
+modwifi.menu.xtal.160.build.f_cpu=160000000L
+
+modwifi.menu.lvl.None____=None
+modwifi.menu.lvl.None____.build.arduhal_log_level=0
+modwifi.menu.lvl.Error=Error
+modwifi.menu.lvl.Error.build.arduhal_log_level=1
+modwifi.menu.lvl.Warn=Warn
+modwifi.menu.lvl.Warn.build.arduhal_log_level=2
+modwifi.menu.lvl.Info=Info
+modwifi.menu.lvl.Info.build.arduhal_log_level=3
+modwifi.menu.lvl.Debug=Debug
+modwifi.menu.lvl.Debug.build.arduhal_log_level=4
+modwifi.menu.lvl.Verbose=Verbose
+modwifi.menu.lvl.Verbose.build.arduhal_log_level=5
+
+
+# ==============================================================================
+# 4. COMMUNITY 4MB BOARDS (Standard Template)
+# ==============================================================================
+
+# --- Definición Base y Variantes ---
+d1.name=Wemos D1 R1
+d1.build.variant=d1
+
+espino.name=ESPino
+espino.build.variant=espino
+
+inventone.name=Invent One
+inventone.build.variant=inventone
+
+phoenix_v1.name=Phoenix 1.0
+phoenix_v1.build.variant=phoenix_v1
+
+agruminolemonv4.name=Agrumino Lemon v4
+agruminolemonv4.build.variant=agruminolemonv4
+
+eduinowifi.name=Eduino WiFi
+eduinowifi.build.variant=eduinowifi
+
+espinotee.name=ThaiEasyElec ESPino
+espinotee.build.variant=espinotee
+
+phoenix_v2.name=Phoenix 2.0
+phoenix_v2.build.variant=phoenix_v2
+
+wifio.name=Wifio
+wifio.build.variant=wifio
+
+arduino_spi.name=Arduino WiFi Shield (SPI)
+arduino_spi.build.variant=arduino_spi
+
+espresso_lite_v1.name=ESPresso Lite 1.0
+espresso_lite_v1.build.variant=espresso_lite_v1
+
+wifi_slot.name=Amperka WiFi Slot
+wifi_slot.build.variant=wifi_slot
+
+arduino_uart.name=Arduino WiFi Shield (UART)
+arduino_uart.build.variant=arduino_uart
+
+ESPDuino.name=ESPDuino
+ESPDuino.build.variant=ESPDuino
+
+espresso_lite_v2.name=ESPresso Lite 2.0
+espresso_lite_v2.build.variant=espresso_lite_v2
+
+wifiduino.name=Wifiduino
+wifiduino.build.variant=wifiduino
+
+wiolink.name=Seeed Wio Link
+wiolink.build.variant=wiolink
+
+espectro.name=Espectro Core
+espectro.build.variant=espectro
+
+oak.name=Digistump Oak
+oak.build.variant=oak
+
+wifi_kit_8.name=Heltec WiFi Kit 8
+wifi_kit_8.build.variant=wifi_kit_8
+
+xinabox.name=XinaBox CW01
+xinabox.build.variant=xinabox
+
+# --- Configuración de Compilador y Flasheo ---
+d1.build.mcu=esp8266
+espino.build.mcu=esp8266
+inventone.build.mcu=esp8266
+phoenix_v1.build.mcu=esp8266
+agruminolemonv4.build.mcu=esp8266
+eduinowifi.build.mcu=esp8266
+espinotee.build.mcu=esp8266
+phoenix_v2.build.mcu=esp8266
+wifio.build.mcu=esp8266
+arduino_spi.build.mcu=esp8266
+espresso_lite_v1.build.mcu=esp8266
+wifi_slot.build.mcu=esp8266
+arduino_uart.build.mcu=esp8266
+ESPDuino.build.mcu=esp8266
+espresso_lite_v2.build.mcu=esp8266
+wifiduino.build.mcu=esp8266
+wiolink.build.mcu=esp8266
+espectro.build.mcu=esp8266
+oak.build.mcu=esp8266
+wifi_kit_8.build.mcu=esp8266
+xinabox.build.mcu=esp8266
+
+d1.build.core=esp8266
+espino.build.core=esp8266
+inventone.build.core=esp8266
+phoenix_v1.build.core=esp8266
+agruminolemonv4.build.core=esp8266
+eduinowifi.build.core=esp8266
+espinotee.build.core=esp8266
+phoenix_v2.build.core=esp8266
+wifio.build.core=esp8266
+arduino_spi.build.core=esp8266
+espresso_lite_v1.build.core=esp8266
+wifi_slot.build.core=esp8266
+arduino_uart.build.core=esp8266
+ESPDuino.build.core=esp8266
+espresso_lite_v2.build.core=esp8266
+wifiduino.build.core=esp8266
+wiolink.build.core=esp8266
+espectro.build.core=esp8266
+oak.build.core=esp8266
+wifi_kit_8.build.core=esp8266
+xinabox.build.core=esp8266
+
+d1.upload.tool=esptool
+espino.upload.tool=esptool
+inventone.upload.tool=esptool
+phoenix_v1.upload.tool=esptool
+agruminolemonv4.upload.tool=esptool
+eduinowifi.upload.tool=esptool
+espinotee.upload.tool=esptool
+phoenix_v2.upload.tool=esptool
+wifio.upload.tool=esptool
+arduino_spi.upload.tool=esptool
+espresso_lite_v1.upload.tool=esptool
+wifi_slot.upload.tool=esptool
+arduino_uart.upload.tool=esptool
+ESPDuino.upload.tool=esptool
+espresso_lite_v2.upload.tool=esptool
+wifiduino.upload.tool=esptool
+wiolink.upload.tool=esptool
+espectro.upload.tool=esptool
+oak.upload.tool=esptool
+wifi_kit_8.upload.tool=esptool
+xinabox.upload.tool=esptool
+
+d1.build.flash_mode=dio
+espino.build.flash_mode=dio
+inventone.build.flash_mode=dio
+phoenix_v1.build.flash_mode=dio
+agruminolemonv4.build.flash_mode=dio
+eduinowifi.build.flash_mode=dio
+espinotee.build.flash_mode=dio
+phoenix_v2.build.flash_mode=dio
+wifio.build.flash_mode=dio
+arduino_spi.build.flash_mode=dio
+espresso_lite_v1.build.flash_mode=dio
+wifi_slot.build.flash_mode=dio
+arduino_uart.build.flash_mode=dio
+ESPDuino.build.flash_mode=dio
+espresso_lite_v2.build.flash_mode=dio
+wifiduino.build.flash_mode=dio
+wiolink.build.flash_mode=dio
+espectro.build.flash_mode=dio
+oak.build.flash_mode=dio
+wifi_kit_8.build.flash_mode=dio
+xinabox.build.flash_mode=dio
+
+# --- FLASH SIZE MENU (4M2M, 4M3M, 4M1M, 4M) ---
+d1.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+espino.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+inventone.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+phoenix_v1.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+agruminolemonv4.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+eduinowifi.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+espinotee.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+phoenix_v2.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+wifio.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+arduino_spi.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+espresso_lite_v1.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+wifi_slot.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+arduino_uart.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+ESPDuino.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+espresso_lite_v2.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+wifiduino.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+wiolink.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+espectro.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+oak.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+wifi_kit_8.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+xinabox.menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
+
+d1.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+espino.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+inventone.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+phoenix_v1.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+agruminolemonv4.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+eduinowifi.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+espinotee.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+phoenix_v2.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+wifio.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+arduino_spi.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+espresso_lite_v1.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+wifi_slot.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+arduino_uart.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+ESPDuino.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+espresso_lite_v2.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+wifiduino.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+wiolink.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+espectro.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+oak.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+wifi_kit_8.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+xinabox.menu.eesz.4M3M=4MB (FS:3MB OTA:~512KB)
+
+d1.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+espino.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+inventone.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+phoenix_v1.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+agruminolemonv4.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+eduinowifi.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+espinotee.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+phoenix_v2.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+wifio.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+arduino_spi.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+espresso_lite_v1.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+wifi_slot.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+arduino_uart.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+ESPDuino.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+espresso_lite_v2.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+wifiduino.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+wiolink.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+espectro.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+oak.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+wifi_kit_8.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+xinabox.menu.eesz.4M1M=4MB (FS:1MB OTA:~1019KB)
+
+d1.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+espino.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+inventone.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+phoenix_v1.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+agruminolemonv4.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+eduinowifi.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+espinotee.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+phoenix_v2.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+wifio.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+arduino_spi.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+espresso_lite_v1.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+wifi_slot.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+arduino_uart.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+ESPDuino.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+espresso_lite_v2.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+wifiduino.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+wiolink.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+espectro.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+oak.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+wifi_kit_8.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+xinabox.menu.eesz.4M=4MB (FS:none OTA:~1019KB)
+
+# Parámetros internos de Flash Size
+d1.menu.eesz.4M2M.build.flash_size=4M
+espino.menu.eesz.4M2M.build.flash_size=4M
+inventone.menu.eesz.4M2M.build.flash_size=4M
+phoenix_v1.menu.eesz.4M2M.build.flash_size=4M
+agruminolemonv4.menu.eesz.4M2M.build.flash_size=4M
+eduinowifi.menu.eesz.4M2M.build.flash_size=4M
+espinotee.menu.eesz.4M2M.build.flash_size=4M
+phoenix_v2.menu.eesz.4M2M.build.flash_size=4M
+wifio.menu.eesz.4M2M.build.flash_size=4M
+arduino_spi.menu.eesz.4M2M.build.flash_size=4M
+espresso_lite_v1.menu.eesz.4M2M.build.flash_size=4M
+wifi_slot.menu.eesz.4M2M.build.flash_size=4M
+arduino_uart.menu.eesz.4M2M.build.flash_size=4M
+ESPDuino.menu.eesz.4M2M.build.flash_size=4M
+espresso_lite_v2.menu.eesz.4M2M.build.flash_size=4M
+wifiduino.menu.eesz.4M2M.build.flash_size=4M
+wiolink.menu.eesz.4M2M.build.flash_size=4M
+espectro.menu.eesz.4M2M.build.flash_size=4M
+oak.menu.eesz.4M2M.build.flash_size=4M
+wifi_kit_8.menu.eesz.4M2M.build.flash_size=4M
+xinabox.menu.eesz.4M2M.build.flash_size=4M
+
+d1.menu.eesz.4M3M.build.flash_size=4M
+espino.menu.eesz.4M3M.build.flash_size=4M
+inventone.menu.eesz.4M3M.build.flash_size=4M
+phoenix_v1.menu.eesz.4M3M.build.flash_size=4M
+agruminolemonv4.menu.eesz.4M3M.build.flash_size=4M
+eduinowifi.menu.eesz.4M3M.build.flash_size=4M
+espinotee.menu.eesz.4M3M.build.flash_size=4M
+phoenix_v2.menu.eesz.4M3M.build.flash_size=4M
+wifio.menu.eesz.4M3M.build.flash_size=4M
+arduino_spi.menu.eesz.4M3M.build.flash_size=4M
+espresso_lite_v1.menu.eesz.4M3M.build.flash_size=4M
+wifi_slot.menu.eesz.4M3M.build.flash_size=4M
+arduino_uart.menu.eesz.4M3M.build.flash_size=4M
+ESPDuino.menu.eesz.4M3M.build.flash_size=4M
+espresso_lite_v2.menu.eesz.4M3M.build.flash_size=4M
+wifiduino.menu.eesz.4M3M.build.flash_size=4M
+wiolink.menu.eesz.4M3M.build.flash_size=4M
+espectro.menu.eesz.4M3M.build.flash_size=4M
+oak.menu.eesz.4M3M.build.flash_size=4M
+wifi_kit_8.menu.eesz.4M3M.build.flash_size=4M
+xinabox.menu.eesz.4M3M.build.flash_size=4M
+
+d1.menu.eesz.4M1M.build.flash_size=4M
+espino.menu.eesz.4M1M.build.flash_size=4M
+inventone.menu.eesz.4M1M.build.flash_size=4M
+phoenix_v1.menu.eesz.4M1M.build.flash_size=4M
+agruminolemonv4.menu.eesz.4M1M.build.flash_size=4M
+eduinowifi.menu.eesz.4M1M.build.flash_size=4M
+espinotee.menu.eesz.4M1M.build.flash_size=4M
+phoenix_v2.menu.eesz.4M1M.build.flash_size=4M
+wifio.menu.eesz.4M1M.build.flash_size=4M
+arduino_spi.menu.eesz.4M1M.build.flash_size=4M
+espresso_lite_v1.menu.eesz.4M1M.build.flash_size=4M
+wifi_slot.menu.eesz.4M1M.build.flash_size=4M
+arduino_uart.menu.eesz.4M1M.build.flash_size=4M
+ESPDuino.menu.eesz.4M1M.build.flash_size=4M
+espresso_lite_v2.menu.eesz.4M1M.build.flash_size=4M
+wifiduino.menu.eesz.4M1M.build.flash_size=4M
+wiolink.menu.eesz.4M1M.build.flash_size=4M
+espectro.menu.eesz.4M1M.build.flash_size=4M
+oak.menu.eesz.4M1M.build.flash_size=4M
+wifi_kit_8.menu.eesz.4M1M.build.flash_size=4M
+xinabox.menu.eesz.4M1M.build.flash_size=4M
+
+d1.menu.eesz.4M.build.flash_size=4M
+espino.menu.eesz.4M.build.flash_size=4M
+inventone.menu.eesz.4M.build.flash_size=4M
+phoenix_v1.menu.eesz.4M.build.flash_size=4M
+agruminolemonv4.menu.eesz.4M.build.flash_size=4M
+eduinowifi.menu.eesz.4M.build.flash_size=4M
+espinotee.menu.eesz.4M.build.flash_size=4M
+phoenix_v2.menu.eesz.4M.build.flash_size=4M
+wifio.menu.eesz.4M.build.flash_size=4M
+arduino_spi.menu.eesz.4M.build.flash_size=4M
+espresso_lite_v1.menu.eesz.4M.build.flash_size=4M
+wifi_slot.menu.eesz.4M.build.flash_size=4M
+arduino_uart.menu.eesz.4M.build.flash_size=4M
+ESPDuino.menu.eesz.4M.build.flash_size=4M
+espresso_lite_v2.menu.eesz.4M.build.flash_size=4M
+wifiduino.menu.eesz.4M.build.flash_size=4M
+wiolink.menu.eesz.4M.build.flash_size=4M
+espectro.menu.eesz.4M.build.flash_size=4M
+oak.menu.eesz.4M.build.flash_size=4M
+wifi_kit_8.menu.eesz.4M.build.flash_size=4M
+xinabox.menu.eesz.4M.build.flash_size=4M
+
+d1.menu.eesz.4M2M.build.flash_size_arg=4MB
+espino.menu.eesz.4M2M.build.flash_size_arg=4MB
+inventone.menu.eesz.4M2M.build.flash_size_arg=4MB
+phoenix_v1.menu.eesz.4M2M.build.flash_size_arg=4MB
+agruminolemonv4.menu.eesz.4M2M.build.flash_size_arg=4MB
+eduinowifi.menu.eesz.4M2M.build.flash_size_arg=4MB
+espinotee.menu.eesz.4M2M.build.flash_size_arg=4MB
+phoenix_v2.menu.eesz.4M2M.build.flash_size_arg=4MB
+wifio.menu.eesz.4M2M.build.flash_size_arg=4MB
+arduino_spi.menu.eesz.4M2M.build.flash_size_arg=4MB
+espresso_lite_v1.menu.eesz.4M2M.build.flash_size_arg=4MB
+wifi_slot.menu.eesz.4M2M.build.flash_size_arg=4MB
+arduino_uart.menu.eesz.4M2M.build.flash_size_arg=4MB
+ESPDuino.menu.eesz.4M2M.build.flash_size_arg=4MB
+espresso_lite_v2.menu.eesz.4M2M.build.flash_size_arg=4MB
+wifiduino.menu.eesz.4M2M.build.flash_size_arg=4MB
+wiolink.menu.eesz.4M2M.build.flash_size_arg=4MB
+espectro.menu.eesz.4M2M.build.flash_size_arg=4MB
+oak.menu.eesz.4M2M.build.flash_size_arg=4MB
+wifi_kit_8.menu.eesz.4M2M.build.flash_size_arg=4MB
+xinabox.menu.eesz.4M2M.build.flash_size_arg=4MB
+
+d1.menu.eesz.4M3M.build.flash_size_arg=4MB
+espino.menu.eesz.4M3M.build.flash_size_arg=4MB
+inventone.menu.eesz.4M3M.build.flash_size_arg=4MB
+phoenix_v1.menu.eesz.4M3M.build.flash_size_arg=4MB
+agruminolemonv4.menu.eesz.4M3M.build.flash_size_arg=4MB
+eduinowifi.menu.eesz.4M3M.build.flash_size_arg=4MB
+espinotee.menu.eesz.4M3M.build.flash_size_arg=4MB
+phoenix_v2.menu.eesz.4M3M.build.flash_size_arg=4MB
+wifio.menu.eesz.4M3M.build.flash_size_arg=4MB
+arduino_spi.menu.eesz.4M3M.build.flash_size_arg=4MB
+espresso_lite_v1.menu.eesz.4M3M.build.flash_size_arg=4MB
+wifi_slot.menu.eesz.4M3M.build.flash_size_arg=4MB
+arduino_uart.menu.eesz.4M3M.build.flash_size_arg=4MB
+ESPDuino.menu.eesz.4M3M.build.flash_size_arg=4MB
+espresso_lite_v2.menu.eesz.4M3M.build.flash_size_arg=4MB
+wifiduino.menu.eesz.4M3M.build.flash_size_arg=4MB
+wiolink.menu.eesz.4M3M.build.flash_size_arg=4MB
+espectro.menu.eesz.4M3M.build.flash_size_arg=4MB
+oak.menu.eesz.4M3M.build.flash_size_arg=4MB
+wifi_kit_8.menu.eesz.4M3M.build.flash_size_arg=4MB
+xinabox.menu.eesz.4M3M.build.flash_size_arg=4MB
+
+d1.menu.eesz.4M1M.build.flash_size_arg=4MB
+espino.menu.eesz.4M1M.build.flash_size_arg=4MB
+inventone.menu.eesz.4M1M.build.flash_size_arg=4MB
+phoenix_v1.menu.eesz.4M1M.build.flash_size_arg=4MB
+agruminolemonv4.menu.eesz.4M1M.build.flash_size_arg=4MB
+eduinowifi.menu.eesz.4M1M.build.flash_size_arg=4MB
+espinotee.menu.eesz.4M1M.build.flash_size_arg=4MB
+phoenix_v2.menu.eesz.4M1M.build.flash_size_arg=4MB
+wifio.menu.eesz.4M1M.build.flash_size_arg=4MB
+arduino_spi.menu.eesz.4M1M.build.flash_size_arg=4MB
+espresso_lite_v1.menu.eesz.4M1M.build.flash_size_arg=4MB
+wifi_slot.menu.eesz.4M1M.build.flash_size_arg=4MB
+arduino_uart.menu.eesz.4M1M.build.flash_size_arg=4MB
+ESPDuino.menu.eesz.4M1M.build.flash_size_arg=4MB
+espresso_lite_v2.menu.eesz.4M1M.build.flash_size_arg=4MB
+wifiduino.menu.eesz.4M1M.build.flash_size_arg=4MB
+wiolink.menu.eesz.4M1M.build.flash_size_arg=4MB
+espectro.menu.eesz.4M1M.build.flash_size_arg=4MB
+oak.menu.eesz.4M1M.build.flash_size_arg=4MB
+wifi_kit_8.menu.eesz.4M1M.build.flash_size_arg=4MB
+xinabox.menu.eesz.4M1M.build.flash_size_arg=4MB
+
+d1.menu.eesz.4M.build.flash_size_arg=4MB
+espino.menu.eesz.4M.build.flash_size_arg=4MB
+inventone.menu.eesz.4M.build.flash_size_arg=4MB
+phoenix_v1.menu.eesz.4M.build.flash_size_arg=4MB
+agruminolemonv4.menu.eesz.4M.build.flash_size_arg=4MB
+eduinowifi.menu.eesz.4M.build.flash_size_arg=4MB
+espinotee.menu.eesz.4M.build.flash_size_arg=4MB
+phoenix_v2.menu.eesz.4M.build.flash_size_arg=4MB
+wifio.menu.eesz.4M.build.flash_size_arg=4MB
+arduino_spi.menu.eesz.4M.build.flash_size_arg=4MB
+espresso_lite_v1.menu.eesz.4M.build.flash_size_arg=4MB
+wifi_slot.menu.eesz.4M.build.flash_size_arg=4MB
+arduino_uart.menu.eesz.4M.build.flash_size_arg=4MB
+ESPDuino.menu.eesz.4M.build.flash_size_arg=4MB
+espresso_lite_v2.menu.eesz.4M.build.flash_size_arg=4MB
+wifiduino.menu.eesz.4M.build.flash_size_arg=4MB
+wiolink.menu.eesz.4M.build.flash_size_arg=4MB
+espectro.menu.eesz.4M.build.flash_size_arg=4MB
+oak.menu.eesz.4M.build.flash_size_arg=4MB
+wifi_kit_8.menu.eesz.4M.build.flash_size_arg=4MB
+xinabox.menu.eesz.4M.build.flash_size_arg=4MB
+
+d1.menu.eesz.4M2M.upload.maximum_size=1043456
+espino.menu.eesz.4M2M.upload.maximum_size=1043456
+inventone.menu.eesz.4M2M.upload.maximum_size=1043456
+phoenix_v1.menu.eesz.4M2M.upload.maximum_size=1043456
+agruminolemonv4.menu.eesz.4M2M.upload.maximum_size=1043456
+eduinowifi.menu.eesz.4M2M.upload.maximum_size=1043456
+espinotee.menu.eesz.4M2M.upload.maximum_size=1043456
+phoenix_v2.menu.eesz.4M2M.upload.maximum_size=1043456
+wifio.menu.eesz.4M2M.upload.maximum_size=1043456
+arduino_spi.menu.eesz.4M2M.upload.maximum_size=1043456
+espresso_lite_v1.menu.eesz.4M2M.upload.maximum_size=1043456
+wifi_slot.menu.eesz.4M2M.upload.maximum_size=1043456
+arduino_uart.menu.eesz.4M2M.upload.maximum_size=1043456
+ESPDuino.menu.eesz.4M2M.upload.maximum_size=1043456
+espresso_lite_v2.menu.eesz.4M2M.upload.maximum_size=1043456
+wifiduino.menu.eesz.4M2M.upload.maximum_size=1043456
+wiolink.menu.eesz.4M2M.upload.maximum_size=1043456
+espectro.menu.eesz.4M2M.upload.maximum_size=1043456
+oak.menu.eesz.4M2M.upload.maximum_size=1043456
+wifi_kit_8.menu.eesz.4M2M.upload.maximum_size=1043456
+xinabox.menu.eesz.4M2M.upload.maximum_size=1043456
+
+d1.menu.eesz.4M3M.upload.maximum_size=524288
+espino.menu.eesz.4M3M.upload.maximum_size=524288
+inventone.menu.eesz.4M3M.upload.maximum_size=524288
+phoenix_v1.menu.eesz.4M3M.upload.maximum_size=524288
+agruminolemonv4.menu.eesz.4M3M.upload.maximum_size=524288
+eduinowifi.menu.eesz.4M3M.upload.maximum_size=524288
+espinotee.menu.eesz.4M3M.upload.maximum_size=524288
+phoenix_v2.menu.eesz.4M3M.upload.maximum_size=524288
+wifio.menu.eesz.4M3M.upload.maximum_size=524288
+arduino_spi.menu.eesz.4M3M.upload.maximum_size=524288
+espresso_lite_v1.menu.eesz.4M3M.upload.maximum_size=524288
+wifi_slot.menu.eesz.4M3M.upload.maximum_size=524288
+arduino_uart.menu.eesz.4M3M.upload.maximum_size=524288
+ESPDuino.menu.eesz.4M3M.upload.maximum_size=524288
+espresso_lite_v2.menu.eesz.4M3M.upload.maximum_size=524288
+wifiduino.menu.eesz.4M3M.upload.maximum_size=524288
+wiolink.menu.eesz.4M3M.upload.maximum_size=524288
+espectro.menu.eesz.4M3M.upload.maximum_size=524288
+oak.menu.eesz.4M3M.upload.maximum_size=524288
+wifi_kit_8.menu.eesz.4M3M.upload.maximum_size=524288
+xinabox.menu.eesz.4M3M.upload.maximum_size=524288
+
+d1.menu.eesz.4M1M.upload.maximum_size=1043456
+espino.menu.eesz.4M1M.upload.maximum_size=1043456
+inventone.menu.eesz.4M1M.upload.maximum_size=1043456
+phoenix_v1.menu.eesz.4M1M.upload.maximum_size=1043456
+agruminolemonv4.menu.eesz.4M1M.upload.maximum_size=1043456
+eduinowifi.menu.eesz.4M1M.upload.maximum_size=1043456
+espinotee.menu.eesz.4M1M.upload.maximum_size=1043456
+phoenix_v2.menu.eesz.4M1M.upload.maximum_size=1043456
+wifio.menu.eesz.4M1M.upload.maximum_size=1043456
+arduino_spi.menu.eesz.4M1M.upload.maximum_size=1043456
+espresso_lite_v1.menu.eesz.4M1M.upload.maximum_size=1043456
+wifi_slot.menu.eesz.4M1M.upload.maximum_size=1043456
+arduino_uart.menu.eesz.4M1M.upload.maximum_size=1043456
+ESPDuino.menu.eesz.4M1M.upload.maximum_size=1043456
+espresso_lite_v2.menu.eesz.4M1M.upload.maximum_size=1043456
+wifiduino.menu.eesz.4M1M.upload.maximum_size=1043456
+wiolink.menu.eesz.4M1M.upload.maximum_size=1043456
+espectro.menu.eesz.4M1M.upload.maximum_size=1043456
+oak.menu.eesz.4M1M.upload.maximum_size=1043456
+wifi_kit_8.menu.eesz.4M1M.upload.maximum_size=1043456
+xinabox.menu.eesz.4M1M.upload.maximum_size=1043456
+
+d1.menu.eesz.4M.upload.maximum_size=1043456
+espino.menu.eesz.4M.upload.maximum_size=1043456
+inventone.menu.eesz.4M.upload.maximum_size=1043456
+phoenix_v1.menu.eesz.4M.upload.maximum_size=1043456
+agruminolemonv4.menu.eesz.4M.upload.maximum_size=1043456
+eduinowifi.menu.eesz.4M.upload.maximum_size=1043456
+espinotee.menu.eesz.4M.upload.maximum_size=1043456
+phoenix_v2.menu.eesz.4M.upload.maximum_size=1043456
+wifio.menu.eesz.4M.upload.maximum_size=1043456
+arduino_spi.menu.eesz.4M.upload.maximum_size=1043456
+espresso_lite_v1.menu.eesz.4M.upload.maximum_size=1043456
+wifi_slot.menu.eesz.4M.upload.maximum_size=1043456
+arduino_uart.menu.eesz.4M.upload.maximum_size=1043456
+ESPDuino.menu.eesz.4M.upload.maximum_size=1043456
+espresso_lite_v2.menu.eesz.4M.upload.maximum_size=1043456
+wifiduino.menu.eesz.4M.upload.maximum_size=1043456
+wiolink.menu.eesz.4M.upload.maximum_size=1043456
+espectro.menu.eesz.4M.upload.maximum_size=1043456
+oak.menu.eesz.4M.upload.maximum_size=1043456
+wifi_kit_8.menu.eesz.4M.upload.maximum_size=1043456
+xinabox.menu.eesz.4M.upload.maximum_size=1043456
+
+# --- CPU Freq (80, 160) ---
+d1.menu.xtal.80=80 MHz
+espino.menu.xtal.80=80 MHz
+inventone.menu.xtal.80=80 MHz
+phoenix_v1.menu.xtal.80=80 MHz
+agruminolemonv4.menu.xtal.80=80 MHz
+eduinowifi.menu.xtal.80=80 MHz
+espinotee.menu.xtal.80=80 MHz
+phoenix_v2.menu.xtal.80=80 MHz
+wifio.menu.xtal.80=80 MHz
+arduino_spi.menu.xtal.80=80 MHz
+espresso_lite_v1.menu.xtal.80=80 MHz
+wifi_slot.menu.xtal.80=80 MHz
+arduino_uart.menu.xtal.80=80 MHz
+ESPDuino.menu.xtal.80=80 MHz
+espresso_lite_v2.menu.xtal.80=80 MHz
+wifiduino.menu.xtal.80=80 MHz
+wiolink.menu.xtal.80=80 MHz
+espectro.menu.xtal.80=80 MHz
+oak.menu.xtal.80=80 MHz
+wifi_kit_8.menu.xtal.80=80 MHz
+xinabox.menu.xtal.80=80 MHz
+
+d1.menu.xtal.160=160 MHz
+espino.menu.xtal.160=160 MHz
+inventone.menu.xtal.160=160 MHz
+phoenix_v1.menu.xtal.160=160 MHz
+agruminolemonv4.menu.xtal.160=160 MHz
+eduinowifi.menu.xtal.160=160 MHz
+espinotee.menu.xtal.160=160 MHz
+phoenix_v2.menu.xtal.160=160 MHz
+wifio.menu.xtal.160=160 MHz
+arduino_spi.menu.xtal.160=160 MHz
+espresso_lite_v1.menu.xtal.160=160 MHz
+wifi_slot.menu.xtal.160=160 MHz
+arduino_uart.menu.xtal.160=160 MHz
+ESPDuino.menu.xtal.160=160 MHz
+espresso_lite_v2.menu.xtal.160=160 MHz
+wifiduino.menu.xtal.160=160 MHz
+wiolink.menu.xtal.160=160 MHz
+espectro.menu.xtal.160=160 MHz
+oak.menu.xtal.160=160 MHz
+wifi_kit_8.menu.xtal.160=160 MHz
+xinabox.menu.xtal.160=160 MHz
+
+d1.menu.xtal.80.build.f_cpu=80000000L
+espino.menu.xtal.80.build.f_cpu=80000000L
+inventone.menu.xtal.80.build.f_cpu=80000000L
+phoenix_v1.menu.xtal.80.build.f_cpu=80000000L
+agruminolemonv4.menu.xtal.80.build.f_cpu=80000000L
+eduinowifi.menu.xtal.80.build.f_cpu=80000000L
+espinotee.menu.xtal.80.build.f_cpu=80000000L
+phoenix_v2.menu.xtal.80.build.f_cpu=80000000L
+wifio.menu.xtal.80.build.f_cpu=80000000L
+arduino_spi.menu.xtal.80.build.f_cpu=80000000L
+espresso_lite_v1.menu.xtal.80.build.f_cpu=80000000L
+wifi_slot.menu.xtal.80.build.f_cpu=80000000L
+arduino_uart.menu.xtal.80.build.f_cpu=80000000L
+ESPDuino.menu.xtal.80.build.f_cpu=80000000L
+espresso_lite_v2.menu.xtal.80.build.f_cpu=80000000L
+wifiduino.menu.xtal.80.build.f_cpu=80000000L
+wiolink.menu.xtal.80.build.f_cpu=80000000L
+espectro.menu.xtal.80.build.f_cpu=80000000L
+oak.menu.xtal.80.build.f_cpu=80000000L
+wifi_kit_8.menu.xtal.80.build.f_cpu=80000000L
+xinabox.menu.xtal.80.build.f_cpu=80000000L
+
+d1.menu.xtal.160.build.f_cpu=160000000L
+espino.menu.xtal.160.build.f_cpu=160000000L
+inventone.menu.xtal.160.build.f_cpu=160000000L
+phoenix_v1.menu.xtal.160.build.f_cpu=160000000L
+agruminolemonv4.menu.xtal.160.build.f_cpu=160000000L
+eduinowifi.menu.xtal.160.build.f_cpu=160000000L
+espinotee.menu.xtal.160.build.f_cpu=160000000L
+phoenix_v2.menu.xtal.160.build.f_cpu=160000000L
+wifio.menu.xtal.160.build.f_cpu=160000000L
+arduino_spi.menu.xtal.160.build.f_cpu=160000000L
+espresso_lite_v1.menu.xtal.160.build.f_cpu=160000000L
+wifi_slot.menu.xtal.160.build.f_cpu=160000000L
+arduino_uart.menu.xtal.160.build.f_cpu=160000000L
+ESPDuino.menu.xtal.160.build.f_cpu=160000000L
+espresso_lite_v2.menu.xtal.160.build.f_cpu=160000000L
+wifiduino.menu.xtal.160.build.f_cpu=160000000L
+wiolink.menu.xtal.160.build.f_cpu=160000000L
+espectro.menu.xtal.160.build.f_cpu=160000000L
+oak.menu.xtal.160.build.f_cpu=160000000L
+wifi_kit_8.menu.xtal.160.build.f_cpu=160000000L
+xinabox.menu.xtal.160.build.f_cpu=160000000L
+
+# --- Log Levels (0 to 5) ---
+d1.menu.lvl.None____=None
+espino.menu.lvl.None____=None
+inventone.menu.lvl.None____=None
+phoenix_v1.menu.lvl.None____=None
+agruminolemonv4.menu.lvl.None____=None
+eduinowifi.menu.lvl.None____=None
+espinotee.menu.lvl.None____=None
+phoenix_v2.menu.lvl.None____=None
+wifio.menu.lvl.None____=None
+arduino_spi.menu.lvl.None____=None
+espresso_lite_v1.menu.lvl.None____=None
+wifi_slot.menu.lvl.None____=None
+arduino_uart.menu.lvl.None____=None
+ESPDuino.menu.lvl.None____=None
+espresso_lite_v2.menu.lvl.None____=None
+wifiduino.menu.lvl.None____=None
+wiolink.menu.lvl.None____=None
+espectro.menu.lvl.None____=None
+oak.menu.lvl.None____=None
+wifi_kit_8.menu.lvl.None____=None
+xinabox.menu.lvl.None____=None
+
+d1.menu.lvl.Error=Error
+espino.menu.lvl.Error=Error
+inventone.menu.lvl.Error=Error
+phoenix_v1.menu.lvl.Error=Error
+agruminolemonv4.menu.lvl.Error=Error
+eduinowifi.menu.lvl.Error=Error
+espinotee.menu.lvl.Error=Error
+phoenix_v2.menu.lvl.Error=Error
+wifio.menu.lvl.Error=Error
+arduino_spi.menu.lvl.Error=Error
+espresso_lite_v1.menu.lvl.Error=Error
+wifi_slot.menu.lvl.Error=Error
+arduino_uart.menu.lvl.Error=Error
+ESPDuino.menu.lvl.Error=Error
+espresso_lite_v2.menu.lvl.Error=Error
+wifiduino.menu.lvl.Error=Error
+wiolink.menu.lvl.Error=Error
+espectro.menu.lvl.Error=Error
+oak.menu.lvl.Error=Error
+wifi_kit_8.menu.lvl.Error=Error
+xinabox.menu.lvl.Error=Error
+
+d1.menu.lvl.Warn=Warn
+espino.menu.lvl.Warn=Warn
+inventone.menu.lvl.Warn=Warn
+phoenix_v1.menu.lvl.Warn=Warn
+agruminolemonv4.menu.lvl.Warn=Warn
+eduinowifi.menu.lvl.Warn=Warn
+espinotee.menu.lvl.Warn=Warn
+phoenix_v2.menu.lvl.Warn=Warn
+wifio.menu.lvl.Warn=Warn
+arduino_spi.menu.lvl.Warn=Warn
+espresso_lite_v1.menu.lvl.Warn=Warn
+wifi_slot.menu.lvl.Warn=Warn
+arduino_uart.menu.lvl.Warn=Warn
+ESPDuino.menu.lvl.Warn=Warn
+espresso_lite_v2.menu.lvl.Warn=Warn
+wifiduino.menu.lvl.Warn=Warn
+wiolink.menu.lvl.Warn=Warn
+espectro.menu.lvl.Warn=Warn
+oak.menu.lvl.Warn=Warn
+wifi_kit_8.menu.lvl.Warn=Warn
+xinabox.menu.lvl.Warn=Warn
+
+d1.menu.lvl.Info=Info
+espino.menu.lvl.Info=Info
+inventone.menu.lvl.Info=Info
+phoenix_v1.menu.lvl.Info=Info
+agruminolemonv4.menu.lvl.Info=Info
+eduinowifi.menu.lvl.Info=Info
+espinotee.menu.lvl.Info=Info
+phoenix_v2.menu.lvl.Info=Info
+wifio.menu.lvl.Info=Info
+arduino_spi.menu.lvl.Info=Info
+espresso_lite_v1.menu.lvl.Info=Info
+wifi_slot.menu.lvl.Info=Info
+arduino_uart.menu.lvl.Info=Info
+ESPDuino.menu.lvl.Info=Info
+espresso_lite_v2.menu.lvl.Info=Info
+wifiduino.menu.lvl.Info=Info
+wiolink.menu.lvl.Info=Info
+espectro.menu.lvl.Info=Info
+oak.menu.lvl.Info=Info
+wifi_kit_8.menu.lvl.Info=Info
+xinabox.menu.lvl.Info=Info
+
+d1.menu.lvl.Debug=Debug
+espino.menu.lvl.Debug=Debug
+inventone.menu.lvl.Debug=Debug
+phoenix_v1.menu.lvl.Debug=Debug
+agruminolemonv4.menu.lvl.Debug=Debug
+eduinowifi.menu.lvl.Debug=Debug
+espinotee.menu.lvl.Debug=Debug
+phoenix_v2.menu.lvl.Debug=Debug
+wifio.menu.lvl.Debug=Debug
+arduino_spi.menu.lvl.Debug=Debug
+espresso_lite_v1.menu.lvl.Debug=Debug
+wifi_slot.menu.lvl.Debug=Debug
+arduino_uart.menu.lvl.Debug=Debug
+ESPDuino.menu.lvl.Debug=Debug
+espresso_lite_v2.menu.lvl.Debug=Debug
+wifiduino.menu.lvl.Debug=Debug
+wiolink.menu.lvl.Debug=Debug
+espectro.menu.lvl.Debug=Debug
+oak.menu.lvl.Debug=Debug
+wifi_kit_8.menu.lvl.Debug=Debug
+xinabox.menu.lvl.Debug=Debug
+
+d1.menu.lvl.Verbose=Verbose
+espino.menu.lvl.Verbose=Verbose
+inventone.menu.lvl.Verbose=Verbose
+phoenix_v1.menu.lvl.Verbose=Verbose
+agruminolemonv4.menu.lvl.Verbose=Verbose
+eduinowifi.menu.lvl.Verbose=Verbose
+espinotee.menu.lvl.Verbose=Verbose
+phoenix_v2.menu.lvl.Verbose=Verbose
+wifio.menu.lvl.Verbose=Verbose
+arduino_spi.menu.lvl.Verbose=Verbose
+espresso_lite_v1.menu.lvl.Verbose=Verbose
+wifi_slot.menu.lvl.Verbose=Verbose
+arduino_uart.menu.lvl.Verbose=Verbose
+ESPDuino.menu.lvl.Verbose=Verbose
+espresso_lite_v2.menu.lvl.Verbose=Verbose
+wifiduino.menu.lvl.Verbose=Verbose
+wiolink.menu.lvl.Verbose=Verbose
+espectro.menu.lvl.Verbose=Verbose
+oak.menu.lvl.Verbose=Verbose
+wifi_kit_8.menu.lvl.Verbose=Verbose
+xinabox.menu.lvl.Verbose=Verbose
+
+d1.menu.lvl.None____.build.arduhal_log_level=0
+espino.menu.lvl.None____.build.arduhal_log_level=0
+inventone.menu.lvl.None____.build.arduhal_log_level=0
+phoenix_v1.menu.lvl.None____.build.arduhal_log_level=0
+agruminolemonv4.menu.lvl.None____.build.arduhal_log_level=0
+eduinowifi.menu.lvl.None____.build.arduhal_log_level=0
+espinotee.menu.lvl.None____.build.arduhal_log_level=0
+phoenix_v2.menu.lvl.None____.build.arduhal_log_level=0
+wifio.menu.lvl.None____.build.arduhal_log_level=0
+arduino_spi.menu.lvl.None____.build.arduhal_log_level=0
+espresso_lite_v1.menu.lvl.None____.build.arduhal_log_level=0
+wifi_slot.menu.lvl.None____.build.arduhal_log_level=0
+arduino_uart.menu.lvl.None____.build.arduhal_log_level=0
+ESPDuino.menu.lvl.None____.build.arduhal_log_level=0
+espresso_lite_v2.menu.lvl.None____.build.arduhal_log_level=0
+wifiduino.menu.lvl.None____.build.arduhal_log_level=0
+wiolink.menu.lvl.None____.build.arduhal_log_level=0
+espectro.menu.lvl.None____.build.arduhal_log_level=0
+oak.menu.lvl.None____.build.arduhal_log_level=0
+wifi_kit_8.menu.lvl.None____.build.arduhal_log_level=0
+xinabox.menu.lvl.None____.build.arduhal_log_level=0
+
+d1.menu.lvl.Error.build.arduhal_log_level=1
+espino.menu.lvl.Error.build.arduhal_log_level=1
+inventone.menu.lvl.Error.build.arduhal_log_level=1
+phoenix_v1.menu.lvl.Error.build.arduhal_log_level=1
+agruminolemonv4.menu.lvl.Error.build.arduhal_log_level=1
+eduinowifi.menu.lvl.Error.build.arduhal_log_level=1
+espinotee.menu.lvl.Error.build.arduhal_log_level=1
+phoenix_v2.menu.lvl.Error.build.arduhal_log_level=1
+wifio.menu.lvl.Error.build.arduhal_log_level=1
+arduino_spi.menu.lvl.Error.build.arduhal_log_level=1
+espresso_lite_v1.menu.lvl.Error.build.arduhal_log_level=1
+wifi_slot.menu.lvl.Error.build.arduhal_log_level=1
+arduino_uart.menu.lvl.Error.build.arduhal_log_level=1
+ESPDuino.menu.lvl.Error.build.arduhal_log_level=1
+espresso_lite_v2.menu.lvl.Error.build.arduhal_log_level=1
+wifiduino.menu.lvl.Error.build.arduhal_log_level=1
+wiolink.menu.lvl.Error.build.arduhal_log_level=1
+espectro.menu.lvl.Error.build.arduhal_log_level=1
+oak.menu.lvl.Error.build.arduhal_log_level=1
+wifi_kit_8.menu.lvl.Error.build.arduhal_log_level=1
+xinabox.menu.lvl.Error.build.arduhal_log_level=1
+
+d1.menu.lvl.Warn.build.arduhal_log_level=2
+espino.menu.lvl.Warn.build.arduhal_log_level=2
+inventone.menu.lvl.Warn.build.arduhal_log_level=2
+phoenix_v1.menu.lvl.Warn.build.arduhal_log_level=2
+agruminolemonv4.menu.lvl.Warn.build.arduhal_log_level=2
+eduinowifi.menu.lvl.Warn.build.arduhal_log_level=2
+espinotee.menu.lvl.Warn.build.arduhal_log_level=2
+phoenix_v2.menu.lvl.Warn.build.arduhal_log_level=2
+wifio.menu.lvl.Warn.build.arduhal_log_level=2
+arduino_spi.menu.lvl.Warn.build.arduhal_log_level=2
+espresso_lite_v1.menu.lvl.Warn.build.arduhal_log_level=2
+wifi_slot.menu.lvl.Warn.build.arduhal_log_level=2
+arduino_uart.menu.lvl.Warn.build.arduhal_log_level=2
+ESPDuino.menu.lvl.Warn.build.arduhal_log_level=2
+espresso_lite_v2.menu.lvl.Warn.build.arduhal_log_level=2
+wifiduino.menu.lvl.Warn.build.arduhal_log_level=2
+wiolink.menu.lvl.Warn.build.arduhal_log_level=2
+espectro.menu.lvl.Warn.build.arduhal_log_level=2
+oak.menu.lvl.Warn.build.arduhal_log_level=2
+wifi_kit_8.menu.lvl.Warn.build.arduhal_log_level=2
+xinabox.menu.lvl.Warn.build.arduhal_log_level=2
+
+d1.menu.lvl.Info.build.arduhal_log_level=3
+espino.menu.lvl.Info.build.arduhal_log_level=3
+inventone.menu.lvl.Info.build.arduhal_log_level=3
+phoenix_v1.menu.lvl.Info.build.arduhal_log_level=3
+agruminolemonv4.menu.lvl.Info.build.arduhal_log_level=3
+eduinowifi.menu.lvl.Info.build.arduhal_log_level=3
+espinotee.menu.lvl.Info.build.arduhal_log_level=3
+phoenix_v2.menu.lvl.Info.build.arduhal_log_level=3
+wifio.menu.lvl.Info.build.arduhal_log_level=3
+arduino_spi.menu.lvl.Info.build.arduhal_log_level=3
+espresso_lite_v1.menu.lvl.Info.build.arduhal_log_level=3
+wifi_slot.menu.lvl.Info.build.arduhal_log_level=3
+arduino_uart.menu.lvl.Info.build.arduhal_log_level=3
+ESPDuino.menu.lvl.Info.build.arduhal_log_level=3
+espresso_lite_v2.menu.lvl.Info.build.arduhal_log_level=3
+wifiduino.menu.lvl.Info.build.arduhal_log_level=3
+wiolink.menu.lvl.Info.build.arduhal_log_level=3
+espectro.menu.lvl.Info.build.arduhal_log_level=3
+oak.menu.lvl.Info.build.arduhal_log_level=3
+wifi_kit_8.menu.lvl.Info.build.arduhal_log_level=3
+xinabox.menu.lvl.Info.build.arduhal_log_level=3
+
+d1.menu.lvl.Debug.build.arduhal_log_level=4
+espino.menu.lvl.Debug.build.arduhal_log_level=4
+inventone.menu.lvl.Debug.build.arduhal_log_level=4
+phoenix_v1.menu.lvl.Debug.build.arduhal_log_level=4
+agruminolemonv4.menu.lvl.Debug.build.arduhal_log_level=4
+eduinowifi.menu.lvl.Debug.build.arduhal_log_level=4
+espinotee.menu.lvl.Debug.build.arduhal_log_level=4
+phoenix_v2.menu.lvl.Debug.build.arduhal_log_level=4
+wifio.menu.lvl.Debug.build.arduhal_log_level=4
+arduino_spi.menu.lvl.Debug.build.arduhal_log_level=4
+espresso_lite_v1.menu.lvl.Debug.build.arduhal_log_level=4
+wifi_slot.menu.lvl.Debug.build.arduhal_log_level=4
+arduino_uart.menu.lvl.Debug.build.arduhal_log_level=4
+ESPDuino.menu.lvl.Debug.build.arduhal_log_level=4
+espresso_lite_v2.menu.lvl.Debug.build.arduhal_log_level=4
+wifiduino.menu.lvl.Debug.build.arduhal_log_level=4
+wiolink.menu.lvl.Debug.build.arduhal_log_level=4
+espectro.menu.lvl.Debug.build.arduhal_log_level=4
+oak.menu.lvl.Debug.build.arduhal_log_level=4
+wifi_kit_8.menu.lvl.Debug.build.arduhal_log_level=4
+xinabox.menu.lvl.Debug.build.arduhal_log_level=4
+
+d1.menu.lvl.Verbose.build.arduhal_log_level=5
+espino.menu.lvl.Verbose.build.arduhal_log_level=5
+inventone.menu.lvl.Verbose.build.arduhal_log_level=5
+phoenix_v1.menu.lvl.Verbose.build.arduhal_log_level=5
+agruminolemonv4.menu.lvl.Verbose.build.arduhal_log_level=5
+eduinowifi.menu.lvl.Verbose.build.arduhal_log_level=5
+espinotee.menu.lvl.Verbose.build.arduhal_log_level=5
+phoenix_v2.menu.lvl.Verbose.build.arduhal_log_level=5
+wifio.menu.lvl.Verbose.build.arduhal_log_level=5
+arduino_spi.menu.lvl.Verbose.build.arduhal_log_level=5
+espresso_lite_v1.menu.lvl.Verbose.build.arduhal_log_level=5
+wifi_slot.menu.lvl.Verbose.build.arduhal_log_level=5
+arduino_uart.menu.lvl.Verbose.build.arduhal_log_level=5
+ESPDuino.menu.lvl.Verbose.build.arduhal_log_level=5
+espresso_lite_v2.menu.lvl.Verbose.build.arduhal_log_level=5
+wifiduino.menu.lvl.Verbose.build.arduhal_log_level=5
+wiolink.menu.lvl.Verbose.build.arduhal_log_level=5
+espectro.menu.lvl.Verbose.build.arduhal_log_level=5
+oak.menu.lvl.Verbose.build.arduhal_log_level=5
+wifi_kit_8.menu.lvl.Verbose.build.arduhal_log_level=5
+xinabox.menu.lvl.Verbose.build.arduhal_log_level=5
