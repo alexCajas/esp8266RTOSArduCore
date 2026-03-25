@@ -206,7 +206,7 @@ void TaskBlink(void *pvParameters)
 
 * ~~set compile option is not supported yet~~.
 
-* for now only support generic board esp8266 pins map, that is only for the way to name gpios pin in scketchs. You can install scketchs in others boards using generic name of gipo pins.  
+* ~~for now only support generic board esp8266 pins map, that is only for the way to name gpios pin in scketchs. You can install scketchs in others boards using generic name of gipo pins.~~  
 
 * ~~It is not supported changes deboug level info from IDE yet, you need to changes it manually in esp32-hal-log.h~~
 
@@ -215,7 +215,7 @@ void TaskBlink(void *pvParameters)
 - [x] Implement way to resolve recursive includes.
 - [x] Rewrite paltafrom.txt to give support to compile options. 
 - [x] Add esp8266 boards configurations in boards.txt
-- [ ] Add pins map support for more models of esp8266 boards.
+- [x] Add pins map support for more models of esp8266 boards.
 - [x] Changes bash scripts to python scripts to support more OS.
 - [ ] adapt, test and fix remaining core files with hardware dependencies of esp32 core. [See this section](https://github.com/alexCajas/ESP8266RTOSArdu/tree/main#list-of-core-files-to-adapt-test-and-fix). 
 - [ ] Test and fix remaining basic libraries of esp32 core. [See this section](https://github.com/alexCajas/ESP8266RTOSArdu/tree/main#list-of-basic-libraries-to-test-and-fix).

@@ -143,6 +143,7 @@ http://localhost:8080/package_esp8266RTOS_index.json
   * new work of windows, now it is not experimental now is functional like ubuntu!.
   * suport extra flags:
     * debug log level can be set via board config or arduino.json iqual that esp32 with extra flags and it can be set oghers directives like -DARDUINO
+  * all pins mappings suported
 
 * cleaning deprecate scripts:
   * compile.sh
@@ -171,9 +172,10 @@ http://localhost:8080/package_esp8266RTOS_index.json
 ## Doing
 
 
-* add more supported boards? 8265?
-
 ## Done
+
+### 25/03/2026
+* add more supported boards? 8265?
 
 ### 21/03/2026
 * Important! add Directives in build.cmake (-DARDUINO), to get prerpocessor the definitions that use esp32 and arduino libraries for esp32 core!, you can get that in esp32/platform.txt. It was needded to use ArduinoJSON library!.
